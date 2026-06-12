@@ -1,0 +1,304 @@
+{
+  "module_schema": "pvos-library-module@1.0.0",
+  "module_id": "governance",
+  "release_version": "5.16.1",
+  "owns": [
+    "source_registry",
+    "focused_entry_presets",
+    "validation"
+  ],
+  "payload": {
+    "source_registry": {
+      "registry_schema": "portrait-visual-os-source-registry-v1",
+      "policy": "All route and asset domains resolve their provenance through a shared source registry. Existing source_origin values remain supported as stable aliases.",
+      "sources": [
+        {
+          "id": "legacy-v3",
+          "label_zh": "基础风格库",
+          "label_en": "Core Style Library",
+          "kind": "builtin-core",
+          "description_zh": "经过长期验证的核心路线，适合作为稳定起点。"
+        },
+        {
+          "id": "json-batches",
+          "label_zh": "扩展风格库",
+          "label_en": "Curated Expansion Library",
+          "kind": "builtin-expansion",
+          "description_zh": "由多批参考素材归并得到的扩展路线与组件。"
+        },
+        {
+          "id": "v5-integrated",
+          "label_zh": "系统整合库",
+          "label_en": "Integrated System Library",
+          "kind": "builtin-integrated",
+          "description_zh": "围绕婚礼、东方视觉、动作语法与排版互动新增的系统化资产。"
+        },
+        {
+          "id": "local-user",
+          "label_zh": "本地扩展",
+          "label_en": "Local Extensions",
+          "kind": "local-extension",
+          "description_zh": "通过 JSON 数据中心接入的个人扩展资产。"
+        },
+        {
+          "id": "graduation-curated",
+          "label_zh": "毕业季精选库",
+          "label_en": "Graduation Curated Library",
+          "kind": "builtin-curated-domain",
+          "description_zh": "从用户上传的毕业季参考截图中提取可复用视觉语法。原图只作为归档参考，不进入产品素材分发。",
+          "rights_status": "reference-only-do-not-redistribute",
+          "review_status": "reviewed-seed"
+        },
+        {
+          "id": "mature-women-curated",
+          "label_zh": "成熟女性精选库",
+          "label_en": "Mature Women Curated Library",
+          "kind": "builtin-curated-domain",
+          "description_zh": "从成熟女性日常、职业和松弛感参考截图中提取可复用视觉语法。原图仅作归档参考。",
+          "rights_status": "reference-only-do-not-redistribute",
+          "review_status": "reviewed-seed"
+        },
+        {
+          "id": "accessory-occlusion-safety",
+          "label_zh": "配饰遮挡安全协议",
+          "label_en": "Accessory Occlusion Safety Policy",
+          "kind": "system-safety-policy",
+          "description_zh": "处理墨镜、护目镜和深色镜片对眼部生成的影响，避免透镜下出现锐利错位眼睛、重复瞳孔和诡异透明效果。",
+          "rights_status": "system-authored",
+          "review_status": "approved"
+        },
+        {
+          "id": "daily-lighting-curated",
+          "label_zh": "日常肖像与光线精选库",
+          "label_en": "Daily Portrait Lighting Curated Library",
+          "kind": "builtin-curated-domain",
+          "description_zh": "从男女日常肖像、窗光、黄昏、混合色温、夜景霓虹和楼梯低机位参考图中提取可复用视觉语法。原图仅作归档参考。",
+          "rights_status": "reference-only-do-not-redistribute",
+          "review_status": "reviewed-seed"
+        },
+        {
+          "id": "lighting-physics-safety",
+          "label_zh": "光线物理一致性协议",
+          "label_en": "Lighting Physics Coherence Policy",
+          "kind": "system-safety-policy",
+          "description_zh": "约束主光方向、色温、阴影、反射、辉光、曝光、遮挡和人物角度之间的物理一致性。",
+          "rights_status": "system-authored",
+          "review_status": "approved"
+        },
+        {
+          "id": "male-daily-editorial-curated",
+          "label_zh": "男性日常编辑光影精选库",
+          "label_en": "Male Daily Editorial Lighting Curated Library",
+          "kind": "builtin-curated-domain",
+          "description_zh": "从男性室内硬窗光、休闲杂志肖像、餐桌直闪、书店耳机日常、窗边咖啡和复古街头参考图中提取可复用视觉语法。原图仅作归档参考。",
+          "rights_status": "reference-only-do-not-redistribute",
+          "review_status": "reviewed-seed"
+        },
+        {
+          "id": "clear-lens-flash-safety",
+          "label_zh": "透明眼镜与闪光反射安全协议",
+          "label_en": "Clear Lens and Flash Reflection Safety Policy",
+          "kind": "system-safety-policy",
+          "description_zh": "约束透明镜片后的眼睛、镜框几何、镜片折射、直闪高光、边缘反射和身份可读性。",
+          "rights_status": "system-authored",
+          "review_status": "approved"
+        },
+        {
+          "id": "female-twilight-beam-curated",
+          "label_zh": "女性黄昏与遮挡光精选库",
+          "label_en": "Female Twilight and Occluded Beam Curated Library",
+          "kind": "builtin-curated-domain",
+          "description_zh": "从女性黄昏直闪、海边风动、屋顶蓝调、咖啡馆窗光、窄束遮挡光和低照度床边参考图中提取可复用视觉语法。原图仅作归档参考。",
+          "rights_status": "reference-only-do-not-redistribute",
+          "review_status": "reviewed-seed"
+        },
+        {
+          "id": "twilight-beam-physics-safety",
+          "label_zh": "黄昏直闪与窄束光物理协议",
+          "label_en": "Twilight Flash and Occluded Beam Physics Policy",
+          "kind": "system-safety-policy",
+          "description_zh": "约束窄束光孔径路径、光斑边缘、低照度曝光、前景遮挡、黄昏环境光、直闪衰减、轮廓光和天空色温之间的物理一致性。",
+          "rights_status": "system-authored",
+          "review_status": "approved"
+        },
+        {
+          "id": "female-wind-motion-bedroom-curated",
+          "label_zh": "女性风动、拖影与居家生活精选库",
+          "label_en": "Female Wind Motion Blur and Bedroom Lifestyle Curated Library",
+          "kind": "builtin-curated-domain",
+          "description_zh": "从风动贴脸、黄金时刻逆光、黄昏拖影、卧室日常、耳机与清洁天空封面参考中提取的女性单人肖像语法。",
+          "rights_note": "Reference screenshots are archived for extraction only and are not redistributed."
+        },
+        {
+          "id": "female-seasonal-floral-transit-curated",
+          "label_zh": "女性季节叙事、花冠与通勤空间精选库",
+          "label_en": "Female Seasonal Floral Halo and Transit Curated Library",
+          "kind": "builtin-curated-domain",
+          "description_zh": "从冬日围巾近景、林间白裙、秋叶叙事、车窗风动、蓝底花冠、通勤车厢与窗面反射参考中提取的女性单人肖像语法。",
+          "rights_note": "Reference screenshots are archived for extraction only and are not redistributed."
+        },
+        {
+          "id": "composition-perspective-editorial-curated",
+          "label_zh": "构图关系、透视与编辑排版精选库",
+          "label_en": "Composition Perspective and Editorial Curated Library",
+          "kind": "builtin-curated-domain",
+          "description_zh": "从咖啡馆窗边、城市栏杆、黄色交通工具、海岸线、植物遮挡束光、灯笼河岸、象牙白棚拍、红色动势海报与林下近景素材中提取构图和透视语法。",
+          "rights_note": "Reference screenshots are archived for extraction only and are not redistributed."
+        },
+        {
+          "id": "composition-perspective-safety",
+          "label_zh": "构图与透视安全协议",
+          "label_en": "Composition and Perspective Safety Policy",
+          "kind": "system-safety-policy",
+          "description_zh": "约束相机高度、焦段行为、消失点、地平线、人物平面、前景遮挡平面、背景结构、文字排版平面与光线投影之间的一致性。",
+          "rights_status": "system-authored",
+          "review_status": "approved"
+        }
+      ]
+    },
+    "focused_entry_presets": [
+      {
+        "id": "portrait",
+        "label_zh": "单人人像",
+        "route_id": "b02-cream-serif-clean-cover",
+        "subject_count": "single",
+        "moment_intent": "safe-living",
+        "typography_intent": "reserve-layout",
+        "risk_tolerance": "strict",
+        "typography_hybrid_id": "luxury-ligature-cover",
+        "description_zh": "优先稳定面部、自然姿态与可交付留白。"
+      },
+      {
+        "id": "relationship",
+        "label_zh": "双人关系照",
+        "route_id": "love-archival",
+        "subject_count": "couple",
+        "moment_intent": "safe-living",
+        "typography_intent": "clean-base",
+        "risk_tolerance": "strict",
+        "typography_hybrid_id": "",
+        "description_zh": "优先真实关系、清晰双脸与克制画面。"
+      },
+      {
+        "id": "wedding",
+        "label_zh": "婚礼成片",
+        "route_id": "cn-wedding-room-candid",
+        "subject_count": "couple",
+        "moment_intent": "documentary-dynamic",
+        "typography_intent": "reserve-layout",
+        "risk_tolerance": "strict",
+        "typography_hybrid_id": "",
+        "description_zh": "优先幸福感、生活痕迹与可解释动作。"
+      },
+      {
+        "id": "editorial",
+        "label_zh": "杂志封面",
+        "route_id": "b02-cream-serif-clean-cover",
+        "subject_count": "single",
+        "moment_intent": "editorial-expressive",
+        "typography_intent": "reserve-layout",
+        "risk_tolerance": "balanced",
+        "typography_hybrid_id": "luxury-ligature-cover",
+        "description_zh": "优先编辑感姿态、留白和后期排版空间。"
+      },
+      {
+        "id": "oriental",
+        "label_zh": "东方视觉",
+        "route_id": "ink-smoke-portrait",
+        "subject_count": "single",
+        "moment_intent": "editorial-expressive",
+        "typography_intent": "reserve-layout",
+        "risk_tolerance": "strict",
+        "typography_hybrid_id": "",
+        "description_zh": "优先人物与东方材质自然融合，文字保持克制。"
+      },
+      {
+        "id": "experimental",
+        "label_zh": "实验排版",
+        "route_id": "u-type-mask",
+        "subject_count": "single",
+        "moment_intent": "editorial-expressive",
+        "typography_intent": "layout-coupled",
+        "risk_tolerance": "balanced",
+        "typography_hybrid_id": "",
+        "description_zh": "允许标题位参与构图，但保留完整面部识别区。"
+      },
+      {
+        "id": "graduation",
+        "label_zh": "毕业纪念",
+        "route_id": "graduation-sunlit-campus-documentary",
+        "subject_count": "single",
+        "moment_intent": "documentary-dynamic",
+        "typography_intent": "reserve-layout",
+        "risk_tolerance": "strict",
+        "typography_hybrid_id": "graduation-yearbook-editorial",
+        "description_zh": "优先保留身份、学位服、自然校园动作与纪念册留白。"
+      }
+    ],
+    "validation": {
+      "unresolved_reference_count": 0,
+      "unresolved_references": [],
+      "v5_10_0": {
+        "syntax": "pass",
+        "duplicate_ids": [],
+        "route_count": 135,
+        "component_total": 481,
+        "new_routes": 8,
+        "strengthened_routes": [
+          "female-forest-ribbon-softlight-fairytale"
+        ],
+        "lighting_physics_profiles_total": 39,
+        "composition_perspective_profiles_total": 9,
+        "runtime_dualpath": "pass",
+        "release_gate": "PASS"
+      },
+      "v5_11_0": {
+        "release_kind": "architecture-only-style-freeze",
+        "style_route_delta": 0,
+        "component_delta": 0,
+        "module_manifest": "pass",
+        "module_boundary_gate": "pass",
+        "runtime_dualpath": "pass",
+        "release_gate": "PASS"
+      },
+      "v5_11_1": {
+        "release_kind": "experience-polish-style-freeze",
+        "style_route_delta": 0,
+        "component_delta": 0,
+        "primary_action_visibility": "pass",
+        "layout_panel_index_gate": "pass",
+        "slot_specific_typography_preview": "pass",
+        "daylight_theme": "pass",
+        "release_gate": "PASS"
+      },
+      "v5_11_2": {
+        "release_kind": "theme-consistency-quiet-ui-style-freeze",
+        "style_route_delta": 0,
+        "component_delta": 0,
+        "daylight_surface_coverage": "pass",
+        "quiet_ui_default": "pass",
+        "progressive_disclosure": "pass",
+        "layout_template_expand_toggle": "pass",
+        "normal_file_usage": "pass",
+        "release_gate": "PASS"
+      },
+      "v5_11_3": {
+        "release_kind": "typography-surface-continuity-compiler-separation-style-freeze",
+        "style_route_delta": 0,
+        "component_delta": 0,
+        "route_surface_bindings": 135,
+        "generation_layout_channel_separation": "pass",
+        "poster_surface_continuity": "pass",
+        "normal_file_usage": "pass",
+        "release_gate": "PASS"
+      },
+      "v5_13_0_alpha": {
+        "font_reference_assets": 92,
+        "verified_font_assets": 39,
+        "typography_relation_patterns": 13,
+        "font_binary_distribution": false,
+        "product_onboarding": true
+      }
+    }
+  }
+}

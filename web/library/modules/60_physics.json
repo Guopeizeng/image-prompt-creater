@@ -1,0 +1,2081 @@
+{
+  "module_schema": "pvos-library-module@1.0.0",
+  "module_id": "physics",
+  "release_version": "5.16.1",
+  "owns": [
+    "accessory_occlusion_safety",
+    "lighting_physics_grammar",
+    "lighting_pose_bindings",
+    "composition_perspective_grammar",
+    "route_perspective_bindings"
+  ],
+  "payload": {
+    "accessory_occlusion_safety": {
+      "version": "1.1-clear-lens-flash-safe",
+      "default_policy": "identity-first-opaque-safe",
+      "compiled_prompt_en": "EYEWEAR OCCLUSION SAFETY: If sunglasses, dark glasses, goggles, or tinted lenses appear, treat the lenses as a coherent physical surface. For opaque or mirrored lenses, hide both eyes fully and naturally behind the lenses; do not render visible pupils, irises, eyelashes, or a second pair of eyes through dark glass. For translucent tinted lenses, keep any implied eyes soft, low-contrast, anatomically aligned, and subordinate to lens tint and reflection; never create sharp floating pupils or mismatched gaze through the lenses. When identity fidelity matters more than the accessory, remove the sunglasses or place them lifted above the eyes or held in one hand. Keep the frame aligned to the nose bridge, temples, and facial plane.",
+      "modes": [
+        {
+          "id": "eyewear-none",
+          "label_zh": "不使用墨镜",
+          "eye_visibility": "fully-visible",
+          "rule_en": "Keep both eyes naturally visible and aligned."
+        },
+        {
+          "id": "eyewear-opaque-safe",
+          "label_zh": "深色不透明墨镜",
+          "eye_visibility": "fully-hidden",
+          "rule_en": "Hide both eyes fully behind coherent dark or mirrored lenses. No through-lens pupils, irises, eyelashes, or duplicate eyes."
+        },
+        {
+          "id": "eyewear-tinted-conditional",
+          "label_zh": "半透明染色镜片",
+          "eye_visibility": "soft-implied-only",
+          "rule_en": "Allow only soft low-contrast anatomically aligned eye hints beneath the tint. Lens surface and reflection remain dominant."
+        },
+        {
+          "id": "eyewear-lifted-identity-safe",
+          "label_zh": "抬起或手持墨镜",
+          "eye_visibility": "fully-visible",
+          "rule_en": "Place sunglasses above the eyes or held in one hand when recognizable eye identity is important."
+        },
+        {
+          "id": "eyewear-clear-lens-readable",
+          "label_zh": "透明眼镜可读眼睛",
+          "eye_visibility": "fully-visible-through-clear-lens",
+          "rule_en": "Keep both eyes readable, aligned, and naturally visible through transparent lenses. Allow only restrained physically plausible glints or small reflections."
+        }
+      ],
+      "forbidden_patterns": [
+        "sharp visible pupils through opaque lenses",
+        "duplicate irises behind sunglasses",
+        "mismatched through-lens gaze",
+        "floating eyelashes inside dark lens",
+        "lens frame detached from nose bridge",
+        "one eye visible and one eye unrealistically erased unless physically occluded",
+        "opaque-looking clear prescription lenses",
+        "large white reflection blobs hiding both pupils without a plausible flash angle",
+        "duplicated or warped eyes behind clear lenses",
+        "asymmetrical magnification through matching lenses",
+        "floating glasses frame detached from nose bridge or temples",
+        "lens reflections inconsistent with camera-flash position"
+      ],
+      "clear_lens_flash_prompt_en": "CLEAR-LENS EYEWEAR SAFETY: When clear prescription glasses appear, keep both eyes anatomically aligned, readable, and naturally visible through transparent lenses. Treat each lens as one coherent optical surface attached to a stable frame resting on the nose bridge and temples. Under direct camera flash, allow only restrained physically plausible edge glints or small source reflections; do not place large white reflection blobs across both pupils unless the camera-source geometry genuinely supports it. Avoid duplicated irises, warped eyes, asymmetrical magnification, floating frames, detached temples, opaque clear lenses, and reflections that ignore the flash position. If the eyes become unreadable, reduce the reflection rather than inventing through-lens anatomy."
+    },
+    "lighting_physics_grammar": {
+      "version": "5.10.0",
+      "principle": "Light physics and composition perspective are resolved together: source direction, shadow projection, foreground plane, scene geometry, and subject angle must agree.",
+      "compiled_prompt_en": "LIGHTING PHYSICS SAFETY: Build the scene from a small number of physically plausible emitters. Keep one dominant key-light logic and make highlight, shadow, catchlight, rim light, reflected color, and cast-shadow direction agree with the source geometry. Do not place bright rims on surfaces that cannot see the source. Do not light both sides of the face equally when using one directional key. Respect window-edge penumbra, indoor falloff, outdoor atmospheric fill, railing and hand occlusion shadows, and color spill only on surfaces facing the spill. Preserve skin detail and avoid clipping forehead, nose bridge, cheek, shoulder, white clothing, and reflective jewelry. Keep practical lamps, sun beams, neon reflections, haze, and ambient fill subordinate to a coherent exposure hierarchy. Avoid impossible multi-directional highlights, disconnected shadows, random color patches, floating catchlights, duplicated cast shadows, and overexposed facial planes. HARD-SHADOW AND DIRECT-FLASH EXTENSION: For hard window sun, blind shadows, leaf shadows, hand shadows, and architectural occluders, preserve one continuous source path: shadow bands must keep a consistent direction, scale, softness, and surface continuity as they cross wall, clothing, hand, face, and furniture. Do not create decorative stripe patterns that change direction or float independently across the face. For direct on-camera flash, respect near-lens source geometry, inverse-square falloff, hard short cast shadows behind nearby objects, bright foreground priority, darker ambient background, and restrained specular response on skin, glasses, tableware, and glossy surfaces. Do not combine direct-flash flattening with unrelated cinematic rim lights unless a second visible practical source explains them. OCCLUDED-BEAM AND TWILIGHT-FLASH EXTENSION: For narrow warm beams, slit light, projector-like pools, door-gap light, and foreground veils, preserve one explainable aperture or occluder path. The lit region, shadow edge, penumbra, falloff, and surface continuity must agree across hair, eyelids, nose bridge, lips, neck, clothing, bedding, wall, and nearby objects. Keep facial landmarks readable even when much of the frame remains dark. For dusk beach direct flash, keep the near-lens flash responsible for foreground face and skin exposure while the sunset sky remains a separate low ambient field; do not brighten the ocean, sand, and distant horizon as if they share the same flash distance. For rooftop blue-hour portraits, allow one rear-side warm sunset rim and one restrained front fill or near-camera flash only when their roles remain visibly separable. Avoid blown halos, duplicated suns, arbitrary orange patches, flat beauty fill that erases twilight depth, and shadow bands that float independently of an occluder. WIND, FLARE, MOTION-BLUR, AND BEDROOM-LIFESTYLE EXTENSION: For wind-led close-ups, keep hair strands attached to one airflow vector and allow only explainable strand shadows across skin. Preserve at least one clear eye, the nose bridge, and the mouth contour as identity anchors. For hand-intercepted warm beams, keep the hand, beam edge, face patch, and cast shadow on one aperture path. For golden-hour backlight, align lens flare, bloom, warm rim, and highlight roll-off to one low-sun axis; do not paste random colored orbs across the frame. For slow-shutter and panning portraits, separate subject motion, camera movement, background streak direction, and crisp post-layout typography. Retain one readable identity anchor and anatomically continuous limbs. For bedroom lifestyle scenes, use one window direction with plausible wall, desk, textile, and prop bounce; avoid overexposed skin, cluttered facial zones, floating headphones, and generic showroom rooms. SEASONAL-FLORAL-TRANSIT EXTENSION: Keep scarf volume separate from face, forest light subordinate to canopy depth, autumn leaves subordinate to gravity and depth, mixed vehicle practicals separate from skin exposure, flower stems physically attached, transit corridor perspective coherent, and glass reflections offset from the physical subject. Resolve camera and projection hierarchy alongside light direction. Hard shadows, reflections, practicals, foreground blur, and architecture must belong to traceable planes.",
+      "required_fields": [
+        "dominant_source",
+        "source_position",
+        "elevation",
+        "hardness",
+        "beam_spread",
+        "color_temperature",
+        "falloff",
+        "shadow_logic",
+        "reflection_logic",
+        "catchlight_logic",
+        "exposure_priority",
+        "compatible_pose_angles",
+        "forbidden_patterns"
+      ],
+      "universal_rules": [
+        "Every lighting preset must define a dominant source and one exposure priority.",
+        "Mixed color temperatures require a clear spatial boundary or believable reflected spill.",
+        "Hard sunlight requires directional cast shadows and non-uniform facial illumination.",
+        "Window light must respect window position, wall orientation, and edge penumbra.",
+        "Neon light is usually reflected or signage spill, not uniform face paint.",
+        "Railing, hands, cups, and foreground objects cast occlusion shadows only when they block the source path.",
+        "Catchlights must be few, aligned, and explainable by visible or implied emitters.",
+        "White clothing, satin, pearls, wet skin, and glossy surfaces require highlight roll-off control.",
+        "Structured hard-shadow patterns must remain continuous across connected surfaces and follow one occluder geometry.",
+        "Direct on-camera flash must preserve near-lens source geometry, hard short shadows, foreground priority, and darker ambient background.",
+        "Clear prescription lenses remain transparent; flash reflections must be restrained and camera-position-consistent.",
+        "Narrow warm beams and spot pools must follow one aperture or occluder path with coherent penumbra and falloff.",
+        "Dusk direct flash must expose the near subject without flattening the distant sky, sea, or horizon into the same light field.",
+        "Blue-hour rim-fill scenes may combine rear-side sunset rim and restrained front fill only when the two emitter roles remain separable.",
+        "Foreground haze, door gaps, glass reflections, and veils must behave as depth-bearing optical layers rather than decorative overlays.",
+        "Wind-led hair must follow one dominant airflow vector and preserve readable recognition anchors.",
+        "A hand entering an occluded beam must cast source-consistent shadows on the face and nearby surfaces.",
+        "Golden-hour lens flare must align with one low-sun lens axis and remain subordinate to identity readability.",
+        "Intentional motion blur must separate camera panning, subject motion, background streaks, and crisp post-layout typography.",
+        "Bedroom lifestyle light must respect the visible or implied window direction and local textile or wall bounce."
+      ],
+      "source_profiles": [
+        {
+          "id": "phys-window-direct-sun",
+          "name_zh": "窗边定向晨光",
+          "dominant_source": "sun through window",
+          "source_position": "camera-right or side-window relative to subject",
+          "elevation": "medium-high",
+          "hardness": "medium-hard with window-edge penumbra",
+          "beam_spread": "bounded directional patch",
+          "color_temperature": "5200-6200K daylight with restrained warm bounce",
+          "falloff": "indoor directional falloff from window plane",
+          "shadow_logic": "one coherent side shadow; furniture and cup shadows follow the same direction",
+          "reflection_logic": "soft wall and tabletop bounce only",
+          "catchlight_logic": "one window-shaped catchlight per visible eye when angle allows",
+          "exposure_priority": "protect face and white tablecloth highlights",
+          "compatible_pose_angles": [
+            "three-quarter toward window",
+            "profile toward window",
+            "seated cup-sip near window"
+          ],
+          "forbidden_patterns": [
+            "equal illumination on both facial sides",
+            "floating rim on shadow-side ear",
+            "clipped nose bridge",
+            "cup shadow in opposite direction"
+          ]
+        },
+        {
+          "id": "phys-window-diffused-daylight",
+          "name_zh": "窗边漫射日光",
+          "dominant_source": "large diffused window",
+          "source_position": "side-front window relative to subject",
+          "elevation": "medium",
+          "hardness": "soft",
+          "beam_spread": "broad soft field",
+          "color_temperature": "5600-6800K cool daylight",
+          "falloff": "gentle indoor falloff",
+          "shadow_logic": "soft jaw and nose shadows only",
+          "reflection_logic": "neutral room fill",
+          "catchlight_logic": "broad rectangular catchlight",
+          "exposure_priority": "keep eye sockets readable and skin texture intact",
+          "compatible_pose_angles": [
+            "soft profile",
+            "off-frame lean",
+            "quiet close-up"
+          ],
+          "forbidden_patterns": [
+            "hard black shadow under nose",
+            "random warm face patch",
+            "overexposed cheek plate"
+          ]
+        },
+        {
+          "id": "phys-goldenhour-back-side",
+          "name_zh": "黄昏侧逆光",
+          "dominant_source": "low sun",
+          "source_position": "rear-side relative to subject",
+          "elevation": "low",
+          "hardness": "medium with atmospheric softness",
+          "beam_spread": "broad outdoor directional light",
+          "color_temperature": "3200-4800K warm low sun with cool ambient sky fill",
+          "falloff": "outdoor atmospheric fill, no indoor inverse-square exaggeration",
+          "shadow_logic": "long ground shadows and one side facial shadow",
+          "reflection_logic": "grass and dry-field bounce remains subtle",
+          "catchlight_logic": "small low-angle catchlight only when face turns toward sky",
+          "exposure_priority": "retain rim detail in hair and protect facial shadow readability",
+          "compatible_pose_angles": [
+            "off-frame standing",
+            "walking with backpack",
+            "seated in grass",
+            "instrument hold"
+          ],
+          "forbidden_patterns": [
+            "rim light on front-facing surfaces only",
+            "flat face with no side shadow",
+            "multiple suns",
+            "blown hair halo"
+          ]
+        },
+        {
+          "id": "phys-neon-urban-reflected",
+          "name_zh": "夜景霓虹反射",
+          "dominant_source": "urban practicals and reflected signage spill",
+          "source_position": "side and rear environmental sources",
+          "elevation": "mixed practical height",
+          "hardness": "soft-reflected with occasional hard practical edge",
+          "beam_spread": "localized spill and bokeh",
+          "color_temperature": "mixed amber, green, and cyan with spatial separation",
+          "falloff": "localized reflected falloff",
+          "shadow_logic": "dark face zones remain plausible; color spill follows facing planes",
+          "reflection_logic": "wet road and vehicle streaks reflect sources horizontally",
+          "catchlight_logic": "small explainable practical catchlights only",
+          "exposure_priority": "protect skin midtones while allowing background bokeh highlights",
+          "compatible_pose_angles": [
+            "walking backturn",
+            "shoulder look-back",
+            "wall lean at night"
+          ],
+          "forbidden_patterns": [
+            "uniform orange face paint",
+            "random neon patches on hidden planes",
+            "duplicate headlights",
+            "face brighter than all sources"
+          ]
+        },
+        {
+          "id": "phys-cyan-amber-threshold-mixed",
+          "name_zh": "门框青橙混合光",
+          "dominant_source": "cool doorway spill plus warm interior practical",
+          "source_position": "cool light behind or side doorway; warm light from room side",
+          "elevation": "medium",
+          "hardness": "mixed: soft cool spill plus warmer directional edge",
+          "beam_spread": "threshold-bounded",
+          "color_temperature": "cyan daylight or fluorescent spill against 2700-3400K warm practical",
+          "falloff": "visible transition across doorway depth",
+          "shadow_logic": "warm and cool zones separated by architecture",
+          "reflection_logic": "floor and wall edges carry restrained spill",
+          "catchlight_logic": "one coherent dominant catchlight, not two bright duplicates",
+          "exposure_priority": "keep skin tone believable despite mixed color temperatures",
+          "compatible_pose_angles": [
+            "doorway lean",
+            "crossed-leg threshold stand",
+            "three-quarter upward chin"
+          ],
+          "forbidden_patterns": [
+            "random teal-orange checkerboard on skin",
+            "both light colors equally on every plane",
+            "unmotivated smoke glow"
+          ]
+        },
+        {
+          "id": "phys-warm-practical-stairwell",
+          "name_zh": "楼梯暖实景低照度",
+          "dominant_source": "warm practical lamp or corridor spill",
+          "source_position": "high-side or rear-side practical",
+          "elevation": "medium-high",
+          "hardness": "medium-soft low-key",
+          "beam_spread": "localized stairwell pool",
+          "color_temperature": "2600-3600K warm practical with restrained cool ambient",
+          "falloff": "stronger indoor falloff across depth",
+          "shadow_logic": "railing and wall cast shadows only where they block the practical source",
+          "reflection_logic": "metal railing receives narrow highlights",
+          "catchlight_logic": "small warm catchlight or none if gaze angle does not support it",
+          "exposure_priority": "protect shoulder, cheekbone, and satin highlights",
+          "compatible_pose_angles": [
+            "low-angle stair lean",
+            "rail foreground turn",
+            "doorway shoulder-up pose"
+          ],
+          "forbidden_patterns": [
+            "railing shadow crossing face without source path",
+            "full bright face in dark stairwell",
+            "metal railing glowing uniformly"
+          ]
+        },
+        {
+          "id": "phys-amber-jewelry-soft",
+          "name_zh": "暖夜珠宝柔光",
+          "dominant_source": "warm close practical or bounced key",
+          "source_position": "front-side close source",
+          "elevation": "slightly above eye level",
+          "hardness": "soft with controlled specular detail",
+          "beam_spread": "close portrait field",
+          "color_temperature": "2800-3800K amber warm",
+          "falloff": "gentle close-range falloff",
+          "shadow_logic": "soft cheek and hand shadows",
+          "reflection_logic": "pearls and earrings produce restrained point highlights",
+          "catchlight_logic": "one small warm catchlight per visible eye",
+          "exposure_priority": "protect jewelry highlights and preserve natural skin texture",
+          "compatible_pose_angles": [
+            "close direct gaze",
+            "hand-near-face",
+            "pearl strand hold"
+          ],
+          "forbidden_patterns": [
+            "blown jewelry sparkles",
+            "plastic skin glow",
+            "unmotivated cool rim"
+          ]
+        },
+        {
+          "id": "phys-studio-sunpatch-directional",
+          "name_zh": "棚拍定向阳光斑",
+          "dominant_source": "controlled hard directional studio source",
+          "source_position": "side-front high source",
+          "elevation": "medium-high",
+          "hardness": "hard",
+          "beam_spread": "bounded sun patch",
+          "color_temperature": "4300-5600K neutral-warm",
+          "falloff": "studio controlled",
+          "shadow_logic": "clear single-direction cast shadows from hands, flowers, and stool",
+          "reflection_logic": "white background bounce restrained",
+          "catchlight_logic": "one small source-shaped catchlight",
+          "exposure_priority": "protect white shirt, roses, and forehead highlights",
+          "compatible_pose_angles": [
+            "seated low-angle",
+            "hand at neck",
+            "rose bouquet resting low"
+          ],
+          "forbidden_patterns": [
+            "multiple hand shadows",
+            "white backdrop clipping",
+            "rose shadow opposite to stool shadow"
+          ]
+        },
+        {
+          "id": "phys-hard-window-occluder-stripe",
+          "name_zh": "硬窗光与遮挡条带投影",
+          "dominant_source": "direct sun through window plus architectural or hand occluder",
+          "source_position": "side-front window relative to subject",
+          "elevation": "medium-high",
+          "hardness": "hard with narrow plausible penumbra",
+          "beam_spread": "bounded directional patch with connected shadow bands",
+          "color_temperature": "5000-6200K daylight with restrained warm interior bounce",
+          "falloff": "indoor directional falloff from window plane",
+          "shadow_logic": "one continuous source path; window-frame, blind, hand, sleeve, and magazine shadows keep consistent direction and scale across wall, face, fabric, and furniture",
+          "reflection_logic": "subtle wall bounce only; no independent fill that erases shadow structure",
+          "catchlight_logic": "one window or sun-shaped catchlight when the eye faces the source",
+          "exposure_priority": "protect forehead, eyelids, nose bridge, white tank, and knit highlights while keeping shadow-side eye sockets readable",
+          "compatible_pose_angles": [
+            "couch recline toward window",
+            "hand-near-face eye shield",
+            "profile against wall",
+            "sleeve-near-mouth editorial pose"
+          ],
+          "forbidden_patterns": [
+            "floating decorative stripe shadow",
+            "shadow band direction changes across connected surfaces",
+            "both facial sides equally lit",
+            "hand shadow detached from hand",
+            "black eye socket with no readable eye",
+            "white tank clipping"
+          ]
+        },
+        {
+          "id": "phys-direct-camera-flash-room-ambient",
+          "name_zh": "室内环境光中的相机直闪",
+          "dominant_source": "small near-lens on-camera flash",
+          "source_position": "camera-axis or slightly above lens",
+          "elevation": "camera height",
+          "hardness": "hard compact source",
+          "beam_spread": "wide frontal flash cone",
+          "color_temperature": "5000-6500K flash against dim warm or neutral room ambient",
+          "falloff": "inverse-square foreground priority; background falls darker quickly",
+          "shadow_logic": "short hard shadows fall directly behind hands, glasses frames, food props, chair, and nearby objects relative to camera",
+          "reflection_logic": "tableware, glasses, camera body, skin, and glossy food may catch restrained frontal specular hits",
+          "catchlight_logic": "one small near-axis flash catchlight per visible eye",
+          "exposure_priority": "protect face, clear lenses, white shirt, glassware, and foreground plates from clipping",
+          "compatible_pose_angles": [
+            "overhead table turn-back",
+            "frontal seated food-prop pose",
+            "bookstore casual snapshot",
+            "compact-camera candid"
+          ],
+          "forbidden_patterns": [
+            "cinematic side rim without visible practical",
+            "soft studio beauty light replacing flash logic",
+            "giant white blobs over both lenses",
+            "multiple displaced flash shadows",
+            "background as bright as foreground without practical sources"
+          ]
+        },
+        {
+          "id": "phys-library-daylight-practical-mix",
+          "name_zh": "书店日常漫射光与实景灯混合",
+          "dominant_source": "large soft daylight or storefront window with restrained warm practical fill",
+          "source_position": "side-front storefront or overhead ambient",
+          "elevation": "medium-high",
+          "hardness": "soft to medium-soft",
+          "beam_spread": "broad environment field",
+          "color_temperature": "5200-6800K daylight with localized 2800-3600K practical accents",
+          "falloff": "gentle room-depth falloff",
+          "shadow_logic": "soft shelf, face, and hoodie shadows; practical lamps remain localized",
+          "reflection_logic": "headphones and clear glasses receive subtle edge reflections only",
+          "catchlight_logic": "broad window catchlight or small practical catchlight, not both equally dominant",
+          "exposure_priority": "preserve eye readability behind glasses and avoid clipped hoodie shoulders",
+          "compatible_pose_angles": [
+            "headphone smile near shelf",
+            "open-book standing",
+            "outdoor crouch with backpack",
+            "cafe transitional snapshot"
+          ],
+          "forbidden_patterns": [
+            "glasses turned opaque",
+            "random warm patches on both face sides",
+            "headphones glowing uniformly",
+            "overclean showroom library"
+          ]
+        },
+        {
+          "id": "phys-window-dappled-slat-shadow",
+          "name_zh": "窗边细碎条纹与叶影晨光",
+          "dominant_source": "direct or semi-direct sun filtered by blinds, foliage, or window structure",
+          "source_position": "side window relative to subject",
+          "elevation": "medium-high",
+          "hardness": "medium-hard with organic or linear penumbra",
+          "beam_spread": "localized patches and stripes",
+          "color_temperature": "5200-6500K daylight with subtle warm bounce",
+          "falloff": "indoor window-plane falloff",
+          "shadow_logic": "dapple or stripe motifs remain sourced, connected, and subordinate; face landmarks stay readable",
+          "reflection_logic": "white table and bedding provide soft bounce",
+          "catchlight_logic": "one restrained window catchlight if visible",
+          "exposure_priority": "protect eye highlights, coffee cup, bedding, white tabletop, and hair edge detail",
+          "compatible_pose_angles": [
+            "window seated off-frame gaze",
+            "head on folded arm",
+            "coffee cup hold",
+            "bedside morning pause"
+          ],
+          "forbidden_patterns": [
+            "random face tattoo shadow",
+            "unreadable eyes under stripe pattern",
+            "overexposed cup",
+            "multiple independent sun patches"
+          ]
+        },
+        {
+          "id": "phys-open-shade-graffiti-warm",
+          "name_zh": "复古街头开放阴影与暖色反射",
+          "dominant_source": "open-shade daylight with warm reflected urban bounce or restrained compact-camera flash",
+          "source_position": "front-side environment with optional near-camera fill",
+          "elevation": "ambient street level",
+          "hardness": "soft ambient with optional compact-flash edge",
+          "beam_spread": "broad street field",
+          "color_temperature": "4200-6200K with restrained warm brick and signage bounce",
+          "falloff": "outdoor ambient falloff",
+          "shadow_logic": "soft wall and body shadows; optional flash shadow remains short and camera-aligned",
+          "reflection_logic": "leather jacket carries narrow highlights, not glossy plastic sheen",
+          "catchlight_logic": "small ambient or compact-camera catchlight",
+          "exposure_priority": "protect leather texture, white tee, facial midtones, and graffiti saturation",
+          "compatible_pose_angles": [
+            "wall lean with lollipop",
+            "camera-to-eye wink",
+            "doorway soda-can pose"
+          ],
+          "forbidden_patterns": [
+            "plastic leather highlights",
+            "oversaturated skin",
+            "detached compact camera",
+            "lollipop fused to lips",
+            "graffiti copied as exact branded text"
+          ]
+        },
+        {
+          "id": "phys-warm-gap-occluder-soft-diffusion",
+          "name_zh": "暖色窄缝遮挡光与柔焦前景",
+          "dominant_source": "small warm directional source passing through a narrow gap or foreground occluder",
+          "source_position": "front-side or side-front relative to face",
+          "elevation": "face level to slightly above",
+          "hardness": "medium-hard core with softened edges from diffusion or foreground veil",
+          "beam_spread": "narrow vertical or diagonal beam slice with bounded spill",
+          "color_temperature": "2600-3800K warm beam against low neutral or cool ambient darkness",
+          "falloff": "rapid local falloff outside the aperture path",
+          "shadow_logic": "one narrow beam path crosses face, lips, neck, and upper clothing; shadow edge softness changes only when distance to occluder changes",
+          "reflection_logic": "subtle haze bloom and hair-edge glow remain subordinate to beam direction",
+          "catchlight_logic": "one small beam-aligned catchlight only when the visible eye intersects the source path",
+          "exposure_priority": "protect lips, nose bridge, eyelid, collarbone, and lit shoulder from clipping while preserving dark-side contour",
+          "compatible_pose_angles": [
+            "close frontal with chin lift",
+            "three-quarter through foreground veil",
+            "soft profile toward beam",
+            "eyes closed inside beam slice"
+          ],
+          "forbidden_patterns": [
+            "floating warm stripe unrelated to aperture",
+            "both sides of face equally bright",
+            "white clipped beam with no skin texture",
+            "random haze glow detached from beam",
+            "unreadable facial landmarks"
+          ]
+        },
+        {
+          "id": "phys-warm-spot-cool-ambient-lowkey",
+          "name_zh": "低照度冷环境中的暖色局部光斑",
+          "dominant_source": "small focused warm spotlight or reflected sun patch",
+          "source_position": "front-side or high side relative to face",
+          "elevation": "medium-high",
+          "hardness": "medium with bounded feathered edge",
+          "beam_spread": "small oval or irregular pool restricted to face and adjacent fabric",
+          "color_temperature": "2600-3600K warm pool against 6500-9000K cool low-level room ambience",
+          "falloff": "steep local falloff from the warm pool into cool shadow",
+          "shadow_logic": "the spot edge crosses facial planes and bedding consistently; body remains mostly in cool low exposure",
+          "reflection_logic": "white drape and bedding return faint cool bounce; no bright fill erasing the pool",
+          "catchlight_logic": "one small warm catchlight or none when gaze is downcast",
+          "exposure_priority": "retain warm-skin texture, dark turtleneck detail, white bedding folds, and shadow-side facial contour",
+          "compatible_pose_angles": [
+            "seated on draped bed",
+            "hand near chin close-up",
+            "downcast side angle",
+            "kneeling portrait with one face pool"
+          ],
+          "forbidden_patterns": [
+            "multiple unrelated orange circles",
+            "flat bright face outside spot",
+            "pitch-black featureless body",
+            "white bedding clipping",
+            "spot edge ignoring facial depth"
+          ]
+        },
+        {
+          "id": "phys-cafe-window-sunpool-reflection",
+          "name_zh": "咖啡馆窗光光池与玻璃反射",
+          "dominant_source": "low-angle sun entering through storefront window or cafe glass",
+          "source_position": "side-front window plane",
+          "elevation": "low to medium",
+          "hardness": "medium-hard sun pool softened by glass and interior haze",
+          "beam_spread": "bounded warm rectangle or oblique pool across face, coat, newspaper, counter, and floor",
+          "color_temperature": "3200-5200K warm window sun against dim neutral interior",
+          "falloff": "interior depth falls darker away from window plane",
+          "shadow_logic": "newspaper, cup, hands, coat sleeve, pastry case, and seat cast source-consistent shadows",
+          "reflection_logic": "glass reflections remain plane-bound, low-contrast, and depth-aware; do not duplicate facial features",
+          "catchlight_logic": "one window-shaped catchlight when eyes face the storefront",
+          "exposure_priority": "protect eyes above newspaper, cup rim, coat highlights, pastry reflections, and sunlit floor patch",
+          "compatible_pose_angles": [
+            "newspaper eye peek",
+            "two-hand cup hold near counter",
+            "side seated pause",
+            "glass-layered cafe portrait"
+          ],
+          "forbidden_patterns": [
+            "reflection floating in empty air",
+            "duplicated eyes in glass",
+            "overbright whole cafe",
+            "newspaper fused to hands",
+            "sun patch direction inconsistent across floor and face"
+          ]
+        },
+        {
+          "id": "phys-dusk-seaside-direct-flash",
+          "name_zh": "海边黄昏环境中的近镜头直闪",
+          "dominant_source": "small near-lens direct flash exposing the subject against a low sunset ambient field",
+          "source_position": "camera-axis or slightly above lens",
+          "elevation": "camera height",
+          "hardness": "hard compact flash with wind-softened hair edges",
+          "beam_spread": "frontal flash cone limited by distance",
+          "color_temperature": "5000-6500K flash against 2800-5000K orange-purple dusk sky",
+          "falloff": "inverse-square subject priority; beach, ocean, and horizon remain much darker unless naturally sky-lit",
+          "shadow_logic": "short camera-aligned shadows behind shoulders, hair clusters, arms, shell, and nearby sand texture",
+          "reflection_logic": "skin, eyes, lips, shell ridges, and wet sand may receive restrained frontal specular hits",
+          "catchlight_logic": "one small near-axis flash catchlight per visible eye",
+          "exposure_priority": "protect forehead, cheeks, white dress, shell, windblown hair, and nearby sand from clipping",
+          "compatible_pose_angles": [
+            "over-shoulder turnback",
+            "frontal standing smile",
+            "lying on sand with shell",
+            "three-quarter hair-in-wind close-up"
+          ],
+          "forbidden_patterns": [
+            "background ocean lit like foreground",
+            "giant beauty-light glow",
+            "multiple displaced flash shadows",
+            "plastic skin",
+            "fused shell fingers",
+            "sunset sky washed to grey"
+          ]
+        },
+        {
+          "id": "phys-bluehour-rear-rim-front-fill",
+          "name_zh": "屋顶蓝调环境中的暖侧逆光与克制前补光",
+          "dominant_source": "rear-side low sunset rim with restrained front fill or near-camera flash",
+          "source_position": "warm rim behind subject on one side; fill near camera or sky-facing front",
+          "elevation": "low rear-side rim plus camera-height or broad sky fill",
+          "hardness": "hard to medium rim with restrained soft or compact front fill",
+          "beam_spread": "edge-limited rim around hair and coat plus low-level frontal recovery",
+          "color_temperature": "2800-4300K warm rim against 6500-10000K blue-hour sky ambient",
+          "falloff": "outdoor atmospheric falloff; front fill remains subtle and subject-limited",
+          "shadow_logic": "coat folds, jaw contour, hair edges, and rooftop rail retain one rim direction; face recovery does not erase side shadow",
+          "reflection_logic": "hair rim and light coat edge catch warm highlights; no full-body halo",
+          "catchlight_logic": "small front-fill catchlight or sky catchlight, not multiple competing dots",
+          "exposure_priority": "protect hair rim roll-off, pale coat texture, face midtones, and saturated twilight sky",
+          "compatible_pose_angles": [
+            "profile toward horizon",
+            "three-quarter pocket stand",
+            "frontal quiet gaze",
+            "slight upward off-frame turn"
+          ],
+          "forbidden_patterns": [
+            "halo around full silhouette",
+            "multiple suns",
+            "flat frontal beauty fill",
+            "orange rim on source-hidden surfaces",
+            "sky clipping",
+            "coat turned uniformly white"
+          ]
+        },
+        {
+          "id": "phys-wind-hair-closeup-sidelight",
+          "name_zh": "风动发丝贴脸侧光",
+          "dominant_source": "low side sun or open-air side key",
+          "source_position": "side-front or rear-side relative to face",
+          "elevation": "low to medium",
+          "hardness": "medium with strand-level occlusion",
+          "beam_spread": "broad directional field with strand-scale interruptions",
+          "color_temperature": "3600-6200K depending on outdoor hour",
+          "falloff": "outdoor atmospheric falloff",
+          "shadow_logic": "hair strands cast narrow source-consistent shadows across forehead, cheek, and lips without erasing all landmarks",
+          "reflection_logic": "subtle skin and hair sheen only; no detached halo veil",
+          "catchlight_logic": "small catchlight only in visible eye facing sky or key",
+          "exposure_priority": "retain one eye, nose bridge, mouth contour, and skin texture under hair occlusion",
+          "compatible_pose_angles": [
+            "extreme close-up with wind hair veil",
+            "three-quarter turnback in breeze",
+            "clean side profile with hair lift"
+          ],
+          "forbidden_patterns": [
+            "hair strands crossing in contradictory directions",
+            "both eyes buried by hair",
+            "hair shadows detached from strands",
+            "plastic skin under hard side sun"
+          ]
+        },
+        {
+          "id": "phys-amber-hand-occluder-lowkey",
+          "name_zh": "暖色手部遮挡光斑",
+          "dominant_source": "small warm spotlight or narrow reflected beam",
+          "source_position": "side-front or high-side relative to face and hand",
+          "elevation": "medium-high",
+          "hardness": "medium-hard pool with feathered edge",
+          "beam_spread": "small bounded patch intersected by hand silhouette",
+          "color_temperature": "2600-3600K warm patch against 6500-9000K dim cool ambience",
+          "falloff": "steep local falloff outside patch",
+          "shadow_logic": "raised hand, fingers, face pool, and cast shadow remain one continuous geometry; penumbra widens only with distance from occluder",
+          "reflection_logic": "white drape returns restrained cool bounce; black clothing stays textured",
+          "catchlight_logic": "small warm catchlight or none when gaze drops",
+          "exposure_priority": "protect lit fingertips, eyelid, nose bridge, lips, and white drape folds",
+          "compatible_pose_angles": [
+            "finger-near-chin close-up",
+            "raised hand entering beam",
+            "seated black-turtleneck body portrait"
+          ],
+          "forbidden_patterns": [
+            "disconnected orange patch",
+            "hand shadow with no intercepting hand",
+            "fused fingers",
+            "featureless black face outside patch"
+          ]
+        },
+        {
+          "id": "phys-goldenhour-backlight-lensflare",
+          "name_zh": "黄金时刻低太阳逆光与镜头眩光",
+          "dominant_source": "one low sun",
+          "source_position": "rear-side, near frame edge, or just outside frame",
+          "elevation": "very low",
+          "hardness": "medium with atmospheric bloom",
+          "beam_spread": "broad outdoor backlight with lens-axis flare",
+          "color_temperature": "2800-4800K warm low sun plus cool ambient fill",
+          "falloff": "outdoor atmospheric falloff",
+          "shadow_logic": "one long shadow family and one warm source-facing rim",
+          "reflection_logic": "lens flare streaks and polygonal ghosts remain aligned to the sun-lens axis and low-opacity",
+          "catchlight_logic": "small sky catchlight when face turns toward ambient fill",
+          "exposure_priority": "protect hair filaments, skin transition, dark coat detail, and sky gradient",
+          "compatible_pose_angles": [
+            "profile chin lift",
+            "soft side profile",
+            "eyes closed toward sun",
+            "hat silhouette in open field"
+          ],
+          "forbidden_patterns": [
+            "random flare orbs unrelated to sun axis",
+            "multiple suns",
+            "full-face overexposure",
+            "white sky with no gradient",
+            "rim on hidden surfaces"
+          ]
+        },
+        {
+          "id": "phys-dusk-pan-motionblur-ambient",
+          "name_zh": "黄昏摇摄拖影与环境光轨",
+          "dominant_source": "low dusk ambient plus sparse practicals",
+          "source_position": "environmental, not face-painted",
+          "elevation": "mixed low practical height",
+          "hardness": "slow-shutter smear with one controlled anchor",
+          "beam_spread": "horizontal or diagonal panning streaks",
+          "color_temperature": "3800-7200K mixed dusk and restrained warm practicals",
+          "falloff": "motion-dependent streak falloff",
+          "shadow_logic": "background streaks, subject edge blur, and hair movement follow compatible vectors; anatomy remains continuous",
+          "reflection_logic": "practical lights stretch along panning axis; typography remains crisp as post-layout",
+          "catchlight_logic": "one readable eye, lip contour, shoulder line, or silhouette anchor",
+          "exposure_priority": "allow expressive blur while retaining one identity anchor and one readable body line",
+          "compatible_pose_angles": [
+            "running side pass",
+            "turning shoulder drift",
+            "wind-led near-camera blur",
+            "half-body motion portrait"
+          ],
+          "forbidden_patterns": [
+            "every layer equally smeared",
+            "sharp typography blurred with subject",
+            "duplicated limbs",
+            "face melted beyond recognition",
+            "streak direction unrelated to motion"
+          ]
+        },
+        {
+          "id": "phys-bedroom-window-warm-bounce",
+          "name_zh": "卧室窗光与生活道具暖色回弹",
+          "dominant_source": "one side window or nearby warm daylight opening",
+          "source_position": "side-front relative to subject",
+          "elevation": "medium",
+          "hardness": "soft to medium with local warm patch",
+          "beam_spread": "broad indoor window field with bounded highlights",
+          "color_temperature": "4200-6200K window daylight with restrained warm textile bounce",
+          "falloff": "gentle room falloff away from window",
+          "shadow_logic": "window frame, face, wall photos, teddy bear, headphones, desk objects, and sleeves share one directional logic",
+          "reflection_logic": "wall, bedding, desk, and clothing provide low-level bounce without flattening the scene",
+          "catchlight_logic": "broad window-shaped catchlight or soft lamp-adjacent catchlight",
+          "exposure_priority": "protect skin, photo-wall detail, headphone edges, teddy texture, and white tank-top highlights",
+          "compatible_pose_angles": [
+            "seated photo-wall teddy hold",
+            "window double-fist chin rest",
+            "headphones touch close-up",
+            "desk reach resting portrait"
+          ],
+          "forbidden_patterns": [
+            "showroom-clean empty room",
+            "floating headphones",
+            "teddy merged with hands",
+            "window light from contradictory directions",
+            "clipped skin or white top"
+          ]
+        },
+        {
+          "id": "phys-clean-sky-wind-sideprofile",
+          "name_zh": "清洁天空风动侧脸封面光",
+          "dominant_source": "open sky key with restrained side sun",
+          "source_position": "side or rear-side relative to subject",
+          "elevation": "medium-low",
+          "hardness": "clean medium outdoor light",
+          "beam_spread": "broad open-air field",
+          "color_temperature": "4800-7600K clean daylight or pastel blue-hour sky",
+          "falloff": "outdoor atmospheric falloff",
+          "shadow_logic": "hair and collar movement align to one breeze; profile edge remains readable against sky",
+          "reflection_logic": "fur collar, hoodie, and glasses receive restrained edge highlights",
+          "catchlight_logic": "small sky catchlight only when angle allows",
+          "exposure_priority": "protect profile edge, eyewear alignment, collar texture, and sky gradient",
+          "compatible_pose_angles": [
+            "blue-sky fur-collar profile",
+            "pastel-sky glasses hoodie upward gaze",
+            "clean side-profile cover"
+          ],
+          "forbidden_patterns": [
+            "flat cutout against sky",
+            "opaque clear glasses",
+            "duplicated hair ribbons",
+            "collar clipping into jaw",
+            "title covering profile landmarks"
+          ]
+        },
+        {
+          "id": "phys-winter-scarf-low-sun-softfill",
+          "name_zh": "冬日围巾低角度柔阳光",
+          "dominant_source": "low winter sun plus cool ambient sky fill",
+          "source_position": "front-side, grazing cheek and scarf folds",
+          "elevation": "low",
+          "hardness": "soft-medium directional",
+          "beam_spread": "broad window-like outdoor field",
+          "color_temperature": "4200-5600K with cool ambient fill",
+          "falloff": "gentle facial roll-off and fabric micro-shadow",
+          "shadow_logic": "scarf fold shadows remain separate from jaw and hair; cheek highlight stays localized",
+          "reflection_logic": "soft scarf fibers and hair strands carry fine edge response",
+          "catchlight_logic": "small warm catchlight with cool fill balance",
+          "exposure_priority": "protect eye detail, scarf texture, and jaw separation",
+          "compatible_pose_angles": [
+            "tight scarf close-up",
+            "side gaze nested into scarf",
+            "quiet winter window portrait"
+          ],
+          "forbidden_patterns": [
+            "scarf fused into cheek",
+            "burned cheek patch",
+            "duplicate scarf folds",
+            "hair and scarf merged"
+          ]
+        },
+        {
+          "id": "phys-forest-canopy-dapple-backlight",
+          "name_zh": "林间树冠柔透光",
+          "dominant_source": "filtered canopy daylight with backlit leaves",
+          "source_position": "rear-side through foliage",
+          "elevation": "medium-high",
+          "hardness": "soft diffused with occasional leaf apertures",
+          "beam_spread": "broad forest field with local leaf gaps",
+          "color_temperature": "5000-6800K green-filtered daylight",
+          "falloff": "layered atmospheric falloff",
+          "shadow_logic": "leaf shadows remain soft; hair and ribbon receive coherent rim",
+          "reflection_logic": "leaf bokeh, dress ruffles, and ribbon edges receive restrained transmission",
+          "catchlight_logic": "subtle sky-leaf catchlight",
+          "exposure_priority": "protect skin, white dress, ribbon, and foliage depth",
+          "compatible_pose_angles": [
+            "back-turn forest profile",
+            "shoulder-back glance",
+            "leaf-framed side profile"
+          ],
+          "forbidden_patterns": [
+            "flat green overlay",
+            "white dress clipping",
+            "duplicate ribbons",
+            "leaf stickers over eyes"
+          ]
+        },
+        {
+          "id": "phys-autumn-leaf-rim-depth",
+          "name_zh": "秋叶逆光与景深层级",
+          "dominant_source": "warm rear-side autumn light with dark woodland ambient",
+          "source_position": "rear-side, low to medium",
+          "elevation": "low-medium",
+          "hardness": "soft golden rim",
+          "beam_spread": "medium outdoor field",
+          "color_temperature": "3800-5200K warm autumn rim",
+          "falloff": "deep background falloff",
+          "shadow_logic": "falling leaves follow gravity and one light direction; hat brim shadow stays explainable",
+          "reflection_logic": "leaf surfaces show depth-scaled highlights; book pages remain matte",
+          "catchlight_logic": "small warm catchlight when face turns upward",
+          "exposure_priority": "protect hat brim, leaf edges, hand anatomy, and face contour",
+          "compatible_pose_angles": [
+            "hat profile holding one leaf",
+            "upward leaf gaze",
+            "book-and-leaf narrative"
+          ],
+          "forbidden_patterns": [
+            "floating identical leaves",
+            "leaf through fingers",
+            "hat fused to hair",
+            "random halo"
+          ]
+        },
+        {
+          "id": "phys-vehicle-window-mixed-practical-wind",
+          "name_zh": "车窗混合实景风动光",
+          "dominant_source": "warm exterior streak plus colored window practical reflections",
+          "source_position": "side window and rear practical field",
+          "elevation": "low-medium",
+          "hardness": "mixed hard-soft practical",
+          "beam_spread": "broken reflections across window plane",
+          "color_temperature": "3200-6200K mixed warm and green/red practicals",
+          "falloff": "rapid local falloff inside dark cabin",
+          "shadow_logic": "hair shadow direction follows airflow and side window; practicals remain background or glass-plane phenomena",
+          "reflection_logic": "glass flare and colored bokeh remain offset from skin landmarks",
+          "catchlight_logic": "small point catchlight plus warm edge glint",
+          "exposure_priority": "protect one readable eye, lip contour, hair vector, and dark-cabin separation",
+          "compatible_pose_angles": [
+            "close direct gaze through wind hair",
+            "hands-clasped shoulder close-up",
+            "vehicle-window side profile"
+          ],
+          "forbidden_patterns": [
+            "neon paint on skin",
+            "multiple incompatible wind vectors",
+            "window bokeh pasted on face",
+            "detached hair ribbons"
+          ]
+        },
+        {
+          "id": "phys-cobalt-floral-hardkey-shadow",
+          "name_zh": "钴蓝花冠硬光与附着阴影",
+          "dominant_source": "single directional studio key against cobalt background",
+          "source_position": "front-side or elevated side",
+          "elevation": "medium-high",
+          "hardness": "medium-hard editorial",
+          "beam_spread": "controlled studio cone",
+          "color_temperature": "4400-5600K neutral editorial key",
+          "falloff": "clean studio falloff",
+          "shadow_logic": "flower stems cast restrained connected shadows; flower-eye occluder keeps one eye readable",
+          "reflection_logic": "denim, scarf, fuzzy halo, and petals preserve material separation",
+          "catchlight_logic": "small editorial catchlight",
+          "exposure_priority": "protect flower attachment, facial anchors, saturated cobalt, and scarf texture",
+          "compatible_pose_angles": [
+            "frontal halo portrait",
+            "single flower covering one eye",
+            "reclined halo crop"
+          ],
+          "forbidden_patterns": [
+            "flowers sprouting from skin",
+            "floating petals without stems",
+            "both eyes obscured",
+            "cobalt color spill destroying skin"
+          ]
+        },
+        {
+          "id": "phys-transit-corridor-daylight-perspective",
+          "name_zh": "通勤车厢窗光与透视",
+          "dominant_source": "daylight entering train or corridor windows",
+          "source_position": "side windows with corridor practical support",
+          "elevation": "medium",
+          "hardness": "soft directional",
+          "beam_spread": "linear window field along corridor",
+          "color_temperature": "4600-6500K daylight with warm interior practicals",
+          "falloff": "linear perspective falloff",
+          "shadow_logic": "coat folds and scarf receive window-side contrast consistent with corridor orientation",
+          "reflection_logic": "metal walls and windows retain restrained reflection planes",
+          "catchlight_logic": "clean window catchlight",
+          "exposure_priority": "protect corridor geometry, scarf volume, face exposure, and coat texture",
+          "compatible_pose_angles": [
+            "corridor full body arms-cross",
+            "back-turn at compartment door",
+            "soft direct commute portrait"
+          ],
+          "forbidden_patterns": [
+            "warped corridor",
+            "floating door",
+            "scarf merged into face",
+            "impossible vanishing lines"
+          ]
+        },
+        {
+          "id": "phys-bedroom-window-reflection-doubleplane",
+          "name_zh": "卧室窗面反射双平面",
+          "dominant_source": "soft side window with one reflected glass plane",
+          "source_position": "side window, close to subject",
+          "elevation": "medium",
+          "hardness": "soft",
+          "beam_spread": "broad diffuse",
+          "color_temperature": "4400-5800K window daylight",
+          "falloff": "gentle reflective falloff",
+          "shadow_logic": "reflection remains offset and softer than the physical subject",
+          "reflection_logic": "glass ghost, subject face, and background highlights stay separable",
+          "catchlight_logic": "soft window catchlight",
+          "exposure_priority": "protect real-face priority and reflection legibility",
+          "compatible_pose_angles": [
+            "close gaze through glass",
+            "soft off-frame reflection portrait"
+          ],
+          "forbidden_patterns": [
+            "duplicate face treated as second subject",
+            "reflection sharper than subject",
+            "glass plane detached from window",
+            "eye anatomy doubled"
+          ]
+        },
+        {
+          "id": "phys-cafe-window-warm-reflection-layer",
+          "name_zh": "咖啡馆窗边暖反射层",
+          "dominant_source": "side window plus warm interior practicals",
+          "source_position": "side window and interior bokeh behind glass",
+          "elevation": "medium",
+          "hardness": "soft-medium",
+          "beam_spread": "broad window source",
+          "color_temperature": "3600-5200K mixed warm daylight",
+          "falloff": "gentle layered falloff",
+          "shadow_logic": "subject remains primary; reflection and bokeh subordinate",
+          "reflection_logic": "one softer glass reflection plane with restrained exterior bokeh",
+          "catchlight_logic": "soft window catchlight",
+          "exposure_priority": "protect skin tone, cup rim, and reflection seam",
+          "compatible_pose_angles": [
+            "seated sip profile",
+            "hand-to-hair window portrait",
+            "cross-leg reading"
+          ],
+          "forbidden_patterns": [
+            "reflection sharper than subject",
+            "floating cafe furniture",
+            "bokeh painted on skin"
+          ]
+        },
+        {
+          "id": "phys-urban-railing-clear-winter-sun",
+          "name_zh": "城市栏杆清晰冬日光",
+          "dominant_source": "clear outdoor sun with cool ambient fill",
+          "source_position": "front-side sun above railing plane",
+          "elevation": "medium-high",
+          "hardness": "medium",
+          "beam_spread": "broad outdoor",
+          "color_temperature": "4600-6500K daylight",
+          "falloff": "natural outdoor falloff",
+          "shadow_logic": "sweater folds and railing contact retain readable shadow",
+          "reflection_logic": "minimal reflection",
+          "catchlight_logic": "clear natural eye light",
+          "exposure_priority": "protect knit texture and facial exposure",
+          "compatible_pose_angles": [
+            "railing lean camera lock"
+          ],
+          "forbidden_patterns": [
+            "railing fused into sleeves",
+            "arm distortion",
+            "background overblur"
+          ]
+        },
+        {
+          "id": "phys-yellow-vehicle-hard-daylight-colorblock",
+          "name_zh": "黄色车辆硬日光色块",
+          "dominant_source": "hard street daylight",
+          "source_position": "front-side street sun",
+          "elevation": "high",
+          "hardness": "medium-hard",
+          "beam_spread": "broad outdoor",
+          "color_temperature": "5000-6500K daylight",
+          "falloff": "street falloff",
+          "shadow_logic": "vehicle panel shadows remain coherent",
+          "reflection_logic": "vehicle windows reflect environment without melting",
+          "catchlight_logic": "small clear daylight catchlight",
+          "exposure_priority": "protect face and yellow facade geometry",
+          "compatible_pose_angles": [
+            "street stand in front of vehicle"
+          ],
+          "forbidden_patterns": [
+            "warped panels",
+            "fake signage",
+            "vehicle window grid collapse"
+          ]
+        },
+        {
+          "id": "phys-coastal-overlook-soft-wind-horizon",
+          "name_zh": "海岸远眺柔风地平线光",
+          "dominant_source": "soft coastal daylight",
+          "source_position": "open sky with side breeze",
+          "elevation": "medium",
+          "hardness": "soft",
+          "beam_spread": "open sky",
+          "color_temperature": "5200-7200K coastal daylight",
+          "falloff": "atmospheric falloff",
+          "shadow_logic": "subject remains readable against sea and vegetation",
+          "reflection_logic": "water reflection remains distant background only",
+          "catchlight_logic": "soft sky catchlight",
+          "exposure_priority": "protect level horizon and hair silhouette",
+          "compatible_pose_angles": [
+            "coastal back-turn",
+            "three-quarter overlook"
+          ],
+          "forbidden_patterns": [
+            "crooked horizon",
+            "sea fused into hair",
+            "over-sharpened distance"
+          ]
+        },
+        {
+          "id": "phys-botanical-slitbeam-shadow-plane",
+          "name_zh": "植物前景窄束投影光",
+          "dominant_source": "one occluded hard beam with branch shadow",
+          "source_position": "side window or aperture through botanical foreground",
+          "elevation": "medium",
+          "hardness": "hard-edged with soft atmospheric fringe",
+          "beam_spread": "narrow-to-medium slit or triangular aperture",
+          "color_temperature": "3200-5600K directional beam",
+          "falloff": "rapid local falloff",
+          "shadow_logic": "branch shadow and beam edge share one source direction",
+          "reflection_logic": "foreground plant remains separate plane",
+          "catchlight_logic": "one readable eye catchlight when visible",
+          "exposure_priority": "protect one identity anchor and beam traceability",
+          "compatible_pose_angles": [
+            "front direct with branch",
+            "profile wall triangle",
+            "vase framed gaze"
+          ],
+          "forbidden_patterns": [
+            "floating beam",
+            "leaf stickers",
+            "shadow contradicts branch",
+            "both eyes erased"
+          ]
+        },
+        {
+          "id": "phys-lantern-riverside-bluehour-practical-depth",
+          "name_zh": "灯笼河岸蓝调实景纵深光",
+          "dominant_source": "blue-hour ambience plus lantern practicals",
+          "source_position": "distributed lantern rows and handheld lantern",
+          "elevation": "mixed",
+          "hardness": "soft practical pools",
+          "beam_spread": "distributed practical points",
+          "color_temperature": "2500-7000K mixed blue-hour and lantern warm",
+          "falloff": "depth-scaled practical falloff",
+          "shadow_logic": "handheld lantern, rows, bridge, and water reflections remain tiered",
+          "reflection_logic": "water reflection stays aligned with lantern depth",
+          "catchlight_logic": "soft practical eye glint",
+          "exposure_priority": "protect subject and lantern silhouette while retaining background depth",
+          "compatible_pose_angles": [
+            "seated lantern lift"
+          ],
+          "forbidden_patterns": [
+            "floating lantern",
+            "detached reflection",
+            "unreachable lantern handle"
+          ]
+        },
+        {
+          "id": "phys-ivory-studio-clean-softshadow",
+          "name_zh": "象牙白棚拍干净软影",
+          "dominant_source": "soft studio key with subtle floor shadow",
+          "source_position": "front-side studio key",
+          "elevation": "medium",
+          "hardness": "soft-medium",
+          "beam_spread": "large studio source",
+          "color_temperature": "4400-5600K neutral studio",
+          "falloff": "controlled studio falloff",
+          "shadow_logic": "floor contact and flower stems keep soft grounded shadows",
+          "reflection_logic": "minimal reflection",
+          "catchlight_logic": "clean soft catchlight",
+          "exposure_priority": "protect white shirt texture, black trousers, and skin separation",
+          "compatible_pose_angles": [
+            "standing lookbook",
+            "seated flower scatter",
+            "overhead stem close"
+          ],
+          "forbidden_patterns": [
+            "floating flowers",
+            "feet detached from floor",
+            "white shirt blown out"
+          ]
+        },
+        {
+          "id": "phys-scarlet-poster-hardgraphic",
+          "name_zh": "猩红海报硬图形光",
+          "dominant_source": "controlled hard editorial key",
+          "source_position": "front-side or low editorial key",
+          "elevation": "medium",
+          "hardness": "hard-medium",
+          "beam_spread": "graphic studio source",
+          "color_temperature": "4200-5600K controlled neutral",
+          "falloff": "controlled flat-field falloff",
+          "shadow_logic": "silhouette and near footwear remain readable against red field",
+          "reflection_logic": "no required reflection",
+          "catchlight_logic": "graphic eye catchlight optional",
+          "exposure_priority": "protect black silhouette, limb continuity, and red field separation",
+          "compatible_pose_angles": [
+            "low-angle foreshortened recline"
+          ],
+          "forbidden_patterns": [
+            "detached feet",
+            "broken knee continuity",
+            "random scaling",
+            "overlay covering face"
+          ]
+        }
+      ]
+    },
+    "lighting_pose_bindings": [
+      {
+        "route_id": "male-window-morning-lifestyle",
+        "lighting_profile_ids": [
+          "phys-window-direct-sun",
+          "phys-window-diffused-daylight",
+          "phys-window-dappled-slat-shadow"
+        ],
+        "recommended_action_preset_ids": [
+          "male-window-coffee-sip",
+          "male-window-offframe-rest",
+          "male-window-coffee-cup-direct",
+          "male-window-bedside-arm-rest"
+        ],
+        "recommended_face_angles": [
+          "toward side window",
+          "soft frontal with sourced dapple"
+        ],
+        "forbidden": [
+          "unreadable eyes under stripe shadow",
+          "multiple sun patches"
+        ]
+      },
+      {
+        "route_id": "male-rural-goldenhour-travel-film",
+        "lighting_profile_ids": [
+          "phys-goldenhour-back-side"
+        ],
+        "recommended_action_preset_ids": [
+          "male-rural-backpack-walk",
+          "male-rural-guitar-hold",
+          "male-rural-goldenhour-profile-downcast",
+          "male-field-chair-downcast"
+        ],
+        "recommended_face_angles": [
+          "profile toward sky fill",
+          "three-quarter off-frame",
+          "downcast field-chair stillness"
+        ],
+        "forbidden": [
+          "multiple suns",
+          "blown hair halo"
+        ]
+      },
+      {
+        "route_id": "male-night-neon-transit-film",
+        "lighting_profile_ids": [
+          "phys-neon-urban-reflected"
+        ],
+        "safe_face_angles": [
+          "mild backturn",
+          "wall lean with one readable cheek plane"
+        ],
+        "forbidden_conflicts": [
+          "uniform face tint",
+          "random color on hidden planes",
+          "background source darker than face without justification"
+        ]
+      },
+      {
+        "route_id": "female-cyan-amber-threshold-noir",
+        "lighting_profile_ids": [
+          "phys-cyan-amber-threshold-mixed"
+        ],
+        "safe_face_angles": [
+          "three-quarter across doorway boundary",
+          "slight raised chin with coherent key side"
+        ],
+        "forbidden_conflicts": [
+          "checkerboard teal-orange skin",
+          "double bright catchlight",
+          "no architectural color boundary"
+        ]
+      },
+      {
+        "route_id": "female-stairwell-satin-evening",
+        "lighting_profile_ids": [
+          "phys-warm-practical-stairwell"
+        ],
+        "safe_face_angles": [
+          "low-angle with visible jaw-neck line",
+          "mild shoulder turn"
+        ],
+        "forbidden_conflicts": [
+          "railing shadow crossing face without source path",
+          "uniform metal glow",
+          "blown satin shoulder"
+        ]
+      },
+      {
+        "route_id": "female-amber-jewelry-night-editorial",
+        "lighting_profile_ids": [
+          "phys-amber-jewelry-soft"
+        ],
+        "safe_face_angles": [
+          "close direct gaze",
+          "mild side angle toward key"
+        ],
+        "forbidden_conflicts": [
+          "jewelry clipping",
+          "plastic skin glow",
+          "random cold rim"
+        ]
+      },
+      {
+        "route_id": "female-androgynous-suit-editorial",
+        "lighting_profile_ids": [
+          "phys-studio-sunpatch-directional"
+        ],
+        "safe_face_angles": [
+          "seated direct gaze",
+          "slight low-angle neck-rest"
+        ],
+        "forbidden_conflicts": [
+          "multiple hand shadows",
+          "rose shadow opposite stool shadow",
+          "white backdrop clipping"
+        ]
+      },
+      {
+        "route_id": "male-hard-window-editorial-lounge",
+        "lighting_profile_ids": [
+          "phys-hard-window-occluder-stripe"
+        ],
+        "recommended_action_preset_ids": [
+          "male-hard-window-eye-shield",
+          "male-hard-window-cheek-rest",
+          "male-hard-window-sleeve-mouth"
+        ],
+        "recommended_face_angles": [
+          "three-quarter toward source",
+          "profile against wall",
+          "slight downward eye shield"
+        ],
+        "forbidden": [
+          "flat frontal fill erasing shadows",
+          "decorative floating stripes"
+        ]
+      },
+      {
+        "route_id": "male-direct-flash-dining-candid",
+        "lighting_profile_ids": [
+          "phys-direct-camera-flash-room-ambient"
+        ],
+        "recommended_action_preset_ids": [
+          "male-restaurant-overhead-camera-turn",
+          "male-restaurant-dual-food-prop"
+        ],
+        "recommended_face_angles": [
+          "turn toward high camera",
+          "frontal seated snapshot"
+        ],
+        "forbidden": [
+          "giant lens blobs",
+          "cinematic rim without practical"
+        ]
+      },
+      {
+        "route_id": "male-bookstore-headphones-lifestyle",
+        "lighting_profile_ids": [
+          "phys-library-daylight-practical-mix"
+        ],
+        "recommended_action_preset_ids": [
+          "male-bookstore-headphone-smile",
+          "male-bookstore-book-hold",
+          "male-bookstore-outdoor-crouch"
+        ],
+        "recommended_face_angles": [
+          "soft frontal",
+          "three-quarter shelf browse"
+        ],
+        "forbidden": [
+          "opaque glasses",
+          "uniform headphone glow"
+        ]
+      },
+      {
+        "route_id": "male-90s-graffiti-camera-street",
+        "lighting_profile_ids": [
+          "phys-open-shade-graffiti-warm"
+        ],
+        "recommended_action_preset_ids": [
+          "male-graffiti-camera-wink",
+          "male-graffiti-doorway-lollipop"
+        ],
+        "recommended_face_angles": [
+          "three-quarter wall lean",
+          "soft frontal doorway"
+        ],
+        "forbidden": [
+          "plastic leather",
+          "oversaturated skin"
+        ]
+      },
+      {
+        "route_id": "female-occluded-warm-beam-lowkey",
+        "lighting_profile_ids": [
+          "phys-warm-gap-occluder-soft-diffusion",
+          "phys-warm-spot-cool-ambient-lowkey",
+          "phys-amber-hand-occluder-lowkey"
+        ],
+        "recommended_action_preset_ids": [
+          "female-beam-chin-lift-soft-close",
+          "female-beam-eyes-closed-shadow-band",
+          "female-bedspot-hand-near-chin",
+          "female-bedspot-downcast-seated",
+          "female-lowkey-raised-hand-enter-beam",
+          "female-lowkey-finger-chin-spot"
+        ],
+        "recommended_face_angles": [
+          "close chin lift inside beam",
+          "downcast seated face pool",
+          "soft three-quarter through foreground veil",
+          "raised hand inside warm patch",
+          "finger-near-chin warm spot"
+        ],
+        "forbidden": [
+          "floating beam sticker",
+          "dead-black landmarks",
+          "clipped warm patch",
+          "hand shadow detached from warm patch"
+        ]
+      },
+      {
+        "route_id": "female-cafe-window-sunpool-editorial",
+        "lighting_profile_ids": [
+          "phys-cafe-window-sunpool-reflection"
+        ],
+        "recommended_action_preset_ids": [
+          "female-cafe-newspaper-eye-peek",
+          "female-cafe-cup-twohand-sunpool"
+        ],
+        "recommended_face_angles": [
+          "frontal eyes over newspaper",
+          "three-quarter cup hold toward window"
+        ],
+        "forbidden": [
+          "duplicated glass face",
+          "whole-room equal brightness"
+        ]
+      },
+      {
+        "route_id": "female-seaside-dusk-direct-flash",
+        "lighting_profile_ids": [
+          "phys-dusk-seaside-direct-flash"
+        ],
+        "recommended_action_preset_ids": [
+          "female-beach-flash-turnback-wind",
+          "female-beach-shell-sand-rest",
+          "female-beach-flash-front-smile"
+        ],
+        "recommended_face_angles": [
+          "shoulder turnback",
+          "frontal flash smile",
+          "sand-level direct gaze"
+        ],
+        "forbidden": [
+          "background ocean lit like foreground",
+          "giant beauty fill",
+          "fused shell"
+        ]
+      },
+      {
+        "route_id": "female-rooftop-bluehour-rim-fill",
+        "lighting_profile_ids": [
+          "phys-bluehour-rear-rim-front-fill"
+        ],
+        "recommended_action_preset_ids": [
+          "female-rooftop-rim-profile",
+          "female-rooftop-pocket-stand"
+        ],
+        "recommended_face_angles": [
+          "profile toward horizon",
+          "three-quarter toward restrained fill"
+        ],
+        "forbidden": [
+          "full-body halo",
+          "flat front fill",
+          "multiple suns"
+        ]
+      },
+      {
+        "route_id": "female-wind-hair-cover-closeup",
+        "lighting_profile_ids": [
+          "phys-wind-hair-closeup-sidelight"
+        ],
+        "recommended_action_preset_ids": [
+          "female-wind-closeup-hair-crossface"
+        ],
+        "recommended_face_angles": [
+          "extreme close-up frontal",
+          "slight three-quarter under breeze"
+        ],
+        "forbidden": [
+          "both eyes hidden",
+          "detached hair veil",
+          "random hair-shadow directions"
+        ]
+      },
+      {
+        "route_id": "female-goldenhour-backlit-flare",
+        "lighting_profile_ids": [
+          "phys-goldenhour-backlight-lensflare"
+        ],
+        "recommended_action_preset_ids": [
+          "female-goldenhour-profile-soft-lift",
+          "female-goldenhour-eyesclosed-sunpause"
+        ],
+        "recommended_face_angles": [
+          "profile chin lift",
+          "eyes-closed side profile"
+        ],
+        "forbidden": [
+          "random flare orbs",
+          "multiple suns",
+          "clipped hair halo"
+        ]
+      },
+      {
+        "route_id": "female-dusk-motionblur-editorial",
+        "lighting_profile_ids": [
+          "phys-dusk-pan-motionblur-ambient"
+        ],
+        "recommended_action_preset_ids": [
+          "female-panblur-forward-run",
+          "female-panblur-turn-shoulder-drift"
+        ],
+        "recommended_face_angles": [
+          "side pass",
+          "near-camera shoulder turn"
+        ],
+        "forbidden": [
+          "duplicated limbs",
+          "typography blurred with subject",
+          "identity fully erased"
+        ]
+      },
+      {
+        "route_id": "female-bedroom-window-casual-headphones",
+        "lighting_profile_ids": [
+          "phys-bedroom-window-warm-bounce",
+          "phys-bedroom-window-reflection-doubleplane"
+        ],
+        "recommended_action_preset_ids": [
+          "female-bedroom-photo-wall-teddy-hold",
+          "female-bedroom-window-doublefist-chin",
+          "female-bedroom-headphones-touch",
+          "female-bedroom-table-reach-close",
+          "female-bedroom-window-reflection-soft-gaze"
+        ],
+        "recommended_face_angles": [
+          "soft three-quarter by window",
+          "off-frame window gaze",
+          "close downward desk gaze",
+          "close gaze through one glass plane"
+        ],
+        "forbidden": [
+          "contradictory window directions",
+          "floating headphones",
+          "clutter over face",
+          "duplicate face pretending to be reflection"
+        ]
+      },
+      {
+        "route_id": "female-clean-sky-wind-cover",
+        "lighting_profile_ids": [
+          "phys-clean-sky-wind-sideprofile"
+        ],
+        "recommended_action_preset_ids": [
+          "female-clean-sky-fur-profile",
+          "female-pastelsky-glasses-upward-gaze"
+        ],
+        "recommended_face_angles": [
+          "clean profile against sky",
+          "three-quarter upward gaze with glasses"
+        ],
+        "forbidden": [
+          "opaque clear lenses",
+          "collar merged with jaw",
+          "flat cutout sky"
+        ]
+      },
+      {
+        "route_id": "female-winter-scarf-sunlit-closeup",
+        "lighting_profile_ids": [
+          "phys-winter-scarf-low-sun-softfill"
+        ],
+        "recommended_action_preset_ids": [
+          "female-winter-scarf-sidegaze-close",
+          "female-winter-scarf-direct-soft-close"
+        ],
+        "recommended_face_angles": [
+          "tight scarf close-up",
+          "quiet side gaze"
+        ],
+        "forbidden": [
+          "scarf fused to jaw",
+          "burned cheek patch"
+        ]
+      },
+      {
+        "route_id": "female-forest-ribbon-softlight-fairytale",
+        "lighting_profile_ids": [
+          "phys-forest-canopy-dapple-backlight"
+        ],
+        "recommended_action_preset_ids": [
+          "female-forest-ribbon-backturn-profile",
+          "female-forest-understory-caption-close"
+        ],
+        "recommended_face_angles": [
+          "forest back-turn profile"
+        ],
+        "forbidden": [
+          "duplicate ribbons",
+          "flat green overlay"
+        ]
+      },
+      {
+        "route_id": "female-autumn-leaf-hat-narrative",
+        "lighting_profile_ids": [
+          "phys-autumn-leaf-rim-depth"
+        ],
+        "recommended_action_preset_ids": [
+          "female-autumn-leaf-hat-upward-gaze"
+        ],
+        "recommended_face_angles": [
+          "hat profile upward gaze"
+        ],
+        "forbidden": [
+          "leaf stickers",
+          "hat fused to hair"
+        ]
+      },
+      {
+        "route_id": "female-vehicle-window-wind-practical-closeup",
+        "lighting_profile_ids": [
+          "phys-vehicle-window-mixed-practical-wind"
+        ],
+        "recommended_action_preset_ids": [
+          "female-vehicle-window-hair-crossface-direct",
+          "female-vehicle-window-hands-clasped-close"
+        ],
+        "recommended_face_angles": [
+          "close direct gaze through hair",
+          "hands-clasped lower-face close"
+        ],
+        "forbidden": [
+          "neon skin stains",
+          "pasted bokeh",
+          "detached hair veil"
+        ]
+      },
+      {
+        "route_id": "female-floral-halo-cobalt-editorial",
+        "lighting_profile_ids": [
+          "phys-cobalt-floral-hardkey-shadow"
+        ],
+        "recommended_action_preset_ids": [
+          "female-floral-halo-frontal-lock",
+          "female-floral-single-stem-eye-occluder",
+          "female-floral-reclined-halo-close"
+        ],
+        "recommended_face_angles": [
+          "frontal halo portrait",
+          "single-eye occlusion",
+          "reclined floral crop"
+        ],
+        "forbidden": [
+          "flowers sprouting from skin",
+          "both eyes hidden",
+          "cobalt skin spill"
+        ]
+      },
+      {
+        "route_id": "female-transit-corridor-white-scarf-commute",
+        "lighting_profile_ids": [
+          "phys-transit-corridor-daylight-perspective"
+        ],
+        "recommended_action_preset_ids": [
+          "female-transit-corridor-backturn-camera",
+          "female-transit-corridor-armscross-full",
+          "female-transit-corridor-soft-direct"
+        ],
+        "recommended_face_angles": [
+          "corridor back-turn",
+          "front commute portrait"
+        ],
+        "forbidden": [
+          "warped corridor",
+          "floating doors",
+          "scarf merged into face"
+        ]
+      },
+      {
+        "route_id": "female-cafe-window-refined-editorial",
+        "lighting_profile_ids": [
+          "phys-cafe-window-warm-reflection-layer"
+        ],
+        "recommended_action_preset_ids": [
+          "female-cafe-sip-profile",
+          "female-cafe-window-hand-hair",
+          "female-cafe-reading-crossleg"
+        ],
+        "recommended_face_angles": [
+          "composition-aware default"
+        ],
+        "forbidden": [
+          "plane collapse",
+          "projection contradiction",
+          "unreadable identity anchor"
+        ]
+      },
+      {
+        "route_id": "female-urban-railing-knitwear-documentary",
+        "lighting_profile_ids": [
+          "phys-urban-railing-clear-winter-sun"
+        ],
+        "recommended_action_preset_ids": [
+          "female-railing-knitwear-lean-camera"
+        ],
+        "recommended_face_angles": [
+          "composition-aware default"
+        ],
+        "forbidden": [
+          "plane collapse",
+          "projection contradiction",
+          "unreadable identity anchor"
+        ]
+      },
+      {
+        "route_id": "female-yellow-transit-street-editorial",
+        "lighting_profile_ids": [
+          "phys-yellow-vehicle-hard-daylight-colorblock"
+        ],
+        "recommended_action_preset_ids": [
+          "female-yellow-vehicle-street-stand"
+        ],
+        "recommended_face_angles": [
+          "composition-aware default"
+        ],
+        "forbidden": [
+          "plane collapse",
+          "projection contradiction",
+          "unreadable identity anchor"
+        ]
+      },
+      {
+        "route_id": "female-coastal-denim-overlook-wind",
+        "lighting_profile_ids": [
+          "phys-coastal-overlook-soft-wind-horizon"
+        ],
+        "recommended_action_preset_ids": [
+          "female-coastal-overlook-backturn"
+        ],
+        "recommended_face_angles": [
+          "composition-aware default"
+        ],
+        "forbidden": [
+          "plane collapse",
+          "projection contradiction",
+          "unreadable identity anchor"
+        ]
+      },
+      {
+        "route_id": "female-botanical-slitbeam-shadow-portrait",
+        "lighting_profile_ids": [
+          "phys-botanical-slitbeam-shadow-plane"
+        ],
+        "recommended_action_preset_ids": [
+          "female-botanical-bundle-direct",
+          "female-botanical-profile-wall",
+          "female-botanical-vase-foreground-direct"
+        ],
+        "recommended_face_angles": [
+          "composition-aware default"
+        ],
+        "forbidden": [
+          "plane collapse",
+          "projection contradiction",
+          "unreadable identity anchor"
+        ]
+      },
+      {
+        "route_id": "female-festival-lantern-riverside-narrative",
+        "lighting_profile_ids": [
+          "phys-lantern-riverside-bluehour-practical-depth"
+        ],
+        "recommended_action_preset_ids": [
+          "female-lantern-riverside-seated-lift"
+        ],
+        "recommended_face_angles": [
+          "composition-aware default"
+        ],
+        "forbidden": [
+          "plane collapse",
+          "projection contradiction",
+          "unreadable identity anchor"
+        ]
+      },
+      {
+        "route_id": "female-ivory-studio-floral-menswear-lookbook",
+        "lighting_profile_ids": [
+          "phys-ivory-studio-clean-softshadow"
+        ],
+        "recommended_action_preset_ids": [
+          "female-ivory-lookbook-standing-flower-pocket",
+          "female-ivory-lookbook-seated-scatter",
+          "female-ivory-lookbook-overhead-stem-close"
+        ],
+        "recommended_face_angles": [
+          "composition-aware default"
+        ],
+        "forbidden": [
+          "plane collapse",
+          "projection contradiction",
+          "unreadable identity anchor"
+        ]
+      },
+      {
+        "route_id": "female-scarlet-kinetic-typography-fashion-poster",
+        "lighting_profile_ids": [
+          "phys-scarlet-poster-hardgraphic"
+        ],
+        "recommended_action_preset_ids": [
+          "female-scarlet-poster-foreshortened-recline"
+        ],
+        "recommended_face_angles": [
+          "composition-aware default"
+        ],
+        "forbidden": [
+          "plane collapse",
+          "projection contradiction",
+          "unreadable identity anchor"
+        ]
+      }
+    ],
+    "composition_perspective_grammar": {
+      "version": "5.10.0",
+      "principle": "Composition is not decoration. Resolve camera position, projection family, horizon, vanishing logic, subject plane, foreground plane, background plane, light projection, and typography plane before style embellishment.",
+      "compiled_prompt_en": "Resolve the camera and plane hierarchy before styling: camera height, lens behavior, horizon, vanishing point logic, subject plane, foreground occlusion plane, background geometry, light projection plane, and typography-safe post-layout zone. Preserve one coherent optical hierarchy and reject warped architecture, pasted foregrounds, detached props, arbitrary shadow direction, impossible foreshortening, and text crossing recognition landmarks.",
+      "required_fields": [
+        "perspective_family",
+        "camera_height",
+        "lens_behavior",
+        "horizon_logic",
+        "vanishing_point_logic",
+        "subject_plane",
+        "foreground_plane",
+        "background_plane",
+        "occlusion_policy",
+        "typography_plane",
+        "safe_use",
+        "failure_patterns"
+      ],
+      "universal_rules": [
+        "Camera position precedes styling.",
+        "Foreground occlusion must belong to a real near plane.",
+        "Architecture, railings, vehicles, corridors, tables, steps, and horizons must keep one perspective logic.",
+        "Hard shadows require a traceable projection path.",
+        "Typography is a separate post-layout plane and must remain crisp outside facial landmarks.",
+        "Foreshortening is allowed only when limb continuity remains anatomically readable."
+      ],
+      "projection_profiles": [
+        {
+          "id": "persp-cafe-window-layered-reflection",
+          "name_zh": "咖啡馆窗边多平面透视",
+          "perspective_family": "layered-window-reflection",
+          "camera_height": "seated eye-level",
+          "lens_behavior": "normal-to-short-tele portrait lens; mild compression",
+          "horizon_logic": "table edge and window frame remain level",
+          "vanishing_point_logic": "single implied street-side depth axis; reflections stay on glass plane",
+          "subject_plane": "seated subject on interior plane near window",
+          "foreground_plane": "newspaper edge, table rim, or soft glass reflection may enter frame",
+          "background_plane": "cafe wood panels, exterior bokeh, and chair geometry recede gently",
+          "occlusion_policy": "foreground blur may frame but cannot cover both eyes or erase cup-hand logic",
+          "typography_plane": "margin typography only; never cross face, cup rim, or reflection seam",
+          "safe_use": "Best for seated coffee, reading, hand-to-hair, and cross-leg portraits.",
+          "failure_patterns": [
+            "floating table",
+            "reflection sharper than face",
+            "cup detached from hand",
+            "background bokeh pasted onto skin"
+          ]
+        },
+        {
+          "id": "persp-urban-railing-diagonal",
+          "name_zh": "城市栏杆斜线引导透视",
+          "perspective_family": "diagonal-railing-depth",
+          "camera_height": "standing chest-to-eye-level",
+          "lens_behavior": "normal lens; modest depth compression",
+          "horizon_logic": "urban horizon stays quiet and secondary",
+          "vanishing_point_logic": "railing line guides toward background without cutting through face",
+          "subject_plane": "subject leans into near-mid plane",
+          "foreground_plane": "railing occupies lower diagonal plane",
+          "background_plane": "architecture and fall foliage soften behind subject",
+          "occlusion_policy": "arms and knit volume must rest naturally on railing plane",
+          "typography_plane": "optional white border or lower caption band",
+          "safe_use": "Best for oversized knitwear leaning portraits with urban depth.",
+          "failure_patterns": [
+            "railing fused into sleeves",
+            "arm length distortion",
+            "city horizon tilted without intent"
+          ]
+        },
+        {
+          "id": "persp-yellow-vehicle-planar-colorblock",
+          "name_zh": "黄色交通工具平面色块透视",
+          "perspective_family": "planar-street-colorblock",
+          "camera_height": "standing eye-level or slightly low",
+          "lens_behavior": "normal lens; preserve vehicle panel geometry",
+          "horizon_logic": "building verticals remain upright",
+          "vanishing_point_logic": "vehicle facade acts as strong near-background plane",
+          "subject_plane": "subject stands one step forward of vehicle plane",
+          "foreground_plane": "minimal street foreground",
+          "background_plane": "vehicle panels, windows, and building walls provide structured planes",
+          "occlusion_policy": "cap, glasses, scarf, and wind hair remain attached to subject plane",
+          "typography_plane": "reserve side margin or upper facade zone for post-layout type",
+          "safe_use": "Best for street editorials using a vehicle as an architectural color block.",
+          "failure_patterns": [
+            "vehicle door warped",
+            "window grid melted",
+            "subject pasted flat onto vehicle",
+            "perspective-inconsistent signage"
+          ]
+        },
+        {
+          "id": "persp-coastal-horizon-atmospheric",
+          "name_zh": "海岸线地平线与空气透视",
+          "perspective_family": "atmospheric-coastal-depth",
+          "camera_height": "standing eye-level",
+          "lens_behavior": "normal-to-short-tele; slight atmospheric compression",
+          "horizon_logic": "sea horizon stays level and outside face landmarks",
+          "vanishing_point_logic": "coastline recedes laterally into distance",
+          "subject_plane": "subject in middle plane with back-turn or three-quarter stance",
+          "foreground_plane": "vegetation may frame lower edge",
+          "background_plane": "ocean, cliff line, and distant landmass create three-layer depth",
+          "occlusion_policy": "wind hair can cross cheek but not erase eye-nose-mouth relation",
+          "typography_plane": "use negative sky area only when typography is needed",
+          "safe_use": "Best for quiet coastal denim portraits.",
+          "failure_patterns": [
+            "crooked horizon",
+            "sea merged with hair",
+            "cliff edge intersecting neck",
+            "background over-sharpened"
+          ]
+        },
+        {
+          "id": "persp-botanical-slitbeam-shadowplane",
+          "name_zh": "植物前景与窄束投影透视",
+          "perspective_family": "occlusion-shadow-projection",
+          "camera_height": "close eye-level or profile eye-level",
+          "lens_behavior": "portrait lens; shallow depth with explicit foreground plane",
+          "horizon_logic": "wall and window projection remain geometrically stable",
+          "vanishing_point_logic": "beam edge is caused by a visible or inferable aperture direction",
+          "subject_plane": "subject face is the focus plane",
+          "foreground_plane": "branch, vase, or leaf shadow occupies a separate near plane",
+          "background_plane": "wall projection, plant shadow, and room depth remain subordinate",
+          "occlusion_policy": "allow partial occlusion only when one eye or facial contour remains readable",
+          "typography_plane": "typography forbidden on face; use empty wall or dark margin zones",
+          "safe_use": "Best for branch-shadow, vase foreground, and triangular window-beam portraits.",
+          "failure_patterns": [
+            "leaf stickers on face",
+            "shadow direction contradicts branch",
+            "beam floating without aperture logic",
+            "both eyes erased"
+          ]
+        },
+        {
+          "id": "persp-lantern-riverside-depthchain",
+          "name_zh": "灯笼河岸纵深链条透视",
+          "perspective_family": "festival-riverside-depthchain",
+          "camera_height": "seated slightly low-to-eye-level",
+          "lens_behavior": "normal lens with background bokeh separation",
+          "horizon_logic": "waterline and steps remain coherent",
+          "vanishing_point_logic": "riverbank steps, bridge, lantern strings, and reflections share one depth chain",
+          "subject_plane": "subject sits on rock or step in lower-right or lower-middle plane",
+          "foreground_plane": "handheld red lantern occupies reachable arm plane",
+          "background_plane": "bridge arch, lantern rows, water reflection, and crowd bokeh recede in layers",
+          "occlusion_policy": "hand, lantern handle, and seated weight must remain physically explainable",
+          "typography_plane": "title only in empty sky or water margin; never cover lantern silhouette",
+          "safe_use": "Best for narrative festival scenes with clear foreground-to-background rhythm.",
+          "failure_patterns": [
+            "lantern floating",
+            "bridge geometry broken",
+            "water reflection detached",
+            "hand cannot reach lantern handle"
+          ]
+        },
+        {
+          "id": "persp-ivory-studio-negative-space",
+          "name_zh": "象牙白棚拍负空间构图",
+          "perspective_family": "flat-studio-negative-space",
+          "camera_height": "full-body eye-level or slight high-angle seated",
+          "lens_behavior": "normal lens; low distortion",
+          "horizon_logic": "studio floor-wall transition stays subtle",
+          "vanishing_point_logic": "minimal studio behaves like a controlled shallow stage",
+          "subject_plane": "subject occupies lower or side third depending layout",
+          "foreground_plane": "scattered carnation stems lie on floor plane",
+          "background_plane": "clean ivory wall provides negative space",
+          "occlusion_policy": "flowers must attach to pockets, hands, or floor; never sprout from clothing without support",
+          "typography_plane": "top masthead or corner logo zone reserved as a post-layout plane",
+          "safe_use": "Best for menswear-inspired white-shirt, black-tie, wide-trouser lookbooks.",
+          "failure_patterns": [
+            "floating flowers",
+            "feet disconnected from floor",
+            "text crowding face",
+            "floor shadow direction inconsistent"
+          ]
+        },
+        {
+          "id": "persp-scarlet-poster-foreshortened",
+          "name_zh": "猩红动势海报夸张缩短透视",
+          "perspective_family": "controlled-foreshortened-poster",
+          "camera_height": "low or tilted editorial camera",
+          "lens_behavior": "wide-to-normal editorial lens; intentional near-foot enlargement",
+          "horizon_logic": "graphic frame may tilt but must remain internally consistent",
+          "vanishing_point_logic": "body axis and enlarged near footwear converge toward torso",
+          "subject_plane": "reclined or kicked-leg subject remains anatomically continuous",
+          "foreground_plane": "near shoe or leg may dominate foreground",
+          "background_plane": "scarlet graphic field remains flat; typography sits in separate post-layout plane",
+          "occlusion_policy": "foreshortening is allowed only with readable limb continuity",
+          "typography_plane": "dense margin typography, barcode, line art, and title blocks stay crisp as post-layout overlays",
+          "safe_use": "Best for high-energy red fashion posters with deliberate distortion.",
+          "failure_patterns": [
+            "detached feet",
+            "broken knees",
+            "random perspective scaling",
+            "typography burned into body texture"
+          ]
+        },
+        {
+          "id": "persp-forest-understory-caption-close",
+          "name_zh": "林下遮挡与中心标题近景",
+          "perspective_family": "forest-understory-close",
+          "camera_height": "close low-to-eye-level",
+          "lens_behavior": "portrait lens; near foliage blur separated from face plane",
+          "horizon_logic": "tree trunk and branch directions remain stable",
+          "vanishing_point_logic": "foliage layers recede around face without becoming a flat filter",
+          "subject_plane": "face sits in protected focus pocket",
+          "foreground_plane": "needles, leaves, or stems may frame edges",
+          "background_plane": "forest trunk and canopy form deep background",
+          "occlusion_policy": "preserve readable face anchor despite foreground foliage",
+          "typography_plane": "stacked center-bottom caption or lower band; text never masks eyes or mouth",
+          "safe_use": "Best for poetic forest close-ups and source-caption layouts.",
+          "failure_patterns": [
+            "green overlay filter",
+            "foliage pasted on skin",
+            "caption covering lips",
+            "branches with impossible scale"
+          ]
+        }
+      ]
+    },
+    "route_perspective_bindings": [
+      {
+        "route_id": "female-cafe-window-refined-editorial",
+        "perspective_profile_ids": [
+          "persp-cafe-window-layered-reflection"
+        ],
+        "layout_module_ids": [
+          "layout-cafe-window-seated-layered-reflection",
+          "layout-cafe-window-newspaper-foreground"
+        ],
+        "required": true
+      },
+      {
+        "route_id": "female-urban-railing-knitwear-documentary",
+        "perspective_profile_ids": [
+          "persp-urban-railing-diagonal"
+        ],
+        "layout_module_ids": [
+          "layout-railing-lean-diagonal"
+        ],
+        "required": true
+      },
+      {
+        "route_id": "female-yellow-transit-street-editorial",
+        "perspective_profile_ids": [
+          "persp-yellow-vehicle-planar-colorblock"
+        ],
+        "layout_module_ids": [
+          "layout-yellow-vehicle-planar-colorblock"
+        ],
+        "required": true
+      },
+      {
+        "route_id": "female-coastal-denim-overlook-wind",
+        "perspective_profile_ids": [
+          "persp-coastal-horizon-atmospheric"
+        ],
+        "layout_module_ids": [
+          "layout-coastal-third-horizon"
+        ],
+        "required": true
+      },
+      {
+        "route_id": "female-botanical-slitbeam-shadow-portrait",
+        "perspective_profile_ids": [
+          "persp-botanical-slitbeam-shadowplane"
+        ],
+        "layout_module_ids": [
+          "layout-slitbeam-front-plant-foreground",
+          "layout-slitbeam-profile-wall-triangle",
+          "layout-botanical-vase-faceframe"
+        ],
+        "required": true
+      },
+      {
+        "route_id": "female-festival-lantern-riverside-narrative",
+        "perspective_profile_ids": [
+          "persp-lantern-riverside-depthchain"
+        ],
+        "layout_module_ids": [
+          "layout-lantern-riverside-depth-chain"
+        ],
+        "required": true
+      },
+      {
+        "route_id": "female-ivory-studio-floral-menswear-lookbook",
+        "perspective_profile_ids": [
+          "persp-ivory-studio-negative-space"
+        ],
+        "layout_module_ids": [
+          "layout-ivory-lookbook-standing-negative-space",
+          "layout-ivory-lookbook-seated-flower-scatter",
+          "layout-ivory-lookbook-overhead-stem-close"
+        ],
+        "required": true
+      },
+      {
+        "route_id": "female-scarlet-kinetic-typography-fashion-poster",
+        "perspective_profile_ids": [
+          "persp-scarlet-poster-foreshortened"
+        ],
+        "layout_module_ids": [
+          "layout-scarlet-poster-foreshortened-kinetic"
+        ],
+        "required": true
+      },
+      {
+        "route_id": "female-forest-ribbon-softlight-fairytale",
+        "perspective_profile_ids": [
+          "persp-forest-understory-caption-close"
+        ],
+        "layout_module_ids": [
+          "layout-forest-understory-caption-close"
+        ],
+        "required": false
+      }
+    ]
+  }
+}

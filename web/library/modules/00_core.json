@@ -1,0 +1,1222 @@
+{
+  "module_schema": "pvos-library-module@1.0.0",
+  "module_id": "core",
+  "release_version": "5.16.1",
+  "owns": [
+    "runtime_schema_version",
+    "library_schema_version",
+    "legacy_runtime_schema_version",
+    "library_title_zh",
+    "status",
+    "generated_from",
+    "source_asset_count",
+    "inventory",
+    "taxonomy_revision",
+    "prompt_placeholders",
+    "global_rules",
+    "style_id_aliases",
+    "migration",
+    "category_order",
+    "v5_meta",
+    "v5_5_meta",
+    "v5_7_meta",
+    "v5_8_meta",
+    "product_release",
+    "library_contract",
+    "architecture_hardening",
+    "architecture_refactor",
+    "experience_polish",
+    "theme_consistency_quiet_ui",
+    "typography_surface_continuity",
+    "layout_studio_type_controls",
+    "typography_reference_governance",
+    "english_font_reference_intake",
+    "typography_reference_expansion",
+    "chinese_font_reference_intake",
+    "product_alpha",
+    "text_participation_ux",
+    "canonical_runtime",
+    "version"
+  ],
+  "payload": {
+    "runtime_schema_version": "4.4-v5.16.1-parity-restoration",
+    "library_schema_version": "pvos-library@4.0.0",
+    "legacy_runtime_schema_version": "3.14-v5.10.0-composition-perspective-editorial-transit-cafe-studio",
+    "library_title_zh": "Portrait Visual OS · V5.16.1 Parity Restoration",
+    "status": "agent-ready-parity-restored",
+    "generated_from": [
+      "style_ingestion_batch01.json",
+      "style_ingestion_batch02.json",
+      "style_ingestion_batch03_patch.json",
+      "style_ingestion_batch04_patch.json",
+      "style_ingestion_batch05_patch.json",
+      "style_ingestion_batch06_final_patch.json",
+      "v5_graduation_reference_batch01.json",
+      "v5_mature_women_graduation_supplement_batch01.json",
+      "v5_accessory_occlusion_safety_batch01.json",
+      "v5_daily_lighting_curated_batch01.json",
+      "v5_lighting_physics_safety_batch01.json",
+      "v5_male_daily_editorial_flash_batch01.json",
+      "v5_clear_lens_flash_safety_batch01.json",
+      "v5_female_twilight_beam_flash_batch01.json",
+      "v5_occluded_beam_twilight_flash_physics_batch01.json",
+      "v5_female_wind_motion_blur_bedroom_batch01.json",
+      "v5_wind_motion_flare_bedroom_physics_batch01.json",
+      "english_font_reference_intake_batch01.json",
+      "english_font_reference_intake_batch02.json",
+      "chinese_font_reference_intake_batch01.json",
+      "typography_relation_reference_batch01.json"
+    ],
+    "source_asset_count": 307,
+    "inventory": {
+      "style_routes": 135,
+      "scene_presets": 69,
+      "prop_wardrobe_presets": 102,
+      "layout_modules": 92,
+      "typography_packs": 23,
+      "lighting_presets": 60,
+      "legacy_v3_routes": 44,
+      "json_batch_routes": 42,
+      "component_total": 481,
+      "top_level_categories": 4,
+      "hybrid_presets": 20,
+      "single_portrait_action_blueprints": 98,
+      "single_portrait_composition_blueprints": 85,
+      "single_portrait_gaze_locks": 9,
+      "single_portrait_expression_presets": 9,
+      "typography_interaction_presets": 16,
+      "typography_participation_modes": 3,
+      "v5_7_preserved_v56_baseline": true,
+      "local_json_bridge_extended_for_single_portrait": true,
+      "action_presets": 135,
+      "visual_templates": 101,
+      "focused_entry_presets": 7,
+      "route_origin_counts": {
+        "legacy-v3": 44,
+        "json-batches": 42,
+        "v5-integrated": 8,
+        "graduation-curated": 4
+      },
+      "server_ready_contract_version": "5.9.3",
+      "graduation_routes": 4,
+      "graduation_domain_integrated": true,
+      "lighting_physics_profiles": 39,
+      "lighting_pose_bindings": 34,
+      "composition_perspective_profiles": 9,
+      "route_perspective_bindings": 9,
+      "commercial_font_assets": 39,
+      "font_reference_assets": 92,
+      "font_reference_batches": 3,
+      "verified_open_source_proxy_additions": 19,
+      "english_font_reference_assets": 48,
+      "chinese_font_reference_assets": 36,
+      "typography_relation_patterns": 13,
+      "verified_font_assets": 39,
+      "template_role_blockings": 101,
+      "route_motion_grammars": 70
+    },
+    "taxonomy_revision": "v5.10.0-composition-perspective-editorial-transit-cafe-studio-style-freeze",
+    "prompt_placeholders": [
+      "{{SUBJECT_CONFIGURATION}}",
+      "{{FACE_MODE_INSTRUCTION}}",
+      "{{OUTFIT_MODE_INSTRUCTION}}",
+      "{{TEXT_LAYOUT_MODE_INSTRUCTION}}",
+      "{{TYPOGRAPHY_SAFE_ZONE_INSTRUCTION}}",
+      "{{OPTIONAL_SYMBOLIC_ELEMENTS}}",
+      "{{USER_CUSTOM_TEXT_HINTS}}"
+    ],
+    "global_rules": [
+      {
+        "batch": "style_ingestion_batch01.json",
+        "key": "notes",
+        "value": "Do not copy readable text, logos, brand names or trademarked graphics from the references. Generate typography-safe base images; accurate Chinese typography remains a post-layout task."
+      },
+      {
+        "batch": "style_ingestion_batch01.json",
+        "key": "notes",
+        "value": "Reference images define visual grammar, not literal character identity, wardrobe, product branding or scene replication."
+      },
+      {
+        "batch": "style_ingestion_batch01.json",
+        "key": "notes",
+        "value": "All routes should end with the shared instruction: preserve the uploaded subject's identity to the maximum extent compatible with the selected visual translation; do the best work you can."
+      },
+      {
+        "batch": "style_ingestion_batch02.json",
+        "key": "ui_language",
+        "value": "zh-CN"
+      },
+      {
+        "batch": "style_ingestion_batch02.json",
+        "key": "prompt_language_for_image_model",
+        "value": "en"
+      },
+      {
+        "batch": "style_ingestion_batch02.json",
+        "key": "face_mode_policy",
+        "value": {
+          "rule": "风格 Prompt 不得硬编码“最大程度保留人物面部特征”。由控制台根据用户选择动态注入 {{FACE_MODE_INSTRUCTION}}，避免与 5 档面部处理强度冲突。",
+          "levels": {
+            "1": "全量保留：真实身份、年龄、自然表情与主要面部比例均保持稳定，仅允许光影和皮肤质感统一。",
+            "2": "稍微柔化：身份明显可辨，允许轻微磨皮、胶片化和局部柔化。",
+            "3": "轻度平面化：保留大部分识别特征，允许半调、拼贴、插画化或印刷质感。",
+            "4": "中度平面化：保留脸型、眼神、眉眼关系、发型和标志性特征，允许较明显图形化处理。",
+            "5": "全部平面化：仅保留最明显的人物识别线索，用于插画、剪纸、版画或强视觉实验。"
+          }
+        }
+      },
+      {
+        "batch": "style_ingestion_batch02.json",
+        "key": "outfit_policy",
+        "value": {
+          "rule": "默认允许重构服装，使人物与场景、年代和视觉主题融合。只有用户主动选择“保留原服装”时才复用原片穿搭。",
+          "injection": "{{OUTFIT_MODE_INSTRUCTION}}"
+        }
+      },
+      {
+        "batch": "style_ingestion_batch02.json",
+        "key": "typography_policy",
+        "value": {
+          "rule": "生图模型优先完成底图、留白和装饰性文字纹理；精确中文标题、日期、标签和副文案由后期排版层写入。不得要求模型准确生成大量可读文字。",
+          "face_safe_zone": "所有标题、标签、条形码、边框、色块和装饰线不得遮挡人物眼睛、鼻梁、嘴部及完整面部识别区域。可以与发丝、肩部、服装和背景发生层叠关系。",
+          "injection": "{{TYPOGRAPHY_SAFE_ZONE_INSTRUCTION}}"
+        }
+      },
+      {
+        "batch": "style_ingestion_batch02.json",
+        "key": "fusion_policy",
+        "value": "人物、服装、光影、色彩、颗粒和背景必须属于同一个视觉世界，禁止将原片人物像贴纸一样直接放进新背景。"
+      },
+      {
+        "batch": "style_ingestion_batch02.json",
+        "key": "content_safety",
+        "value": "真实品牌、明星姓名、影视标题和商标只作为视觉参考，不在正式模板中复刻；使用虚构刊名、虚构品牌和可替换占位文本。"
+      },
+      {
+        "batch": "style_ingestion_batch03_patch.json",
+        "key": "merge_strategy",
+        "value": "本批采用补丁式入库：只有视觉机制显著不同、能够形成独立用户选择价值的路线才新增节点；其余全部作为既有节点变体扩展。"
+      },
+      {
+        "batch": "style_ingestion_batch03_patch.json",
+        "key": "face_safe_typography",
+        "value": {
+          "default": "所有文字、色块、边框、裁切框、标签和装饰线不得覆盖眼睛、鼻梁、嘴部以及完整面部识别区域。",
+          "adaptation_rule": "当参考图依赖遮眼色带、横向文字或眼部裁切框时，不直接复制遮脸动作。将色带移动到额头上方、人物背后或画面边缘；将眼部裁切框改为独立副图框，放置在面部外侧。",
+          "reason": "保留参考图的设计语法，同时满足面部识别稳定性和大众用户接受度。"
+        }
+      },
+      {
+        "batch": "style_ingestion_batch03_patch.json",
+        "key": "face_mode_policy",
+        "value": "风格 Prompt 不写死“最大程度保留人物面部特征”。继续通过 {{FACE_MODE_INSTRUCTION}} 动态注入五档处理强度，避免平面化模式与身份保留约束相互冲突。"
+      },
+      {
+        "batch": "style_ingestion_batch03_patch.json",
+        "key": "outfit_policy",
+        "value": "默认根据风格重构服装、妆发和配饰，使人物与环境融合。仅在用户主动选择保留原服装时复用原片穿搭。"
+      },
+      {
+        "batch": "style_ingestion_batch03_patch.json",
+        "key": "text_generation_policy",
+        "value": "模型优先生成底图、留白区与装饰性文字纹理。精确中文标题、日期、栏目名和副文案交给后期排版层写入。"
+      },
+      {
+        "batch": "style_ingestion_batch03_patch.json",
+        "key": "brand_policy",
+        "value": "参考图中的品牌、刊名、艺人姓名和商标只用于理解视觉机制；正式模板统一使用虚构名称或可替换占位文本。"
+      },
+      {
+        "batch": "style_ingestion_batch04_patch.json",
+        "key": "merge_strategy",
+        "value": "第四批继续执行补丁式入库。用户侧只增加能够带来清晰选择差异的风格按钮；构图、道具、色彩和信息层变化优先沉淀为既有节点变体。"
+      },
+      {
+        "batch": "style_ingestion_batch04_patch.json",
+        "key": "experimental_face_fragment_policy",
+        "value": {
+          "default": "所有普通商业模板至少保留一处完整、清晰、无遮挡的主体面部。",
+          "opt_in_exception": "碎镜、多重眼神、编辑器裁切框等实验性模板允许重复或局部裁切面部，但必须保留至少一处可识别的完整主脸。此类模板默认标记 experimental，不作为首次使用推荐。",
+          "reason": "区分大众可用模板与实验视觉，避免将高冲击力设计误当作所有用户的默认生成逻辑。"
+        }
+      },
+      {
+        "batch": "style_ingestion_batch04_patch.json",
+        "key": "dense_magazine_text_policy",
+        "value": "日系周刊、平成少女刊和体育漫画刊允许密集文字墙，但模型生成阶段只负责伪文字纹理、排版区块与留白。准确标题、日期、栏目与用户文案继续由后期排版层写入。"
+      },
+      {
+        "batch": "style_ingestion_batch04_patch.json",
+        "key": "brand_policy",
+        "value": "不得复制 ELLE、Popteen、mina、Netflix 等真实品牌、刊名、角色名和商标。统一生成虚构刊名、可替换栏目和抽象贴纸。"
+      },
+      {
+        "batch": "style_ingestion_batch04_patch.json",
+        "key": "accidental_asset_policy",
+        "value": "明显属于普通原片、实验记录或误传照片的内容不得直接入库为风格节点，可单独登记为未来压力测试素材。"
+      },
+      {
+        "batch": "style_ingestion_batch05_patch.json",
+        "key": "normalized_ingestion",
+        "value": "从第五批开始，新增内容必须先判断属于风格路线、场景预设、构图模块、字体套件、光影预设还是节点内部变体。"
+      },
+      {
+        "batch": "style_ingestion_batch05_patch.json",
+        "key": "commercial_face_policy",
+        "value": "商业模板默认保留至少一处完整、清晰、无遮挡的主体面部。选择框、弹窗卡片、手势和巨型文字不得压住关键五官。"
+      },
+      {
+        "batch": "style_ingestion_batch05_patch.json",
+        "key": "scene_fusion_policy",
+        "value": "抓娃娃机、水族箱、旧街、森林公路等环境必须与人物共同生成，不得把人物简单粘贴在背景图上。"
+      },
+      {
+        "batch": "style_ingestion_batch05_patch.json",
+        "key": "product_ad_policy",
+        "value": "产品快闪广告模块只生成虚构品牌、可替换产品和排版安全区，不复制真实品牌、产品型号、商标或活动信息。"
+      },
+      {
+        "batch": "style_ingestion_batch05_patch.json",
+        "key": "dense_text_policy",
+        "value": "所有旧刊、唱片刊和海报模板只生成伪文字纹理、栏目区块和留白。准确标题、日期、城市、票务信息与中文文案由后期排版层写入。"
+      },
+      {
+        "batch": "style_ingestion_batch05_patch.json",
+        "key": "module_compatibility_policy",
+        "value": "模块可以声明适配风格，但不得反向污染顶层风格分类。例如手机跃出、票券弹窗和手势框景应作为构图模块，而不是各自新增一个完整风格按钮。"
+      },
+      {
+        "batch": "style_ingestion_batch06_final_patch.json",
+        "key": "final_freeze_rule",
+        "value": "素材库进入首轮冻结。后续新增顶层路线必须满足：在材质、叙事世界、人物融合方式和信息层组织上至少有两项明显差异；否则优先归入变体或模块。"
+      },
+      {
+        "batch": "style_ingestion_batch06_final_patch.json",
+        "key": "prop_safety_rule",
+        "value": "涉及别针、金属夹、玻璃碎裂或其他锐利视觉元素时，只能作为悬浮、贴纸、印刷叠层或与皮肤保持距离的造型道具，不表现穿刺、伤口或危险接触。"
+      },
+      {
+        "batch": "style_ingestion_batch06_final_patch.json",
+        "key": "face_readability_rule",
+        "value": "商业模板至少保留一处完整可识别面部。头盔、玻璃、贴纸、文字、动漫头像和 UI 元素不得覆盖双眼、鼻部与嘴部的关键识别区域。"
+      },
+      {
+        "batch": "style_ingestion_batch06_final_patch.json",
+        "key": "avatar_sticker_rule",
+        "value": "动漫头像与像素头像只作为辅助贴纸或副图。主角仍为真实人物，不把主体直接替换为动画角色。"
+      },
+      {
+        "batch": "style_ingestion_batch06_final_patch.json",
+        "key": "text_accuracy_rule",
+        "value": "旧刊、杂志、地下刊和情书海报只生成伪文字区块与排版安全区。准确日期、品牌、标题、中文文案、活动信息与签名统一交给后期排版层。"
+      },
+      {
+        "batch": "style_ingestion_batch06_final_patch.json",
+        "key": "copyright_and_brand_rule",
+        "value": "数码拼贴和商业模板使用虚构品牌、抽象设备和通用图标，不复制真实商标、真实角色、产品型号或活动信息。"
+      },
+      {
+        "batch": "style_ingestion_batch06_final_patch.json",
+        "key": "final_handoff_rule",
+        "value": "应用批次 01 至 06 时必须按顺序导入。批次 05 与 06 引入组件化层级，构建导演台时应把旧节点映射到新的分层结构。"
+      },
+      {
+        "batch": "v5-graduation-curated-batch01",
+        "key": "graduation_reference_role",
+        "value": "Graduation-season screenshots are archived visual references used to extract reusable staging grammar, not identity references, not school-brand assets, and not redistributable product media."
+      },
+      {
+        "batch": "v5-graduation-curated-batch01",
+        "key": "graduation_brand_safety",
+        "value": "Do not reproduce readable university crests, school names, diploma text, watermarks, or institutional logos. Use generic academic regalia and fictional or non-readable insignia only."
+      },
+      {
+        "batch": "v5-graduation-curated-batch01",
+        "key": "graduation_route_merge_policy",
+        "value": "Do not turn every sample into a style route. Consolidate the batch into four routes and reusable scenes, wardrobe, props, lighting presets, action blueprints, compositions, and layout modules."
+      },
+      {
+        "batch": "v5-graduation-curated-batch01",
+        "key": "graduation_typography_policy",
+        "value": "Generate a clean typography-aware base image. Accurate graduate name, school, major, date, and Class Of text belong to Layout Studio SVG/HTML overlays."
+      },
+      {
+        "batch": "v5-mature-women-graduation-supplement-batch01",
+        "key": "mature_women_reference_role",
+        "value": "Mature-women screenshots are archived visual references used to extract reusable portrait grammar, not identity references and not redistributable product media."
+      },
+      {
+        "batch": "v5-mature-women-graduation-supplement-batch01",
+        "key": "mature_women_route_merge_policy",
+        "value": "Consolidate mature-women references into a small set of commercial portrait routes plus reusable scenes, wardrobe, lighting, actions, and layouts. Do not create one route per screenshot."
+      },
+      {
+        "batch": "v5-mature-women-graduation-supplement-batch01",
+        "key": "graduation_supplement_policy",
+        "value": "The lecture-hall and classroom-window images strengthen graduation-campus-memory-film as components and templates; they do not become redundant new routes."
+      },
+      {
+        "batch": "v5-accessory-occlusion-safety-batch01",
+        "key": "sunglasses_opaque_lens_rule",
+        "value": "Opaque or mirrored sunglasses must fully hide both eyes. Never render sharp pupils, irises, eyelashes, duplicate eyes, or floating eye details through dark lenses."
+      },
+      {
+        "batch": "v5-accessory-occlusion-safety-batch01",
+        "key": "sunglasses_translucent_lens_rule",
+        "value": "Translucent tinted lenses may imply aligned eyes only as soft low-contrast forms subordinate to the lens tint and surface reflection. Never render sharp through-lens pupils or mismatched gaze."
+      },
+      {
+        "batch": "v5-accessory-occlusion-safety-batch01",
+        "key": "sunglasses_identity_priority_rule",
+        "value": "When identity fidelity is critical, prefer no sunglasses, lifted sunglasses, or sunglasses held in one hand. Do not preserve an accessory at the cost of uncanny eyes."
+      },
+      {
+        "key": "lighting_single_dominant_source",
+        "summary": "光线必须有一个主导来源，其他光仅作为环境填充或反射。",
+        "instruction_en": "Use one dominant key-light logic and keep other emitters subordinate.",
+        "batch": "v5-lighting-physics-safety-batch01"
+      },
+      {
+        "key": "lighting_shadow_direction_consistency",
+        "summary": "高光、阴影、轮廓光、反射和投影方向必须与光源几何一致。",
+        "instruction_en": "Keep highlight, shadow, rim light, reflection, and cast-shadow direction physically consistent.",
+        "batch": "v5-lighting-physics-safety-batch01"
+      },
+      {
+        "key": "lighting_skin_highlight_rolloff",
+        "summary": "保护额头、鼻梁、脸颊、肩部、白衣与珠宝高光，不允许大面积死白。",
+        "instruction_en": "Protect highlight roll-off on skin, white fabric, satin, pearls, and glossy surfaces.",
+        "batch": "v5-lighting-physics-safety-batch01"
+      },
+      {
+        "key": "lighting_pose_angle_compatibility",
+        "summary": "人物角度必须与光线方向匹配，避免正面、侧面、背光逻辑互相冲突。",
+        "instruction_en": "Adapt face angle and pose to the key light so facial planes remain believable.",
+        "batch": "v5-lighting-physics-safety-batch01"
+      },
+      {
+        "key": "lighting_structured_shadow_surface_continuity",
+        "summary": "硬窗光、百叶、手部和叶影的投影必须沿连续表面保持统一方向、尺度与虚实。",
+        "instruction_en": "Keep structured hard-shadow bands connected across wall, skin, clothing, and furniture with one source path.",
+        "batch": "v5-hard-shadow-direct-flash-physics-batch01"
+      },
+      {
+        "key": "lighting_direct_flash_inverse_square",
+        "summary": "相机直闪必须体现近镜头光源、前景优先、快速衰减和短硬投影。",
+        "instruction_en": "Use near-lens direct-flash geometry with inverse-square foreground priority and short hard cast shadows.",
+        "batch": "v5-hard-shadow-direct-flash-physics-batch01"
+      },
+      {
+        "key": "lighting_direct_flash_no_unmotivated_rim",
+        "summary": "使用直闪时不得同时凭空加入电影式轮廓光。",
+        "instruction_en": "Do not combine direct-flash flattening with unrelated cinematic rim lights unless a visible practical explains them.",
+        "batch": "v5-hard-shadow-direct-flash-physics-batch01"
+      },
+      {
+        "key": "eyewear_clear_lens_eye_readability",
+        "summary": "透明眼镜后的双眼必须自然可读、对齐，镜片反射不得吞掉身份信息。",
+        "instruction_en": "Keep eyes readable and aligned behind transparent prescription lenses; reduce reflections before sacrificing identity.",
+        "batch": "v5-clear-lens-flash-safety-batch01"
+      },
+      {
+        "key": "eyewear_clear_lens_flash_reflection",
+        "summary": "透明镜片上的闪光反射必须克制且与相机位置一致。",
+        "instruction_en": "Allow only restrained camera-position-consistent glints on clear lenses; forbid giant white blobs, warped eyes, and detached frames.",
+        "batch": "v5-clear-lens-flash-safety-batch01"
+      },
+      {
+        "key": "lighting_occluded_beam_aperture_continuity",
+        "summary": "窄束光、门缝光、投影光斑和前景遮挡必须沿统一孔径路径保持方向、边缘与衰减连续。",
+        "instruction_en": "Keep occluded beams attached to one aperture path with coherent edge softness, surface continuity, and falloff.",
+        "batch": "v5-occluded-beam-twilight-flash-physics-batch01"
+      },
+      {
+        "key": "lighting_lowkey_landmark_readability",
+        "summary": "低照度与大面积阴影不应牺牲关键面部识别区。",
+        "instruction_en": "Preserve readable facial landmarks inside low-key scenes even when most of the frame remains dark.",
+        "batch": "v5-occluded-beam-twilight-flash-physics-batch01"
+      },
+      {
+        "key": "lighting_twilight_flash_ambient_separation",
+        "summary": "黄昏直闪必须区分近距离闪光前景与远距离天空、海面和地平线环境光。",
+        "instruction_en": "Separate near-lens flash exposure from distant dusk ambient; do not light horizon-scale backgrounds as if they sit at portrait distance.",
+        "batch": "v5-occluded-beam-twilight-flash-physics-batch01"
+      },
+      {
+        "key": "lighting_bluehour_rim_fill_role_separation",
+        "summary": "蓝调屋顶可同时存在暖色侧逆光与克制前补光，但二者职责必须清晰分离。",
+        "instruction_en": "Allow rear-side warm rim and restrained front fill only when their emitter roles remain visibly separable.",
+        "batch": "v5-occluded-beam-twilight-flash-physics-batch01"
+      },
+      {
+        "key": "lighting_reflection_plane_consistency",
+        "summary": "玻璃、窗面与前景柔焦必须作为有深度的光学平面，而非漂浮贴图。",
+        "instruction_en": "Keep reflections, foreground veils, and glass layers plane-bound, depth-aware, and subordinate to the subject.",
+        "batch": "v5-occluded-beam-twilight-flash-physics-batch01"
+      },
+      {
+        "key": "lighting_rim_highlight_rolloff_skin_safe",
+        "summary": "轮廓光和光斑高光必须保留发丝、皮肤与浅色衣物的渐变，不可直接烧白。",
+        "instruction_en": "Protect highlight roll-off on hair, skin, pale coats, white dresses, and bedding; avoid clipped halo edges.",
+        "batch": "v5-occluded-beam-twilight-flash-physics-batch01"
+      },
+      {
+        "key": "lighting_wind_hair_vector_consistency",
+        "summary": "风动发丝必须服从一个主导风向，并在脸部形成可解释的遮挡和阴影。",
+        "instruction_en": "Keep wind-led hair strands aligned to one dominant vector; preserve readable eyes, nose bridge, and mouth while keeping strand shadows attached to the same source direction.",
+        "batch": "v5-wind-motion-flare-bedroom-physics-batch01"
+      },
+      {
+        "key": "lighting_hand_occluder_shadow_continuity",
+        "summary": "手部进入窄束光时，手指受光、投影与脸部光斑必须连续且方向一致。",
+        "instruction_en": "When a hand intercepts a warm beam, keep lit fingers, cast shadow, face patch, and penumbra attached to one source path.",
+        "batch": "v5-wind-motion-flare-bedroom-physics-batch01"
+      },
+      {
+        "key": "lighting_goldenhour_flare_axis_consistency",
+        "summary": "黄金时刻眩光、发丝轮廓光和镜头炫光必须与低太阳轴线一致。",
+        "instruction_en": "Align golden-hour flare artifacts, warm rim, bloom, and hair highlights with one low-sun lens axis; reject decorative floating orbs.",
+        "batch": "v5-wind-motion-flare-bedroom-physics-batch01"
+      },
+      {
+        "key": "lighting_motion_blur_vector_separation",
+        "summary": "慢门拖影必须区分人物运动方向、相机摇摄方向和背景光轨方向。",
+        "instruction_en": "Separate subject motion, camera panning, and background streak direction; keep them coherent rather than smearing every layer equally.",
+        "batch": "v5-wind-motion-flare-bedroom-physics-batch01"
+      },
+      {
+        "key": "lighting_motion_blur_identity_anchor",
+        "summary": "拖影肖像仍需保留至少一个可识别锚点，例如眼部轮廓、嘴唇、肩线或发型剪影。",
+        "instruction_en": "Preserve at least one readable identity anchor in motion-blur portraits while allowing intentional softness elsewhere.",
+        "batch": "v5-wind-motion-flare-bedroom-physics-batch01"
+      },
+      {
+        "key": "lighting_bedroom_window_bounce_consistency",
+        "summary": "卧室暖窗光必须遵守窗户位置、墙面反射、床品与道具的局部回弹关系。",
+        "instruction_en": "Keep bedroom window light attached to the visible window direction with plausible textile, wall, desk, and skin bounce.",
+        "batch": "v5-wind-motion-flare-bedroom-physics-batch01"
+      },
+      {
+        "key": "typography_motionblur_postlayout_separation",
+        "summary": "拖影照片中的文字属于后期排版层，不应随人物与背景一起被模糊。",
+        "instruction_en": "Treat editorial typography as a post-layout layer: keep it crisp, sparse, and outside recognition landmarks even when the image layer is blurred.",
+        "batch": "v5-wind-motion-flare-bedroom-physics-batch01"
+      },
+      {
+        "key": "lighting_scarf_volume_face_separation",
+        "summary": "围巾、衣领和面部必须保持清晰体积关系，不能粘连成一块。",
+        "instruction_en": "Preserve scarf volume, layered folds, jaw separation, and low-sun edge response; reject scarf textures fused into skin or hair.",
+        "batch": "v5-seasonal-floral-transit-reflection-physics-batch01"
+      },
+      {
+        "key": "lighting_forest_canopy_dapple_depth_consistency",
+        "summary": "林间柔光必须同时服从树冠透光、叶片层次与人物轮廓光。",
+        "instruction_en": "Keep canopy transmission, leaf bokeh, hair rim, dress highlights, and background depth subordinate to one forest daylight field.",
+        "batch": "v5-seasonal-floral-transit-reflection-physics-batch01"
+      },
+      {
+        "key": "lighting_falling_leaf_depth_vector_consistency",
+        "summary": "飘落叶片必须遵守景深、重力与风向层级。",
+        "instruction_en": "Keep foreground, midground, and background leaves on one plausible gravity-and-breeze field with depth-scaled blur and no decorative sticker scatter.",
+        "batch": "v5-seasonal-floral-transit-reflection-physics-batch01"
+      },
+      {
+        "key": "lighting_vehicle_window_mixed_practical_separation",
+        "summary": "车窗或室内窗边的红绿实景光必须与人物主光分离。",
+        "instruction_en": "Separate warm side sun, colored practical reflections, dark cabin shadow, and window-plane flare; reject arbitrary neon stains on skin.",
+        "batch": "v5-seasonal-floral-transit-reflection-physics-batch01"
+      },
+      {
+        "key": "prop_floral_halo_stem_attachment_safety",
+        "summary": "花冠、花枝、花瓣与衣物必须具有可解释的附着关系。",
+        "instruction_en": "Keep baby-breath stems, flower-eye occluders, coat flowers, and scarf layers physically attached and anatomically safe; reject flowers sprouting from skin or floating without support.",
+        "batch": "v5-seasonal-floral-transit-reflection-physics-batch01"
+      },
+      {
+        "key": "lighting_transit_corridor_perspective_window_consistency",
+        "summary": "通勤车厢必须保持透视、窗光与人物站位一致。",
+        "instruction_en": "Align corridor vanishing lines, window light, reflective metal surfaces, scarf volume, and subject position; reject warped cabins and floating doors.",
+        "batch": "v5-seasonal-floral-transit-reflection-physics-batch01"
+      },
+      {
+        "key": "lighting_window_reflection_doubleplane_consistency",
+        "summary": "窗面反射必须区分人物实体、玻璃平面和反射幽影。",
+        "instruction_en": "Keep the physical subject, glass plane, reflected ghost, and background highlights separable with one plausible offset; reject duplicated facial anatomy masquerading as reflection.",
+        "batch": "v5-seasonal-floral-transit-reflection-physics-batch01"
+      },
+      {
+        "key": "composition_camera_before_style",
+        "summary": "先确定相机位置和透视类型，再叠加风格、服装和排版。",
+        "instruction_en": "Resolve camera height, lens behavior, horizon, and vanishing logic before style embellishment.",
+        "batch": "v5-composition-perspective-safety-batch01"
+      },
+      {
+        "key": "composition_plane_separation",
+        "summary": "人物、前景遮挡、道具、背景结构、光线投影和文字排版属于不同平面。",
+        "instruction_en": "Keep subject, foreground occlusion, props, background geometry, light projection, and typography overlays on distinct coherent planes.",
+        "batch": "v5-composition-perspective-safety-batch01"
+      },
+      {
+        "key": "composition_foreground_occlusion_physical_cause",
+        "summary": "前景虚化必须有真实物体来源，不能成为随意遮脸的模糊块。",
+        "instruction_en": "Allow foreground blur only when it belongs to a plausible branch, glass, newspaper, flower, table edge, or architectural plane.",
+        "batch": "v5-composition-perspective-safety-batch01"
+      },
+      {
+        "key": "perspective_architecture_single_vanishing_logic",
+        "summary": "栏杆、车辆、走廊、窗框、桌面、台阶和地平线必须服从同一套透视关系。",
+        "instruction_en": "Keep railings, vehicle panels, corridors, windows, tables, steps, and horizons subordinate to one coherent projection logic.",
+        "batch": "v5-composition-perspective-safety-batch01"
+      },
+      {
+        "key": "perspective_horizon_face_landmark_safety",
+        "summary": "地平线和建筑边缘不得粗暴切割眼睛、嘴唇和下颌。",
+        "instruction_en": "Place horizon and architectural edges outside recognition landmarks unless an intentional reviewed crop requires otherwise.",
+        "batch": "v5-composition-perspective-safety-batch01"
+      },
+      {
+        "key": "lighting_shadow_projection_traceability",
+        "summary": "窄束光、叶影与窗框影必须能够回溯到真实遮挡物和入射方向。",
+        "instruction_en": "Trace hard beam and botanical shadow projections to an inferable aperture, branch, or window direction.",
+        "batch": "v5-composition-perspective-safety-batch01"
+      },
+      {
+        "key": "typography_postlayout_plane_separation",
+        "summary": "文字属于后期排版层，应保持清晰并避让人物识别锚点。",
+        "instruction_en": "Treat typography as a crisp post-layout plane. Reserve negative space and avoid facial landmarks, hand anatomy, props, and key silhouette edges.",
+        "batch": "v5-composition-perspective-safety-batch01"
+      },
+      {
+        "key": "perspective_foreshortening_limb_continuity",
+        "summary": "夸张缩短透视必须保留肢体连续性，不能出现断腿、漂浮鞋和随机放大。",
+        "instruction_en": "Allow editorial foreshortening only with readable limb continuity, grounded contact, and one camera-origin explanation.",
+        "batch": "v5-composition-perspective-safety-batch01"
+      },
+      {
+        "key": "runtime_offline_hosted_dualpath_integrity",
+        "summary": "工作台离线读取内嵌兜底库，在线同目录读取独立主库，两条路径必须语义一致。",
+        "instruction_en": "Keep embedded offline fallback semantically identical to the hosted canonical JSON and verify both paths before release.",
+        "batch": "v5-composition-perspective-safety-batch01"
+      }
+    ],
+    "style_id_aliases": {
+      "b01-korean-idol-archive-scrapbook": "idol-dossier-zine",
+      "b01-hongkong-old-magazine-cover": "hk-vintage-magazine",
+      "b01-modern-color-magazine-cover": "colorfield-fashion-cover",
+      "b01-japanese-skate-boom-cover": "jp-skate-boom",
+      "b01-natural-futurism-sheer-portrait": "nature-digital-veil"
+    },
+    "migration": {
+      "source_html": "V3.html",
+      "preserved_legacy_routes": 44,
+      "added_json_batch_routes": 42,
+      "merged_style_routes": 86,
+      "component_total": 14,
+      "strategy": "Preserve the V3 UI and legacy routes, migrate all styles into one runtime schema, and add compatible modular presets from the compiled JSON library."
+    },
+    "category_order": [
+      "平面印刷与拼贴",
+      "黑白时尚与字体构成",
+      "电影叙事与传记",
+      "东方概念与雕版",
+      "街头、音乐与地下刊物",
+      "男性倾向专题",
+      "女性倾向专题",
+      "婚恋与婚礼",
+      "日系杂志与日常",
+      "校园、毕业与成长"
+    ],
+    "v5_meta": {
+      "product_version": "5.0-deep-integrated",
+      "architecture": "D · Cinematic Studio main workbench + Museum Archive / Editorial Atelier Asset Library",
+      "primary_archive_order": [
+        "男",
+        "女",
+        "通用",
+        "结婚"
+      ],
+      "primary_archive_rule": "一级目录按照人物使用范围组织：男、女、通用、结婚。V4 原始视觉家族下沉为二级目录；具体路线作为二级目录内的可调用节点。",
+      "typography_policy": "Typography kits are components and hybrid recipe ingredients, not isolated route buttons. Accurate text is applied in the later HTML/SVG layout layer.",
+      "roadmap_policy": "Roadmap, material gaps, and authorization-verification notes are separated from the formal console."
+    },
+    "v5_5_meta": {
+      "version": "5.5-single-portrait-motion-typography",
+      "title": "Single Portrait Motion Grammar + Typography Interaction",
+      "merge_mode": "additive",
+      "default_typography_participation_mode": "text-aware-base",
+      "exact_text_rendering_owner": "Layout Studio SVG/HTML overlay",
+      "archived_reference_role": "composition, pose, gaze, typography interaction extraction only; never identity_reference",
+      "prompt_default": "clean editorial base image without actual readable typography",
+      "integration_role_in_v5_7": "imported single portrait subsystem provenance"
+    },
+    "v5_7_meta": {
+      "version": "5.7.0",
+      "title": "V5.6 Baseline + Single Portrait Motion Grammar + Typography Interaction",
+      "merge_mode": "additive-on-top-of-v5.6",
+      "baseline": "Portrait Visual OS V5.6.0 Composition Hygiene + Typography Placement + Local JSON Bridge",
+      "preserved_modules": [
+        "composition hygiene",
+        "turnback anatomy",
+        "collar and neck safety",
+        "gaze director",
+        "natural moment engine",
+        "generative typography influence",
+        "typography placement map",
+        "local JSON bridge"
+      ],
+      "added_modules": [
+        "single portrait action blueprints",
+        "single portrait expression presets",
+        "explicit gaze locks",
+        "single portrait composition blueprints",
+        "typography participation modes",
+        "typography interaction presets",
+        "shared typography avoidance map",
+        "single portrait asset library tabs"
+      ],
+      "default_base_image_policy": "Generate a clean typography-aware base image. Exact readable typography belongs to Layout Studio SVG/HTML overlays.",
+      "archived_reference_role": "extract composition, pose, expression, gaze and typography interaction only; never identity_reference"
+    },
+    "v5_8_meta": {
+      "version": "5.8.0",
+      "title": "Quality Calibration & Constraint Resolver",
+      "merge_mode": "additive-on-top-of-v5.7",
+      "added_modules": [
+        "quick director mode",
+        "constraint resolver",
+        "automatic risk downgrade",
+        "quality score",
+        "prompt compilation diagnostics",
+        "prompt baseline diff"
+      ],
+      "default_policy": "Prioritize clean, readable, anatomically plausible portrait staging. Auto-downgrade high-risk combinations before prompt export."
+    },
+    "product_release": {
+      "version": "5.16.1",
+      "name": "Portrait Visual OS · V6.1.1 Poster Structure Runtime",
+      "external_library_file": "Portrait_Visual_OS_V5_16_1_Canonical_Library.json",
+      "offline_fallback": true,
+      "default_workspace": "prompt",
+      "provenance_policy": "shared-source-registry",
+      "default_interface_mode": "focused",
+      "entry_model": "task-preset -> visual-route -> text-participation-strategy -> user-copy -> prompt-copy-cta -> generation -> layout-studio -> exact-correction -> output-png",
+      "primary_goal": "在封板 Visual Core 5.16.1 基础上，以 GPT 提示词为相对完善的主线（豆包线为测试版本），补齐无字海报骨架策略、可选版式模板参考角色，并保持准确文字可由排版工作区后期校正。",
+      "user_visible_mode": "quiet-focused-first-with-unified-typography-reference-hub",
+      "data_strategy": "modules-and-registries-curation-source-to-compiled-canonical-runtime-with-embedded-offline-fallback",
+      "release_gate": "module-integrity-plus-inline-js-syntax-plus-font-reference-assets-84-plus-verified-font-assets-39-plus-typography-relation-patterns-09-plus-proxy-mapping-plus-browser-smoke-plus-no-font-binary-distribution-plus-zip-integrity",
+      "release_kind": "poster-structure-runtime-and-provider-maturity-annotation",
+      "manifest_file": "library/manifest.json",
+      "offline_standalone_workbench": "index.html",
+      "runtime_build": "V6.1.1",
+      "ui_build": "v6101-20260612",
+      "visual_core_version": "5.16.1",
+      "provider_maturity": {
+        "default_provider": "gpt-image",
+        "providers": {
+          "gpt-image": "stable",
+          "doubao-seedream": "test"
+        },
+        "note_zh": "GPT 提示词为当前唯一相对完善的主线；豆包线为测试版本，欢迎试用但不要作为唯一交付路径。"
+      }
+    },
+    "library_contract": {
+      "canonical_file": "Portrait_Visual_OS_V5_16_1_Canonical_Library.json",
+      "html_runtime_role": "Hosted UI loads compiled canonical JSON first. Manifest modules remain an auditable fallback. file:// uses embedded fallback.",
+      "incremental_extension_role": "Local bundle JSON files append or update assets without editing the HTML source.",
+      "workspace_export_role": "Generation configuration JSON remains separate from the canonical asset library.",
+      "ui_disclosure_policy": "First view shows task preset, visual route, compact generation intent and prompt. Route archive, component tuning, diagnostics and engineering tools remain available on demand.",
+      "graduation_domain_role": "Graduation routes live as a curated domain extension: routes stay few, components and action grammar stay reusable.",
+      "accessory_occlusion_policy_role": "Opaque eyewear must hide eyes cleanly; translucent lenses must not render sharp duplicate pupils; accessory safety is compiled globally and reinforced at route level.",
+      "lighting_physics_role": "Lighting presets carry explicit source geometry, temperature, hardness, falloff, shadow, reflection, catchlight, exposure, and pose-angle compatibility. Prompt compilation adds global physical-coherence constraints.",
+      "clear_lens_flash_role": "Clear prescription lenses remain transparent optical surfaces with readable aligned eyes, restrained reflections, coherent frame geometry, and direct-flash reflection control.",
+      "structured_shadow_role": "Hard sunlight and occluder patterns must preserve a single source path, connected cast-shadow geometry, realistic penumbra, and readable facial landmarks.",
+      "occluded_beam_role": "Narrow warm beams, spot pools, foreground veils, and occluder shadows must follow one physical aperture path with coherent edge softness, falloff, exposure, and facial landmark readability.",
+      "twilight_flash_role": "Dusk direct flash and rooftop rim-fill scenes must separate foreground flash, rear-side sunset rim, and low ambient sky exposure without inventing extra unmotivated emitters.",
+      "wind_hair_occlusion_role": "Wind-led hair may cross the face only as one directional field with readable recognition anchors, source-consistent strand shadows, and no detached hair veil pasted over anatomy.",
+      "intentional_motion_blur_role": "Panning and slow-shutter portraits must separate subject blur, background streak direction, post-layout typography sharpness, and at least one identity anchor.",
+      "goldenhour_flare_role": "Lens flare, warm rim, and backlight bloom must align with one low-sun axis and retain highlight roll-off on hair, skin, clothing, and sky.",
+      "bedroom_lifestyle_role": "Bedroom and window-corner lifestyle scenes must preserve one natural window direction, local wall or textile bounce, readable props, and uncluttered facial space.",
+      "seasonal_sunlight_role": "Winter scarf, forest canopy, and autumn leaf scenes preserve fabric volume, canopy transmission, gravity-led depth, and readable facial anchors.",
+      "floral_attachment_role": "Floral halo routes require visible or inferable stem attachment, one readable eye when occluded, and material separation across petals, scarf, denim, hair, and skin.",
+      "transit_reflection_role": "Transit and reflective-window routes preserve corridor perspective, window direction, glass-plane offsets, and physical-subject priority.",
+      "composition_perspective_role": "camera position, projection family, plane separation, foreground occlusion, architecture geometry, horizon logic, and typography safe zones",
+      "editorial_typography_plane_role": "exact text remains a post-layout responsibility; image generation reserves legible negative-space zones and never burns fragile text into identity landmarks",
+      "runtime_file_access_role": "HTTP(S): compiled canonical JSON -> manifest modules -> embedded fallback. file://: embedded fallback.",
+      "manifest_file": "library/manifest.json",
+      "runtime_module_role": "Interactive runtime loads only operational modules. Historical extraction catalogs remain optional lazy modules.",
+      "schema_contract_role": "Schema version is stable and independent from content release version. Release metadata is tracked separately.",
+      "font_reference_role": "User-uploaded font specimen screenshots enter a reference-only layer with visual-family classification and verified proxy mapping. They are never treated as redistributable font binaries or directly applicable font assets.",
+      "font_asset_role": "Only verified open-source metadata records with official source URLs and CSS API family parameters enter the directly applicable font_assets layer."
+    },
+    "architecture_hardening": {
+      "version": "5.12.1",
+      "principle": "风格路线摄入继续冻结。字体扩展保持三层架构：可核验字体资产、截图视觉参考、文字 × 画面关系范式。三者不得混用。",
+      "product_layers": [
+        {
+          "layer": "entry",
+          "name_zh": "创作任务入口",
+          "responsibility": "把普通用户从具体风格名中解放出来，先选择使用场景。"
+        },
+        {
+          "layer": "director",
+          "name_zh": "生图导演",
+          "responsibility": "组合路线、动作、视线、构图、文字参与方式与风险降级。"
+        },
+        {
+          "layer": "layout",
+          "name_zh": "成品排版",
+          "responsibility": "准确文字、字体套件、SVG/HTML 叠字和避让规则。"
+        },
+        {
+          "layer": "asset_library",
+          "name_zh": "素材库",
+          "responsibility": "浏览、筛选、调用组件；不直接把完整库铺到首页。"
+        },
+        {
+          "layer": "data_kernel",
+          "name_zh": "数据内核",
+          "responsibility": "独立主库、扩展包、导入导出、来源登记与校验。"
+        },
+        {
+          "layer": "server_bridge",
+          "name_zh": "服务器迁移桥",
+          "responsibility": "未来接入用户、项目、任务队列、图像 API、支付和反馈闭环。"
+        }
+      ],
+      "data_boundaries": {
+        "style_route": "视觉世界与主 Prompt 语法，不承载所有细节。",
+        "component": "场景、服装、构图、光影、字体等可复用层，不应被误升格为路线。",
+        "preset": "把路线和组件绑定成稳定起点。",
+        "workspace_config": "用户一次创作的可导出状态，不应混入主库。",
+        "local_bundle": "用户或运营团队提交的候选资产包，合并前必须校验。",
+        "source_registry": "来源、授权状态、采集批次和审核状态的统一登记。",
+        "curated_domain_extension": "毕业季、家庭、职业形象等高频商用场景作为业务域扩展；每个域必须控制路线数量并复用统一组件合同。"
+      },
+      "server_migration_plan": [
+        {
+          "phase": "P0",
+          "name": "静态在线化",
+          "scope": "上传 HTML/JSON 到静态服务器，保留离线兜底。"
+        },
+        {
+          "phase": "P1",
+          "name": "反馈与投稿",
+          "scope": "匿名访客 ID、反馈表、模板投稿、人工精选入库。"
+        },
+        {
+          "phase": "P2",
+          "name": "账号与项目",
+          "scope": "登录、用户项目、私有上传图、工作配置历史。"
+        },
+        {
+          "phase": "P3",
+          "name": "生图 API 灰度",
+          "scope": "Provider Adapter、任务队列、成本记录、失败退款策略。"
+        },
+        {
+          "phase": "P4",
+          "name": "商业闭环",
+          "scope": "站内额度、支付、不可变流水账、风控和客服后台。"
+        },
+        {
+          "phase": "P5",
+          "name": "跨端产品",
+          "scope": "响应式 Web/PWA 优先，原生 App 作为数据验证后的后续选择。"
+        }
+      ],
+      "release_gates": [
+        "主库 JSON 语法通过",
+        "所有 id 唯一",
+        "组件引用可解析",
+        "任务入口默认路线存在",
+        "默认 Prompt 无未解析 {{placeholder}}",
+        "导出配置可再次读取",
+        "本地扩展重复导入幂等",
+        "新增路线必须进入 Stable / Signature / Experimental 三层之一",
+        "毕业季入口默认路线、排版模板、动作蓝图和降级路径均可解析",
+        "构图透视 profile 必须填写 camera_height、lens_behavior、horizon、vanishing point 与 plane separation",
+        "在线同目录外部 JSON 与离线内嵌兜底库必须语义一致",
+        "HTTP 静态托管路径必须能访问 HTML 与 canonical JSON",
+        "ZIP 不得包含用户上传原始参考截图；只允许经过压缩的用途限定缩略图",
+        "font_reference_assets 必须 direct_apply=false，并至少映射一个已核验 proxy_font_asset_id",
+        "字体包不得分发 .ttf / .otf / .woff / .woff2 二进制文件",
+        "typography_relation_patterns 只能保存层级、落位与避让规则，不保存可复制品牌字样"
+      ],
+      "route_maturity_tiers": {
+        "stable_core": [
+          "b02-cream-serif-clean-cover",
+          "love-archival",
+          "cn-wedding-room-candid",
+          "cn-wedding-red-studio-classic",
+          "ink-smoke-portrait",
+          "blue-poetic-editorial-cn",
+          "hk-vintage-magazine",
+          "b03-hk-neon-alley-fashion",
+          "b03-japanese-daily-life-magazine",
+          "b02-japanese-campus-photozine",
+          "airy-afternoon-mag",
+          "minimal-grey-fashion-cover",
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film"
+        ],
+        "signature_library": [
+          "colorfield-fashion-cover",
+          "grain-print",
+          "u-type-mask",
+          "jp-skate-boom",
+          "idol-dossier-zine",
+          "m-noir-icon",
+          "m-science-memory",
+          "wuxia-ink-fracture",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "experimental_archive_policy": "默认不展示给新用户；允许在专业视图和素材库中探索，但必须带风险说明。"
+      },
+      "next_backlog": [
+        {
+          "priority": "P0",
+          "item": "完成模块化主库与兼容单体主库并行运行；HTTP 优先加载 manifest modules，离线继续使用内嵌 fallback。"
+        },
+        {
+          "priority": "P0",
+          "item": "冻结 style_route 数量；最后一批截图只登记为“既有风格拓展 + 人像与文字关系范式”，等待下一次统一风格库更新。"
+        },
+        {
+          "priority": "P0",
+          "item": "修复旧工作台版本漂移：导出包版本、架构中心标题、schema 常量与 release gate 不再停留在 V5.9.x。"
+        },
+        {
+          "priority": "P1",
+          "item": "下一阶段将 UI 壳拆成 hosted-lite shell，逐步移除运行时历史补丁脚本。"
+        },
+        {
+          "priority": "P1",
+          "item": "建立 candidate -> curated -> stable 三段式摄入管线，候选素材不得直接写入正式主库。"
+        },
+        {
+          "priority": "P2",
+          "item": "为服务端反馈、投稿、灰度与回滚预留 API contract。"
+        }
+      ]
+    },
+    "architecture_refactor": {
+      "version": "5.12.1",
+      "release_kind": "architecture-preserving-typography-reference-expansion",
+      "style_route_count_before": 135,
+      "style_route_count_after": 135,
+      "component_count_before": 481,
+      "component_count_after": 481,
+      "style_ingestion_frozen": true,
+      "deferred_visual_batch": {
+        "classification": [
+          "existing-style-extension",
+          "portrait-typography-relation-paradigms"
+        ],
+        "promotion_policy": "Do not mint new style routes in this release. Store as candidate notes for the next unified style-library update.",
+        "notes_zh": "最后几张参考素材只作为既有风格拓展与人像—文字关系范式登记，本轮不新增路线、不新增组件。"
+      },
+      "fixed_architecture_debt": [
+        "release schema and content version are now separated",
+        "hosted runtime can assemble interactive modules from a manifest",
+        "historical catalogs moved to an optional lazy module",
+        "compatibility canonical JSON remains available for legacy imports",
+        "offline standalone HTML keeps an embedded fallback",
+        "architecture center runtime uses dynamic release metadata instead of stale V5.9.x literals",
+        "workspace export reports V5.11.0 instead of stale V5.9.x values"
+      ],
+      "runtime_profiles": {
+        "interactive": "Operational workbench modules only; excludes history archive.",
+        "full": "Interactive modules plus optional history archive for auditing and curation."
+      },
+      "module_boundaries": {
+        "core": "release metadata, global rules, contracts and architecture state",
+        "routes": "style routes only",
+        "components": "reusable component collections only",
+        "templates": "visual templates, role blocking and route template grammar",
+        "director": "single portrait action, gaze, expression, composition and typography interaction state",
+        "typography": "hybrid presets, route typography surface bindings, verified open-source font asset metadata, reference-only font candidates, and typography relation grammar.",
+        "physics": "lighting, occlusion and composition-perspective physics",
+        "governance": "source registry, entry presets and runtime validation metadata",
+        "history_archive": "optional extraction history and archived reference catalogs"
+      },
+      "load_order": [
+        "core",
+        "routes",
+        "components",
+        "templates",
+        "director",
+        "typography",
+        "physics",
+        "governance"
+      ],
+      "compatibility_guarantees": [
+        "existing route ids preserved",
+        "existing component ids preserved",
+        "existing offline double-click flow preserved",
+        "existing compatibility canonical JSON import preserved",
+        "uploaded reference screenshots excluded from release package"
+      ]
+    },
+    "experience_polish": {
+      "version": "5.11.1",
+      "release_kind": "experience-polish-style-freeze",
+      "style_route_delta": 0,
+      "component_delta": 0,
+      "goals_zh": [
+        "将“复制英文 Prompt”和“浏览完整路线库”提升为顶栏一级入口，避免用户猜测。",
+        "将“上传底图”和“输出成品 PNG”放入成品排版主流程，不再藏在更多工具。",
+        "简化成品排版信息层级，修复编号重复，并让预览与评估报告组成固定右侧工作轨。",
+        "修复中文副标题等字体槽位切换后预览画布不更新的问题。",
+        "新增可持久化的日光模式，使用白色底面、赤陶橙主按钮与克制天蓝辅助色，并同步优化滑动条。"
+      ],
+      "ux_gates": {
+        "top_level_prompt_copy_visible": true,
+        "top_level_route_browser_visible": true,
+        "layout_upload_primary_action_visible": true,
+        "layout_output_png_primary_action_visible": true,
+        "layout_panel_indices_unique": true,
+        "layout_right_rail_sticky": true,
+        "slot_specific_typography_preview": true,
+        "daylight_theme_toggle": true,
+        "range_slider_theme_sync": true
+      }
+    },
+    "theme_consistency_quiet_ui": {
+      "revision": "v5.11.2",
+      "style_ingestion_frozen": true,
+      "principle": "Primary actions stay visible. Secondary controls move behind progressive disclosure. Daylight mode must recolor interface chrome consistently while preserving preview artwork contrast.",
+      "default_quiet_ui": true,
+      "theme_modes": [
+        "dark",
+        "daylight"
+      ],
+      "coverage_surfaces": [
+        "topbar",
+        "workspace-shell",
+        "route-browser",
+        "prompt-stage-tabs",
+        "prompt-diagnostics",
+        "layout-template-cards",
+        "layout-preview-shell",
+        "layout-evaluation",
+        "asset-library",
+        "drawer-popover",
+        "architecture-center",
+        "range-controls",
+        "scrollbars"
+      ],
+      "quiet_ui_actions": [
+        "move professional-view and export-work-config into tools menu",
+        "collapse layout secondary actions behind layout tools disclosure",
+        "show four recommended layout templates by default with explicit expand control",
+        "hide duplicate prompt-copy and duplicate route-browser buttons in quiet mode",
+        "hide duplicate upload/output buttons inside preview toolbar because hero delivery actions remain visible"
+      ]
+    },
+    "typography_surface_continuity": {
+      "revision": "v5.11.3",
+      "style_ingestion_frozen": true,
+      "principle": "Generation prompts may preserve the visual mass of typography-heavy poster references without leaking final typesetting instructions. Exact copy, font-slot binding and SVG/HTML overlay instructions belong only to the layout brief channel.",
+      "compiler_channels": {
+        "generation_prompt": {
+          "owns": [
+            "identity",
+            "art_direction",
+            "camera",
+            "pose",
+            "lighting",
+            "surface_typography_occupancy",
+            "face_safe_composition"
+          ],
+          "forbidden": [
+            "exact_user_copy_layers",
+            "font_slot_binding",
+            "svg_html_overlay_strategy",
+            "layout_studio_workflow",
+            "replacement_checklist"
+          ]
+        },
+        "layout_brief": {
+          "owns": [
+            "exact_copy",
+            "font_slots",
+            "overlay_layers",
+            "replacement_checklist",
+            "safe_zones",
+            "output_png"
+          ],
+          "may_reference_generation_surface_mode": true
+        }
+      },
+      "surface_modes": {
+        "route-auto": "Resolve from route_typography_surface_bindings.",
+        "complete-image-base": "Render a complete image with no dead rectangular holes and no forced typography.",
+        "complete-editorial-base": "Keep sparse editorial breathing room but make the image visually complete before overlay.",
+        "poster-structure-fill": "Preserve visible editorial occupancy with provisional short anchors, microcopy-like bars, rules, numbering and route-appropriate graphic scaffolding.",
+        "integrated-short-anchor": "Experimental: allow one user-supplied short anchor plus poster scaffolding; final copy is still replaced in the layout channel."
+      },
+      "blank_zone_policy": "Never create empty holes merely because final typography will be overlaid later. A base image must remain intentional before and after overlay.",
+      "exact_copy_policy": "Final copy never enters the generation prompt compiler by default."
+    },
+    "layout_studio_type_controls": {
+      "revision": "v5.12.1",
+      "style_ingestion_frozen": true,
+      "principle": "Accurate typography is a constrained post-layout surface. Every visible text layer may change size, weight, tracking, fill mode, color, outline and opacity without leaking these instructions back into the generation prompt compiler.",
+      "font_asset_policy": {
+        "catalog_count": 39,
+        "catalog_source": "Official Google Fonts specimen pages and CSS API references. User-uploaded specimen screenshots remain in a separate reference-only layer.",
+        "commercial_use_rule": "Catalog metadata records open-source commercial-use candidates. Font binaries are not redistributed inside this package.",
+        "offline_behavior": "If official web fonts cannot load, the workbench falls back to local system font stacks.",
+        "reference_candidate_count": 84,
+        "reference_batch_count": 3,
+        "relation_pattern_count": 9
+      },
+      "slot_controls": [
+        "font_asset_id",
+        "font_size_px",
+        "font_weight",
+        "tracking_em",
+        "fill_mode",
+        "fill_color",
+        "outline_color",
+        "outline_width_px",
+        "opacity"
+      ],
+      "fill_modes": {
+        "solid": "Visible filled text.",
+        "outline": "Hollow text rendered with a controlled outline.",
+        "solid-outline": "Filled text plus controlled outline.",
+        "ghost": "Low-opacity filled text for background editorial occupancy."
+      },
+      "constraints": {
+        "font_size": "Slot-specific min/max range.",
+        "outline_width_px": "0–6 px.",
+        "opacity": "0.10–1.00.",
+        "tracking_em": "-0.12–0.60 em."
+      },
+      "version": "5.12.1"
+    },
+    "typography_reference_governance": {
+      "revision": "v5.12.1",
+      "reference_layer": "截图、展示页与排版案例只进入视觉参考层，不进入可直接应用字体层。",
+      "verified_asset_layer": "只有来源、授权策略与 CSS API 接入可核验的字体进入 font_assets。",
+      "derivative_boundary": "允许适度视觉改造不等于授权清除。禁止依据截图描摹或近似复刻字形轮廓；正式输出优先调用已核验开源代理字体，或制作独立原创 lettering。",
+      "screenshot_claim_boundary": "截图中出现“免费商用”只作为待复核线索，不作为已核验授权证据。",
+      "relation_pattern_role": "文字 × 画面范式只提取层级、落位、避让和通道分工，不复制原图可读文字、品牌或标志。",
+      "binary_distribution": false
+    },
+    "english_font_reference_intake": {
+      "version": "5.12.1",
+      "batch_ids": [
+        "english-font-reference-batch01",
+        "english-font-reference-batch02"
+      ],
+      "reference_asset_count": 48,
+      "source_image_count": 22,
+      "safe_proxy_asset_count": 32,
+      "total_verified_font_asset_count": 39,
+      "ui": "Asset Library → 字体套件 → 字体与版式参考中心 → 英文参考",
+      "direct_apply_policy": "Only verified font_assets are directly applicable. Reference assets expose safe proxy buttons."
+    },
+    "typography_reference_expansion": {
+      "version": "5.13.2-alpha.1",
+      "verified_font_assets": 39,
+      "font_reference_assets": 92,
+      "english_reference_assets": 48,
+      "chinese_reference_assets": 44,
+      "relation_patterns": 13,
+      "font_reference_batches": 4,
+      "ui": "unified-hub-with-product-onboarding",
+      "direct_apply_policy": "verified-open-source-assets-only",
+      "layout_channel_policy": "exact-copy-owned-by-layout-studio"
+    },
+    "chinese_font_reference_intake": {
+      "version": "5.13.2-alpha.1",
+      "batch_ids": [
+        "chinese-font-reference-batch01",
+        "chinese-font-reference-batch02-final"
+      ],
+      "reference_asset_count": 44,
+      "source_image_count": 22,
+      "verified_chinese_proxy_asset_count": 7,
+      "ui": "unified-hub",
+      "license_note": "Uploaded screenshots remain reference-only until independent license verification."
+    },
+    "product_alpha": {
+      "version": "5.13.2-alpha.1",
+      "codename": "青涩产品版",
+      "maturity": "alpha-local-first",
+      "goal_zh": "把长期积累的路线、字体和版式关系整理为可以被第一次使用者理解的本地单文件产品。",
+      "visible_workflow": [
+        "选择视觉路线并复制 Prompt",
+        "进入成品排版上传底图",
+        "使用安全字体与关系范式完成交付"
+      ],
+      "debug_fixes": [
+        "修正工作台步骤编号重复",
+        "保持高频按钮首屏可见",
+        "统一最后一批中文字体参考入口",
+        "新增首次使用导览与错误提示",
+        "强化日光模式下新增产品组件的颜色覆盖"
+      ]
+    },
+    "text_participation_ux": {
+      "version": "5.13.2-alpha.1",
+      "base_release": "5.13.0-alpha.1",
+      "style_route_delta": 0,
+      "component_delta": 0,
+      "principle": "准确文字既可以在成品排版层校正，也可以由用户主动输入并在底图生成阶段参与构图。不同路线使用不同文字策略，禁止一刀切。",
+      "strategies": [
+        {
+          "id": "clean",
+          "name_zh": "纯净底图",
+          "model_copy_policy": "forbid-all-text"
+        },
+        {
+          "id": "reserve-space",
+          "name_zh": "为文字留白",
+          "model_copy_policy": "plan-space-without-rendering"
+        },
+        {
+          "id": "decorative-glyph",
+          "name_zh": "装饰字形",
+          "model_copy_policy": "allow-abstract-glyph-texture"
+        },
+        {
+          "id": "integrated-text",
+          "name_zh": "融合指定文字",
+          "model_copy_policy": "attempt-user-specified-exact-phrase-and-sync-layout"
+        },
+        {
+          "id": "free-experiment",
+          "name_zh": "自由实验",
+          "model_copy_policy": "allow-experimental-glyph-distortion"
+        }
+      ],
+      "relations": [
+        "independent-layout",
+        "background-anchor",
+        "interleaved-subject",
+        "subject-mask",
+        "ink-overlay"
+      ],
+      "ux_gates": {
+        "prompt_copy_cta_above_preview": true,
+        "topbar_prompt_copy_removed": true,
+        "user_copy_input_visible_below_strategy": true,
+        "layout_sync_available": true,
+        "route_browser_first_screen_visible": true,
+        "daylight_theme_supported": true
+      }
+    },
+    "canonical_runtime": {
+      "version": "5.16.1",
+      "role": "Compiled Agent-Ready Visual Core runtime artifact",
+      "source_of_truth": "library/modules/*.json + library/manifest.json",
+      "hosted_ui_primary": "Portrait_Visual_OS_V5_16_1_Canonical_Library.json",
+      "ui_fallback": "Embedded copy remains for offline Human-First compatibility"
+    },
+    "version": "5.16.1"
+  }
+}

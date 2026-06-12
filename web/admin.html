@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PVOS Hosted Lite · Admin</title>
+<style>
+:root{--bg:#090a0b;--panel:#121416;--panel2:#171a1d;--panel3:#1d2023;--ink:#f3ead8;--muted:#9ba1a4;--line:rgba(255,255,255,.10);--gold:#b49355;--gold2:#e5cf9b;--red:#b94b42;--green:#7d927d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55}
+button,input,select,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:#101214}::-webkit-scrollbar-thumb{background:#8a7243;border-radius:999px}
+.topbar{height:60px;display:flex;align-items:center;gap:18px;padding:0 18px;border-bottom:1px solid var(--line);background:rgba(8,9,10,.94)}
+.brand{font-size:12px;letter-spacing:.18em;font-weight:900}.brand b{color:var(--gold2)}
+.main{padding:20px;max-width:1400px;margin:0 auto}
+.card{border:1px solid var(--line);background:#151719;border-radius:10px;padding:16px;margin-bottom:16px}
+.card h2{font-size:13px;color:var(--gold2);margin:0 0 14px;letter-spacing:.1em}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px}
+.stat{border:1px solid var(--line);background:#111416;border-radius:8px;padding:14px;text-align:center}
+.stat b{display:block;font-size:28px;color:var(--gold2);margin-bottom:4px}
+.stat span{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--gold2);font-size:10px;letter-spacing:.1em;background:#111416}
+tr:hover{background:#1a1d20}
+.badge{display:inline-block;padding:2px 7px;border-radius:999px;font-size:9px}
+.badge.candidate{background:rgba(180,147,85,.15);color:#d4af7c;border:1px solid rgba(180,147,85,.3)}
+.badge.approved{background:rgba(114,169,131,.15);color:#9dc8ad;border:1px solid rgba(114,169,131,.3)}
+.badge.rejected{background:rgba(185,75,66,.15);color:#cf766d;border:1px solid rgba(185,75,66,.3)}
+.ranking li{padding:6px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.ranking li:last-child{border-bottom:none}
+.ranking .rank{color:var(--gold2);font-weight:700;min-width:30px}
+.ranking .label{flex:1;color:#aeb4b5}
+.ranking .count{margin-left:12px;color:#7d927d}
+.login-panel{max-width:400px;margin:120px auto;padding:30px;text-align:center}
+.login-panel input{width:100%;max-width:300px;background:#0c0f10;border:1px solid var(--line);border-radius:7px;color:#e8e0d2;padding:12px;margin-bottom:12px;font-size:12px}
+.login-panel button{width:100%;max-width:300px;padding:12px;background:linear-gradient(135deg,#7b6236,#5f4c2c);border:1px solid #967945;border-radius:8px;color:#fff1c7;font-size:12px;font-weight:700}
+.hidden{display:none!important}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:8px 14px;border:1px solid var(--line);background:#151719;border-radius:7px;font-size:11px;color:#aeb4b5;cursor:pointer}
+.tab.active{background:rgba(180,147,85,.12);border-color:rgba(180,147,85,.48);color:#e5cf98}
+.tab:hover{border-color:rgba(180,147,85,.35)}
+.section-title{font-size:10px;letter-spacing:.18em;color:var(--gold2);margin:20px 0 10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+select{background:#0c0f10;border:1px solid var(--line);border-radius:7px;color:#e8e0d2;padding:8px 10px;font-size:11px}
+textarea{width:100%;min-height:80px;background:#0c0f10;border:1px solid var(--line);border-radius:7px;color:#e8e0d2;padding:10px;font-size:11px;resize:vertical}
+.detail-panel{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center}
+.detail-panel.on{display:flex}
+.detail-inner{width:min(700px,calc(100vw - 40px));max-height:80vh;overflow:auto;background:#111315;border:1px solid rgba(180,147,85,.28);border-radius:12px;padding:24px}
+.detail-inner h3{margin:0 0 16px;color:#ead8a6;font-size:14px}
+.close-btn{float:right;background:transparent;border:none;color:#7d8688;font-size:20px;cursor:pointer}
+.action-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.action-btn{padding:8px 14px;border:1px solid var(--line);background:#151719;border-radius:7px;font-size:11px;color:#dcd6ca}
+.action-btn:hover{border-color:rgba(180,147,85,.55)}
+.action-btn.reject{background:#2d1a1a;border-color:rgba(185,75,66,.35);color:#cf766d}
+.action-btn.approve{background:#1a2d1f;border-color:rgba(114,169,131,.35);color:#9dc8ad}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">PORTRAIT <b>VISUAL OS</b></div>
+  <div class="version">V6.1.1 · POSTER STRUCTURE RUNTIME <span style="opacity:.58">· Visual Core 5.16.1</span></div>
+</header>
+
+<main class="main">
+  <!-- Login Panel -->
+  <div id="loginPanel" class="login-panel">
+    <h2 style="color:#ead8a6;margin-bottom:20px">管理后台</h2>
+    <input type="password" id="adminPassword" placeholder="输入管理员密码" onkeydown="if(event.key==='Enter')adminLogin()">
+    <button onclick="adminLogin()">登录</button>
+  </div>
+
+  <!-- Admin Panel (hidden until login) -->
+  <div id="adminPanel" class="hidden">
+    <div class="stat-grid" id="statGrid">
+      <div class="stat"><b id="statEvents">-</b><span>事件总量</span></div>
+      <div class="stat"><b id="statFeedback">-</b><span>反馈总数</span></div>
+      <div class="stat"><b id="statSubmissions">-</b><span>投稿总数</span></div>
+      <div class="stat"><b id="statPromptCopy">-</b><span>Prompt 复制</span></div>
+      <div class="stat"><b id="statPngExport">-</b><span>PNG导出</span></div>
+      <div class="stat"><b id="statPending">-</b><span>待审阅</span></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('feedback')">反馈列表</button>
+      <button class="tab" onclick="switchTab('submissions')">投稿列表</button>
+      <button class="tab" onclick="switchTab('stats')">使用统计</button>
+    </div>
+
+    <!-- Feedback Tab -->
+    <div id="feedbackTab" class="card">
+      <h2>反馈列表</h2>
+      <div class="table-wrap">
+        <table id="feedbackTable">
+          <thead><tr><th>ID</th><th>满意度</th><th>问题类型</th><th>路线</th><th>文字策略</th><th>时间</th><th>内容</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Submissions Tab -->
+    <div id="submissionsTab" class="card hidden">
+      <h2>投稿列表</h2>
+      <div class="table-wrap">
+        <table id="submissionsTable">
+          <thead><tr><th>ID</th><th>标题</th><th>路线</th><th>状态</th><th>时间</th><th>操作</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Stats Tab -->
+    <div id="statsTab" class="card hidden">
+      <h2>使用统计</h2>
+      <div class="row">
+        <div style="flex:1;min-width:250px">
+          <div class="section-title">路线选择排行 (TOP 10)</div>
+          <ul class="ranking" id="routeRanking"></ul>
+        </div>
+        <div style="flex:1;min-width:250px">
+          <div class="section-title">文字策略使用比例</div>
+          <ul class="ranking" id="strategyUsage"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Detail Panel -->
+<div id="detailPanel" class="detail-panel">
+  <div class="detail-inner">
+    <button class="close-btn" onclick="closeDetail()">×</button>
+    <h3 id="detailTitle">投稿详情</h3>
+    <div id="detailContent"></div>
+    <div class="action-btns" id="detailActions"></div>
+  </div>
+</div>
+
+<script>
+const API_BASE = window.PVOS_API_BASE || window.location.origin;
+let adminPassword = '';
+let currentTab = 'feedback';
+let currentSubmission = null;
+
+function esc(s) {
+  if (s == null) return '';
+  if (typeof s !== 'string') s = String(s);
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function adminLogin() {
+  const pw = document.getElementById('adminPassword').value;
+  if (!pw) return;
+  adminPassword = pw;
+  document.getElementById('loginPanel').classList.add('hidden');
+  document.getElementById('adminPanel').classList.remove('hidden');
+  loadStats();
+  loadFeedback();
+}
+
+async function apiFetch(path) {
+  const res = await fetch(API_BASE + path, {
+    headers: { 'X-Admin-Password': adminPassword }
+  });
+  if (res.status === 401) {
+    alert('密码错误');
+    document.getElementById('loginPanel').classList.remove('hidden');
+    document.getElementById('adminPanel').classList.add('hidden');
+    return null;
+  }
+  return res.json();
+}
+
+async function loadStats() {
+  const stats = await apiFetch('/api/admin/stats');
+  if (!stats) return;
+  document.getElementById('statEvents').textContent = stats.total_events;
+  document.getElementById('statFeedback').textContent = stats.total_feedback;
+  document.getElementById('statSubmissions').textContent = stats.total_submissions;
+  document.getElementById('statPromptCopy').textContent = stats.prompt_copied_count;
+  document.getElementById('statPngExport').textContent = stats.png_exported_count;
+  document.getElementById('statPending').textContent = stats.pending_submissions;
+
+  // Route ranking - safe DOM construction
+  const rr = document.getElementById('routeRanking');
+  rr.innerHTML = '';
+  if (stats.route_selection_ranking) {
+    Object.entries(stats.route_selection_ranking).forEach(([route, count], i) => {
+      const li = document.createElement('li');
+      const rankSpan = document.createElement('span');
+      rankSpan.className = 'rank';
+      rankSpan.textContent = i + 1;
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'label';
+      labelSpan.textContent = route;
+      const countSpan = document.createElement('span');
+      countSpan.className = 'count';
+      countSpan.textContent = count;
+      li.appendChild(rankSpan);
+      li.appendChild(labelSpan);
+      li.appendChild(countSpan);
+      rr.appendChild(li);
+    });
+  }
+  if (!rr.children.length) {
+    rr.innerHTML = '<li style="color:#687174">暂无数据</li>';
+  }
+
+  // Strategy usage - safe DOM construction
+  const su = document.getElementById('strategyUsage');
+  su.innerHTML = '';
+  if (stats.text_strategy_usage) {
+    Object.entries(stats.text_strategy_usage).forEach(([strategy, count]) => {
+      const li = document.createElement('li');
+      const rankSpan = document.createElement('span');
+      rankSpan.className = 'rank';
+      rankSpan.textContent = '•';
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'label';
+      labelSpan.textContent = strategy;
+      const countSpan = document.createElement('span');
+      countSpan.className = 'count';
+      countSpan.textContent = count;
+      li.appendChild(rankSpan);
+      li.appendChild(labelSpan);
+      li.appendChild(countSpan);
+      su.appendChild(li);
+    });
+  }
+  if (!su.children.length) {
+    su.innerHTML = '<li style="color:#687174">暂无数据</li>';
+  }
+}
+
+function buildFeedbackRow(f) {
+  const tr = document.createElement('tr');
+  const ratingText = f.rating === 'close' ? '✓满意' : f.rating === 'usable' ? '～ 一般' : '✗ 不满意';
+  const issueType = f.issue_type || '-';
+  const routeId = f.route_id || '-';
+  const textStrategy = f.text_strategy || '-';
+  const time = f.created_at ? f.created_at.slice(0, 16) : '-';
+  const commentDisplay = f.comment ? f.comment.slice(0, 50) + (f.comment.length > 50 ? '...' : '') : '-';
+
+  const cells = [f.id, ratingText, issueType, routeId, textStrategy, time, commentDisplay];
+  cells.forEach((text) => {
+    const td = document.createElement('td');
+    td.textContent = text;
+    tr.appendChild(td);
+  });
+  return tr;
+}
+
+async function loadFeedback() {
+  const data = await apiFetch('/api/admin/feedback?limit=100');
+  if (!data) return;
+  const tbody = document.querySelector('#feedbackTable tbody');
+  tbody.innerHTML = '';
+  data.items.forEach(f => {
+    tbody.appendChild(buildFeedbackRow(f));
+  });
+}
+
+function buildSubmissionRow(s) {
+  const tr = document.createElement('tr');
+  const titleTd = document.createElement('td');
+  titleTd.textContent = s.title;
+  const routeTd = document.createElement('td');
+  routeTd.textContent = s.route_id || '-';
+  const statusBadge = document.createElement('span');
+  statusBadge.className = 'badge ' + esc(s.status);
+  statusBadge.textContent = statusLabel(s.status);
+  const statusTd = document.createElement('td');
+  statusTd.appendChild(statusBadge);
+  const timeTd = document.createElement('td');
+  timeTd.textContent = s.created_at ? s.created_at.slice(0, 16) : '-';
+  const actionBtn = document.createElement('button');
+  actionBtn.className = 'action-btn';
+  actionBtn.textContent = '查看详情';
+  actionBtn.onclick = () => viewSubmission(s.id);
+  const actionTd = document.createElement('td');
+  actionTd.appendChild(actionBtn);
+
+  const idTd = document.createElement('td');
+  idTd.textContent = s.id;
+  tr.appendChild(idTd);
+  tr.appendChild(titleTd);
+  tr.appendChild(routeTd);
+  tr.appendChild(statusTd);
+  tr.appendChild(timeTd);
+  tr.appendChild(actionTd);
+  return tr;
+}
+
+async function loadSubmissions() {
+  const data = await apiFetch('/api/admin/submissions?limit=100');
+  if (!data) return;
+  const tbody = document.querySelector('#submissionsTable tbody');
+  tbody.innerHTML = '';
+  data.items.forEach(s => {
+    tbody.appendChild(buildSubmissionRow(s));
+  });
+}
+
+async function viewSubmission(id) {
+  const sub = await apiFetch('/api/admin/submissions/' + id);
+  if (!sub) return;
+  currentSubmission = sub;
+
+  // Safe title set via textContent
+  document.getElementById('detailTitle').textContent = sub.title;
+
+  // Safe content construction using textContent
+  const content = document.getElementById('detailContent');
+  content.innerHTML = '';
+  const addField = (label, value) => {
+    if (value == null) return;
+    const p = document.createElement('p');
+    const strong = document.createElement('strong');
+    strong.textContent = label + '：';
+    p.appendChild(strong);
+    const span = document.createElement('span');
+    span.textContent = value;
+    p.appendChild(span);
+    content.appendChild(p);
+  };
+  addField('描述', sub.description || '-');
+  addField('路线', sub.route_id || '-');
+  addField('Prompt 摘录', sub.prompt_excerpt || '-');
+
+  const statusBadge = document.createElement('span');
+  statusBadge.className = 'badge ' + esc(sub.status);
+  statusBadge.textContent = statusLabel(sub.status);
+  const statusP = document.createElement('p');
+  const strongStatus = document.createElement('strong');
+  strongStatus.textContent = '状态：';
+  statusP.appendChild(strongStatus);
+  statusP.appendChild(statusBadge);
+  content.appendChild(statusP);
+
+  addField('提交时间', sub.created_at ? sub.created_at.slice(0, 19) : '-');
+  addField('审阅时间', sub.reviewed_at ? sub.reviewed_at.slice(0, 19) : '-');
+  if (sub.reviewer_comment) {
+    addField('审阅备注', sub.reviewer_comment);
+  }
+  if (sub.files && sub.files.length) {
+    const p = document.createElement('p');
+    const strong = document.createElement('strong');
+    strong.textContent = '附件：';
+    p.appendChild(strong);
+    p.appendChild(document.createTextNode(sub.files.map(f => f.original_name).join(', ')));
+    content.appendChild(p);
+  }
+
+  // Safe action buttons
+  const actions = document.getElementById('detailActions');
+  actions.innerHTML = '';
+  const actionTypes = [
+    { label: '强化路线', action: 'strengthen-route', className: 'action-btn approve' },
+    { label: '添加组件', action: 'add-component', className: 'action-btn approve' },
+    { label: '新路线', action: 'new-route', className: 'action-btn approve' },
+    { label: '拒绝', action: 'reject', className: 'action-btn reject' },
+    { label: '暂存', action: 'hold', className: 'action-btn' }
+  ];
+  actionTypes.forEach(({ label, action, className }) => {
+    const btn = document.createElement('button');
+    btn.className = className;
+    btn.textContent = label;
+    btn.onclick = () => reviewSubmission(id, action);
+    actions.appendChild(btn);
+  });
+
+  document.getElementById('detailPanel').classList.add('on');
+}
+
+async function reviewSubmission(id, action) {
+  const comment = prompt('审阅备注（可选）：') || '';
+  const res = await fetch(API_BASE + '/api/admin/submissions/' + id + '/review', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Admin-Password': adminPassword
+    },
+    body: JSON.stringify({ action, comment })
+  });
+  if (res.ok) {
+    alert('审阅已提交');
+    closeDetail();
+    loadSubmissions();
+    loadStats();
+  } else {
+    alert('提交失败');
+  }
+}
+
+function closeDetail() {
+  document.getElementById('detailPanel').classList.remove('on');
+  currentSubmission = null;
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.tab[onclick="switchTab('${tab}')"]`).classList.add('active');
+  document.getElementById('feedbackTab').classList.toggle('hidden', tab !== 'feedback');
+  document.getElementById('submissionsTab').classList.toggle('hidden', tab !== 'submissions');
+  document.getElementById('statsTab').classList.toggle('hidden', tab !== 'stats');
+  if (tab === 'feedback') loadFeedback();
+  else if (tab === 'submissions') loadSubmissions();
+  else if (tab === 'stats') loadStats();
+}
+
+function statusLabel(s) {
+  const map = { 'candidate': '候选', 'strengthen-route': '强化路线', 'add-component': '添加组件', 'new-route': '新路线', 'reject': '已拒绝', 'hold': '暂存' };
+  return map[s] || s;
+}
+</script>
+</body>
+</html>

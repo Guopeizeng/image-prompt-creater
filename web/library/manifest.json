@@ -1,0 +1,241 @@
+{
+  "manifest_schema": "pvos-release-manifest@1.0.0",
+  "release": {
+    "version": "5.16.1",
+    "name": "Portrait Visual OS · V6.1.1 Poster Structure Runtime over Visual Core 5.16.1",
+    "kind": "poster-structure-runtime-and-provider-maturity-annotation",
+    "generated_at_utc": "2026-06-12T14:30:00.000000+00:00",
+    "library_schema": "pvos-library@4.0.0",
+    "loader_schema": "pvos-runtime-loader@2.0.0",
+    "compiled_canonical_file": "Portrait_Visual_OS_V5_16_1_Canonical_Library.json",
+    "offline_standalone_workbench": "index.html",
+    "runtime_build": "V6.1.1",
+    "ui_build": "v6101-20260612"
+  },
+  "default_profile": "interactive",
+  "profiles": {
+    "interactive": [
+      "core",
+      "routes",
+      "components",
+      "templates",
+      "director",
+      "typography",
+      "physics",
+      "governance"
+    ],
+    "full": [
+      "core",
+      "routes",
+      "components",
+      "templates",
+      "director",
+      "typography",
+      "physics",
+      "governance",
+      "history_archive"
+    ]
+  },
+  "modules": [
+    {
+      "id": "core",
+      "file": "library/modules/00_core.json",
+      "required": true,
+      "lazy": false,
+      "owns": [
+        "runtime_schema_version",
+        "library_schema_version",
+        "legacy_runtime_schema_version",
+        "library_title_zh",
+        "status",
+        "generated_from",
+        "source_asset_count",
+        "inventory",
+        "taxonomy_revision",
+        "prompt_placeholders",
+        "global_rules",
+        "style_id_aliases",
+        "migration",
+        "category_order",
+        "v5_meta",
+        "v5_5_meta",
+        "v5_7_meta",
+        "v5_8_meta",
+        "product_release",
+        "library_contract",
+        "architecture_hardening",
+        "architecture_refactor",
+        "experience_polish",
+        "theme_consistency_quiet_ui",
+        "typography_surface_continuity",
+        "layout_studio_type_controls",
+        "typography_reference_governance",
+        "english_font_reference_intake",
+        "typography_reference_expansion",
+        "chinese_font_reference_intake",
+        "product_alpha",
+        "text_participation_ux",
+        "canonical_runtime",
+        "version"
+      ],
+      "sha256": "cef5cc9d3225d1cfb8b72415a4f3ead35686bdc0266f1098c26f2162a8b3ac7b",
+      "bytes": 66707,
+      "release_version": "5.16.1"
+    },
+    {
+      "id": "routes",
+      "file": "library/modules/10_routes.json",
+      "required": true,
+      "lazy": false,
+      "owns": [
+        "styles"
+      ],
+      "sha256": "646ea4536d25d6a1cc863cbf0a156f5863074262aafa34329b2adf8b27c088e7",
+      "bytes": 372355,
+      "release_version": "5.16.1"
+    },
+    {
+      "id": "components",
+      "file": "library/modules/20_components.json",
+      "required": true,
+      "lazy": false,
+      "owns": [
+        "components"
+      ],
+      "sha256": "65d7baa43ba286757645f873c6bae3d82a930c9fd3154cc4a987a5c1f838d088",
+      "bytes": 467192,
+      "release_version": "5.16.1"
+    },
+    {
+      "id": "templates",
+      "file": "library/modules/30_templates.json",
+      "required": true,
+      "lazy": false,
+      "owns": [
+        "visual_templates",
+        "template_role_blockings",
+        "route_motion_grammars",
+        "route_template_bindings"
+      ],
+      "sha256": "db6a3ae53880783e1a7bd91c7e249bc36b9b3311703dffd968c5bf8cc7ded0e8",
+      "bytes": 569858,
+      "release_version": "5.16.1"
+    },
+    {
+      "id": "director",
+      "file": "library/modules/40_director.json",
+      "required": true,
+      "lazy": false,
+      "owns": [
+        "typography_participation_modes",
+        "single_portrait_gaze_locks",
+        "single_portrait_expression_presets",
+        "single_portrait_action_blueprints",
+        "single_portrait_composition_blueprints",
+        "typography_interaction_presets",
+        "single_portrait_route_bindings"
+      ],
+      "sha256": "8e497725b12a9e551f4954e5188d7c8506e8a6fb4722c95fe7379fd76cd351e8",
+      "bytes": 195583,
+      "release_version": "5.16.1"
+    },
+    {
+      "id": "typography",
+      "file": "library/modules/50_typography.json",
+      "required": true,
+      "lazy": false,
+      "owns": [
+        "typography_hybrid_presets",
+        "route_typography_surface_bindings",
+        "font_assets",
+        "font_reference_batches",
+        "font_reference_families",
+        "font_reference_assets",
+        "typography_relation_reference_batches",
+        "typography_relation_patterns"
+      ],
+      "sha256": "a01319863d04b49706d4a66fa95c6a4d1d715478c5dd0eada7d86e303241396e",
+      "bytes": 238946,
+      "release_version": "5.16.1"
+    },
+    {
+      "id": "physics",
+      "file": "library/modules/60_physics.json",
+      "required": true,
+      "lazy": false,
+      "owns": [
+        "accessory_occlusion_safety",
+        "lighting_physics_grammar",
+        "lighting_pose_bindings",
+        "composition_perspective_grammar",
+        "route_perspective_bindings"
+      ],
+      "sha256": "3dccd695e896e2020a5133369e7bb739cc430dfbf85637f19f936236da749fb1",
+      "bytes": 99468,
+      "release_version": "5.16.1"
+    },
+    {
+      "id": "governance",
+      "file": "library/modules/70_governance.json",
+      "required": true,
+      "lazy": false,
+      "owns": [
+        "source_registry",
+        "focused_entry_presets",
+        "validation"
+      ],
+      "sha256": "f9aed628399604994a1519ce1691e13503639a0039148178b0614a4e7f7658c1",
+      "bytes": 13562,
+      "release_version": "5.16.1"
+    },
+    {
+      "id": "history_archive",
+      "file": "library/modules/90_history_archive.json",
+      "required": false,
+      "lazy": true,
+      "owns": [
+        "archived_reference_catalog_v5_5_final_batch",
+        "validator_rules_v5_5",
+        "graduation_expansion",
+        "archived_reference_catalog_graduation_v1",
+        "mature_women_expansion",
+        "graduation_supplement",
+        "archived_reference_catalog_v5_9_4",
+        "daily_lighting_expansion",
+        "archived_reference_catalog_v5_9_5",
+        "male_daily_editorial_flash_expansion",
+        "archived_reference_catalog_v5_9_6",
+        "female_twilight_beam_expansion",
+        "archived_reference_catalog_v5_9_7",
+        "female_wind_motion_bedroom_expansion",
+        "archived_reference_catalog_v5_9_8",
+        "female_seasonal_floral_transit_reflection_expansion",
+        "archived_reference_catalog_v5_9_9",
+        "composition_perspective_editorial_expansion",
+        "archived_reference_catalog_v5_10_0"
+      ],
+      "sha256": "6a6eecf4bdbda7d2c5e1d4edde73fe5a2af2e69e95e4cc4a5ea8e17b5fc48ea8",
+      "bytes": 37890,
+      "release_version": "5.16.1"
+    }
+  ],
+  "policies": {
+    "curation_source": "library/modules/*.json + library/registries/*.json",
+    "runtime_source": "compiled canonical JSON",
+    "hosted_ui_load_order": [
+      "compiled canonical JSON",
+      "manifest modules",
+      "embedded fallback"
+    ],
+    "file_load_order": [
+      "embedded fallback"
+    ],
+    "reference_screenshots_in_release_zip": "thumbnail-only"
+  },
+  "semantic_digests": {
+    "compiled_canonical_sha256": "9410c49f1a538fb0eb73f4e7da74a751245460eb3c834a4dd907a9304e7a4838",
+    "web_canonical_sha256": "9410c49f1a538fb0eb73f4e7da74a751245460eb3c834a4dd907a9304e7a4838",
+    "embedded_fallback_semantically_equal": true,
+    "embedded_fallback_canonical_json_sha256": "09fb8abff15b4abbd038c17d323ff9e49bbd1a08402c50b91bdc643c1fbd5c5c"
+  }
+}

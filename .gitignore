@@ -1,0 +1,8 @@
+.venv/
+data/
+uploads/
+logs/
+private_assets/
+__pycache__/
+*.pyc
+*.pyo

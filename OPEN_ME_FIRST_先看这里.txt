@@ -1,0 +1,20 @@
+﻿PVOS V6.1.0 Windows 启动说明（兼容修复版）
+
+推荐启动方式：
+1. 完整解压 ZIP，不要直接在压缩包预览窗口中运行。
+2. 双击 00_START_PVOS_SAFE.bat。
+3. 首次运行会创建 .venv 并安装依赖，需要保持网络连接。
+
+兼容性说明：
+- 00_START_PVOS_SAFE.bat 与 START_PVOS.bat 内容完全为 ASCII，并使用 Windows CRLF 换行。
+- PowerShell 启停脚本使用 UTF-8 BOM + CRLF，兼容 Windows PowerShell 5.1。
+- 原有中文文件名启动器仍保留，但推荐优先使用 00_START_PVOS_SAFE.bat。
+
+常见问题：
+- 如果窗口提示 Python 3 未安装，请安装 Python 3.11 或更高版本，并在安装时勾选 Add Python to PATH。
+- 如果提示 4173 端口被占用，请先双击 STOP_PVOS.bat，或在任务管理器中结束旧版 Python 进程。
+- 如果浏览器没有自动打开，请手动访问 http://127.0.0.1:4173/。
+- 后台地址为 http://127.0.0.1:4173/admin。
+
+停止服务：
+双击 STOP_PVOS.bat。

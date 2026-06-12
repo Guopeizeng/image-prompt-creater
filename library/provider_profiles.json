@@ -1,0 +1,71 @@
+{
+  "contract": "pvos-provider-profiles@1.2.0",
+  "default_provider": "gpt-image",
+  "supported_scene_richness": [
+    "compact",
+    "standard",
+    "rich"
+  ],
+  "maturity_levels": {
+    "stable": "stable",
+    "test": "test"
+  },
+  "providers": {
+    "gpt-image": {
+      "label_zh": "GPT 生图",
+      "label_en": "GPT Image",
+      "language": "en",
+      "renderer": "structured-en",
+      "maturity": "stable",
+      "maturity_note_zh": "GPT 提示词为当前唯一相对完善的主线；推荐日常使用。",
+      "maturity_note_en": "GPT prompt is the only relatively mature baseline; recommended for daily use.",
+      "default_scene_richness": "standard",
+      "scene_richness_directives": {
+        "compact": "SCENE DETAIL DENSITY — COMPACT:\nKeep environmental description minimal. State only the dominant location, one key light source, and the essential mood. Avoid enumerating props or secondary surfaces.",
+        "standard": "SCENE DETAIL DENSITY — STANDARD:\nDescribe the environment with enough material, light, and depth cues to feel authored: name the location character, the dominant and secondary light behavior, two or three meaningful surface materials, and one atmospheric quality. Do not enumerate every object.",
+        "rich": "SCENE DETAIL DENSITY — RICH:\nBuild the environment as a regionally described scene. Give the foreground, midground, and background each an explicit material, light, or prop detail. Describe how the dominant light interacts with at least two named surfaces, and include one atmospheric or weather quality. Every described element must support the selected visual route; do not add decorative clutter that competes with the subject."
+      }
+    },
+    "doubao-seedream": {
+      "label_zh": "豆包 Seedream",
+      "label_en": "Doubao Seedream",
+      "language": "zh",
+      "renderer": "natural-zh",
+      "maturity": "test",
+      "maturity_note_zh": "豆包线目前为测试版本：中文整句强约束结构仅做基础编译，尚未与 GPT 提示词同等打磨；可试用，但不要把它作为唯一交付路径。",
+      "maturity_note_en": "Doubao Seedream profile is currently a test build. The natural-Chinese constraint pipeline is compiled but not yet on par with the GPT prompt; feel free to try it, but do not rely on it as the sole delivery path.",
+      "maturity_badge_zh": "测试版",
+      "maturity_badge_en": "Test",
+      "default_scene_richness": "rich",
+      "max_negative_items": 5,
+      "research_basis": "docs/V6_SEEDREAM_PROMPT_RESEARCH.md",
+      "segment_order": [
+        "purpose",
+        "identity",
+        "pose-action",
+        "scene",
+        "composition-light",
+        "template-reference",
+        "poster-layout",
+        "wardrobe-fusion",
+        "motif",
+        "typography",
+        "style",
+        "negative",
+        "priority"
+      ],
+      "rules": {
+        "text_in_double_quotes": true,
+        "coherent_sentences": true,
+        "front_load_priority": true,
+        "no_tag_stream": true,
+        "poster_layout_without_copy": true
+      },
+      "scene_richness_directives": {
+        "compact": "场景仅用一句话点明地点与主光。",
+        "standard": "场景写明地点气质、主光与辅光行为、两三种关键材质和一种氛围。",
+        "rich": "场景按前景、中景、背景分区逐项描述，写明主光如何作用于至少两种具名材质，并加入一种天气或氛围细节；所有细节服务于所选视觉路线。"
+      }
+    }
+  }
+}

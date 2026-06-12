@@ -1,0 +1,964 @@
+{
+  "module_schema": "pvos-library-module@1.0.0",
+  "module_id": "history_archive",
+  "release_version": "5.16.1",
+  "owns": [
+    "archived_reference_catalog_v5_5_final_batch",
+    "validator_rules_v5_5",
+    "graduation_expansion",
+    "archived_reference_catalog_graduation_v1",
+    "mature_women_expansion",
+    "graduation_supplement",
+    "archived_reference_catalog_v5_9_4",
+    "daily_lighting_expansion",
+    "archived_reference_catalog_v5_9_5",
+    "male_daily_editorial_flash_expansion",
+    "archived_reference_catalog_v5_9_6",
+    "female_twilight_beam_expansion",
+    "archived_reference_catalog_v5_9_7",
+    "female_wind_motion_bedroom_expansion",
+    "archived_reference_catalog_v5_9_8",
+    "female_seasonal_floral_transit_reflection_expansion",
+    "archived_reference_catalog_v5_9_9",
+    "composition_perspective_editorial_expansion",
+    "archived_reference_catalog_v5_10_0"
+  ],
+  "payload": {
+    "archived_reference_catalog_v5_5_final_batch": [
+      {
+        "file": "微信图片_20260602224507_1446_464(1).jpg",
+        "archived_role": "Japanese lifestyle magazine cover",
+        "extracted_action_blueprint_id": "solo-lifestyle-squat-eating-direct",
+        "composition_blueprint_id": "comp-lifestyle-candid-cover"
+      },
+      {
+        "file": "微信图片_20260602224508_1447_464(1).jpg",
+        "archived_role": "Japanese transit lifestyle cover",
+        "extracted_action_blueprint_id": "solo-transit-strap-hold-soft-direct",
+        "composition_blueprint_id": "comp-transit-handle-framing"
+      },
+      {
+        "file": "微信图片_20260602224351_1384_464(1).jpg",
+        "archived_role": "Hong Kong vintage magazine close portrait",
+        "extracted_action_blueprint_id": "solo-hk-glamour-head-tilt-cover",
+        "composition_blueprint_id": "comp-hk-vintage-masthead-close"
+      },
+      {
+        "file": "微信图片_20260602224359_1392_464(1).jpg",
+        "archived_role": "Hong Kong night-market full-body portrait",
+        "extracted_action_blueprint_id": "solo-night-market-stride-camera-lock",
+        "composition_blueprint_id": "comp-night-market-signage-fullbody"
+      },
+      {
+        "file": "微信图片_20260602224401_1393_464(1).jpg",
+        "archived_role": "Hong Kong doorway prop editorial",
+        "extracted_action_blueprint_id": "solo-doorway-two-arm-brace-prop",
+        "composition_blueprint_id": "comp-doorway-prop-spread"
+      },
+      {
+        "file": "微信图片_20260602224402_1394_464(1).jpg",
+        "archived_role": "Hong Kong balcony fashion portrait",
+        "extracted_action_blueprint_id": "solo-balcony-jacket-lift-downcast",
+        "composition_blueprint_id": "comp-balcony-overlook-jacket-motion"
+      },
+      {
+        "file": "微信图片_20260602224426_1418_464(1).jpg",
+        "archived_role": "Editorial runner cutout",
+        "extracted_action_blueprint_id": "solo-side-profile-run-trailing-fabric",
+        "composition_blueprint_id": "comp-runner-cutout-editorial"
+      },
+      {
+        "file": "微信图片_20260602224459_1443_464(1).jpg",
+        "archived_role": "Blue-campus station collage",
+        "extracted_action_blueprint_id": "solo-station-headphone-soft-direct",
+        "composition_blueprint_id": "comp-station-blue-collage"
+      },
+      {
+        "file": "微信图片_20260602224506_1445_464(1).jpg",
+        "archived_role": "Minimal green-label fashion cover",
+        "extracted_action_blueprint_id": "solo-turtleneck-shoulder-turn-direct",
+        "composition_blueprint_id": "comp-minimal-green-label-cover"
+      }
+    ],
+    "validator_rules_v5_5": [
+      {
+        "id": "SAP-01",
+        "rule": "single portrait action blueprint IDs are unique"
+      },
+      {
+        "id": "SAP-02",
+        "rule": "every action blueprint has stability metadata"
+      },
+      {
+        "id": "SAP-03",
+        "rule": "every action blueprint references at least one valid gaze lock and composition blueprint"
+      },
+      {
+        "id": "SAP-04",
+        "rule": "conditional and experimental action blueprints require a valid risk downgrade"
+      },
+      {
+        "id": "SAP-05",
+        "rule": "every action blueprint has hand logic and neck safety notes"
+      },
+      {
+        "id": "SCB-01",
+        "rule": "composition blueprint IDs are unique"
+      },
+      {
+        "id": "SCB-02",
+        "rule": "every composition blueprint has recommended text zones and forbidden text zones"
+      },
+      {
+        "id": "SCB-03",
+        "rule": "layout-coupled title-behind patterns require subject mask metadata"
+      },
+      {
+        "id": "TIP-01",
+        "rule": "typography participation enum is valid"
+      },
+      {
+        "id": "TIP-02",
+        "rule": "experimental in-image typography is never default"
+      },
+      {
+        "id": "TIP-03",
+        "rule": "exact copy never leaks into clean-base generation prompt"
+      },
+      {
+        "id": "GAZ-01",
+        "rule": "selected single action resolves to one explicit gaze lock"
+      },
+      {
+        "id": "GAZ-02",
+        "rule": "ambiguous gaze is not a valid option"
+      },
+      {
+        "id": "REG-01",
+        "rule": "retain three workspaces, typographyState, overlayLayers, visual templates, and file:// offline operation"
+      }
+    ],
+    "graduation_expansion": {
+      "version": "5.9.3",
+      "title": "Graduation Season Curated Expansion",
+      "merge_mode": "curated-domain-extension",
+      "archived_reference_role": "Uploaded screenshots are visual-template references only. They are not customer identity references and are not redistributed.",
+      "reference_count": 20,
+      "route_count": 4,
+      "scene_count": 6,
+      "wardrobe_prop_count": 6,
+      "layout_module_count": 6,
+      "lighting_count": 4,
+      "action_preset_count": 10,
+      "single_action_blueprint_count": 10,
+      "composition_blueprint_count": 7,
+      "visual_template_count": 8,
+      "stable_merge_rule": "Four reusable routes only. All other differences remain reusable components, action grammar, composition blueprints, or layout modules.",
+      "default_task_entry_id": "graduation",
+      "layout_policy": "Accurate graduate name, school, major, date, and Class Of text remain post-layout SVG/HTML overlays."
+    },
+    "archived_reference_catalog_graduation_v1": {
+      "catalog_id": "graduation-reference-catalog-v1",
+      "source_kind": "user-uploaded-reference-screenshots",
+      "rights_status": "reference-only-do-not-redistribute",
+      "files": [
+        "微信图片_20260604210802_1717_464.jpg",
+        "微信图片_20260604210804_1718_464.jpg",
+        "微信图片_20260604210805_1719_464.jpg",
+        "微信图片_20260604210808_1720_464.jpg",
+        "微信图片_20260604210810_1721_464.jpg",
+        "微信图片_20260604210812_1722_464.jpg",
+        "微信图片_20260604210813_1723_464.jpg",
+        "微信图片_20260604210814_1724_464.jpg",
+        "微信图片_20260604210815_1725_464.jpg",
+        "微信图片_20260604210816_1726_464.jpg",
+        "微信图片_20260604210817_1727_464.jpg",
+        "微信图片_20260604210818_1728_464.jpg",
+        "微信图片_20260604210819_1729_464.jpg",
+        "微信图片_20260604210820_1730_464.jpg",
+        "微信图片_20260604210821_1731_464.jpg",
+        "微信图片_20260604210822_1732_464.jpg",
+        "微信图片_20260604210823_1733_464.jpg",
+        "微信图片_20260604210824_1734_464.jpg",
+        "微信图片_20260604210825_1735_464.jpg",
+        "微信图片_20260604210827_1736_464.jpg"
+      ],
+      "clusters": [
+        {
+          "id": "grad-campus-memory",
+          "name_zh": "教室窗边与讲堂记忆",
+          "reference_files": [
+            "微信图片_20260604210802_1717_464.jpg",
+            "微信图片_20260604210804_1718_464.jpg",
+            "微信图片_20260604210805_1719_464.jpg"
+          ],
+          "extracts": [
+            "lecture-hall foreground depth",
+            "window notebook pose",
+            "chin-rest soft camera lock",
+            "cool blue-cyan interior light"
+          ]
+        },
+        {
+          "id": "grad-forest-poetic",
+          "name_zh": "林荫、草地与操场停留",
+          "reference_files": [
+            "微信图片_20260604210808_1720_464.jpg",
+            "微信图片_20260604210810_1721_464.jpg",
+            "微信图片_20260604210812_1722_464.jpg",
+            "微信图片_20260604210813_1723_464.jpg",
+            "微信图片_20260604210814_1724_464.jpg"
+          ],
+          "extracts": [
+            "cap raised toward light",
+            "meadow seated folder",
+            "fence upward gaze",
+            "sports-field seated book",
+            "forest filtered haze"
+          ]
+        },
+        {
+          "id": "grad-floral-ceremony",
+          "name_zh": "花束与仪式肖像",
+          "reference_files": [
+            "微信图片_20260604210815_1725_464.jpg",
+            "微信图片_20260604210816_1726_464.jpg"
+          ],
+          "extracts": [
+            "soft bouquet profile",
+            "restrained floral hairpiece",
+            "romantic ceremony variant"
+          ]
+        },
+        {
+          "id": "grad-architecture",
+          "name_zh": "楼梯与白色长廊",
+          "reference_files": [
+            "微信图片_20260604210817_1727_464.jpg",
+            "微信图片_20260604210818_1728_464.jpg",
+            "微信图片_20260604210819_1729_464.jpg"
+          ],
+          "extracts": [
+            "stairwell mild backturn",
+            "white tunnel symmetry",
+            "stair descent with foreground depth"
+          ]
+        },
+        {
+          "id": "grad-sunlit-celebration",
+          "name_zh": "晴日祝福动作",
+          "reference_files": [
+            "微信图片_20260604210820_1730_464.jpg",
+            "微信图片_20260604210821_1731_464.jpg",
+            "微信图片_20260604210822_1732_464.jpg",
+            "微信图片_20260604210823_1733_464.jpg",
+            "微信图片_20260604210824_1734_464.jpg",
+            "微信图片_20260604210825_1735_464.jpg",
+            "微信图片_20260604210827_1736_464.jpg"
+          ],
+          "extracts": [
+            "soft direct smile",
+            "folder hold",
+            "natural wave",
+            "cap raised",
+            "green campus bokeh",
+            "dual-frame yearbook collage"
+          ]
+        }
+      ]
+    },
+    "mature_women_expansion": {
+      "version": "5.9.4",
+      "title": "成熟女性日常与职业肖像精选扩展",
+      "merge_mode": "curated-domain-extension",
+      "reference_count": 18,
+      "route_count": 4,
+      "scene_count": 7,
+      "wardrobe_prop_count": 7,
+      "layout_module_count": 6,
+      "lighting_count": 5,
+      "action_count": 8,
+      "principle": "Prefer commercially usable mature portrait worlds over one-route-per-reference expansion."
+    },
+    "graduation_supplement": {
+      "version": "5.9.4",
+      "title": "讲堂与教室窗边毕业补充",
+      "merge_mode": "component-and-template-reinforcement",
+      "reference_count": 2,
+      "strengthened_route_id": "graduation-campus-memory-film",
+      "scene_count": 2,
+      "wardrobe_prop_count": 1,
+      "layout_module_count": 2,
+      "lighting_count": 1,
+      "action_count": 3,
+      "new_route_count": 0
+    },
+    "archived_reference_catalog_v5_9_4": {
+      "catalog_id": "archived-reference-v5.9.4-mature-graduation",
+      "source_kind": "uploaded-reference-screenshots",
+      "rights_status": "reference-only-do-not-redistribute",
+      "files": [
+        "微信图片_20260604210740_1697_464.jpg",
+        "微信图片_20260604210741_1698_464.jpg",
+        "微信图片_20260604210742_1699_464.jpg",
+        "微信图片_20260604210744_1700_464.jpg",
+        "微信图片_20260604210745_1701_464.jpg",
+        "微信图片_20260604210746_1702_464.jpg",
+        "微信图片_20260604210747_1703_464.jpg",
+        "微信图片_20260604210748_1704_464.jpg",
+        "微信图片_20260604210749_1705_464.jpg",
+        "微信图片_20260604210750_1706_464.jpg",
+        "微信图片_20260604210751_1707_464.jpg",
+        "微信图片_20260604210752_1708_464.jpg",
+        "微信图片_20260604210753_1709_464.jpg",
+        "微信图片_20260604210754_1710_464.jpg",
+        "微信图片_20260604210755_1711_464.jpg",
+        "微信图片_20260604210757_1712_464.jpg",
+        "微信图片_20260604210758_1713_464.jpg",
+        "微信图片_20260604210759_1714_464.jpg",
+        "微信图片_20260604210800_1715_464.jpg",
+        "微信图片_20260604210801_1716_464.jpg"
+      ],
+      "clusters": {
+        "mature-urban-executive-film": [
+          "微信图片_20260604210740_1697_464.jpg",
+          "微信图片_20260604210741_1698_464.jpg",
+          "微信图片_20260604210742_1699_464.jpg"
+        ],
+        "androgynous-suit-editorial": [
+          "微信图片_20260604210744_1700_464.jpg",
+          "微信图片_20260604210745_1701_464.jpg",
+          "微信图片_20260604210746_1702_464.jpg",
+          "微信图片_20260604210747_1703_464.jpg",
+          "微信图片_20260604210748_1704_464.jpg",
+          "微信图片_20260604210749_1705_464.jpg",
+          "微信图片_20260604210750_1706_464.jpg",
+          "微信图片_20260604210751_1707_464.jpg",
+          "微信图片_20260604210752_1708_464.jpg",
+          "微信图片_20260604210753_1709_464.jpg",
+          "微信图片_20260604210754_1710_464.jpg"
+        ],
+        "mature-quiet-luxury-and-textured-daily": [
+          "微信图片_20260604210755_1711_464.jpg",
+          "微信图片_20260604210757_1712_464.jpg",
+          "微信图片_20260604210758_1713_464.jpg",
+          "微信图片_20260604210759_1714_464.jpg"
+        ],
+        "graduation-lecturehall-classroom-supplement": [
+          "微信图片_20260604210800_1715_464.jpg",
+          "微信图片_20260604210801_1716_464.jpg"
+        ]
+      }
+    },
+    "daily_lighting_expansion": {
+      "version": "5.9.5",
+      "title": "男女日常肖像与光线物理精选扩展",
+      "merge_mode": "curated-routes-plus-physics-grammar",
+      "reference_count": 20,
+      "route_count": 6,
+      "scene_count": 8,
+      "wardrobe_prop_count": 11,
+      "layout_module_count": 8,
+      "lighting_count": 8,
+      "action_count": 13,
+      "principle": "Prefer reusable lighting physics profiles and pose-angle compatibility over decorative filter descriptions."
+    },
+    "archived_reference_catalog_v5_9_5": {
+      "catalog_id": "archived-reference-v5.9.5-daily-lighting",
+      "source_kind": "uploaded-reference-screenshots",
+      "rights_status": "reference-only-do-not-redistribute",
+      "files": [
+        "微信图片_20260604210730_1694_464.jpg",
+        "微信图片_20260604210731_1695_464.jpg",
+        "微信图片_20260604210732_1696_464.jpg",
+        "微信图片_20260604205859_1671_464.jpg",
+        "微信图片_20260604205900_1672_464.jpg",
+        "微信图片_20260604205901_1673_464.jpg",
+        "微信图片_20260604205902_1674_464.jpg",
+        "微信图片_20260604205903_1675_464.jpg",
+        "微信图片_20260604205904_1676_464.jpg",
+        "微信图片_20260604205904_1677_464.jpg",
+        "微信图片_20260604205905_1678_464.jpg",
+        "微信图片_20260604205906_1679_464.jpg",
+        "微信图片_20260604205912_1685_464.jpg",
+        "微信图片_20260604205913_1686_464.jpg",
+        "微信图片_20260604205914_1687_464.jpg",
+        "微信图片_20260604205915_1688_464.jpg",
+        "微信图片_20260604210727_1690_464.jpg",
+        "微信图片_20260604210727_1691_464.jpg",
+        "微信图片_20260604210728_1692_464.jpg",
+        "微信图片_20260604210729_1693_464.jpg"
+      ],
+      "clusters": {
+        "female-stairwell-and-doorway-mixed-light": [
+          "微信图片_20260604210730_1694_464.jpg",
+          "微信图片_20260604210731_1695_464.jpg",
+          "微信图片_20260604210732_1696_464.jpg"
+        ],
+        "male-indoor-window-and-piano": [
+          "微信图片_20260604205859_1671_464.jpg",
+          "微信图片_20260604205900_1672_464.jpg",
+          "微信图片_20260604205901_1673_464.jpg",
+          "微信图片_20260604205912_1685_464.jpg"
+        ],
+        "male-rural-goldenhour": [
+          "微信图片_20260604205902_1674_464.jpg",
+          "微信图片_20260604205903_1675_464.jpg",
+          "微信图片_20260604205904_1676_464.jpg",
+          "微信图片_20260604205904_1677_464.jpg",
+          "微信图片_20260604205905_1678_464.jpg",
+          "微信图片_20260604205906_1679_464.jpg"
+        ],
+        "male-night-neon": [
+          "微信图片_20260604205913_1686_464.jpg",
+          "微信图片_20260604205914_1687_464.jpg",
+          "微信图片_20260604205915_1688_464.jpg"
+        ],
+        "female-warm-jewelry-and-stair": [
+          "微信图片_20260604210727_1690_464.jpg",
+          "微信图片_20260604210727_1691_464.jpg",
+          "微信图片_20260604210728_1692_464.jpg",
+          "微信图片_20260604210729_1693_464.jpg"
+        ]
+      }
+    },
+    "male_daily_editorial_flash_expansion": {
+      "version": "5.9.6",
+      "title": "男性日常编辑、直闪与透明镜片安全扩展",
+      "merge_mode": "curated-routes-plus-physics-protocols",
+      "reference_count": 20,
+      "new_route_count": 4,
+      "strengthened_route_ids": [
+        "male-window-morning-lifestyle",
+        "male-rural-goldenhour-travel-film"
+      ],
+      "scene_count": 7,
+      "wardrobe_prop_count": 12,
+      "layout_module_count": 9,
+      "lighting_count": 6,
+      "action_count": 13,
+      "principle": "Route curation, lighting physics, optical-surface safety, and pose-angle compatibility are separate but linked layers."
+    },
+    "archived_reference_catalog_v5_9_6": {
+      "catalog_id": "archived-reference-v5.9.6-male-daily-editorial",
+      "source_kind": "uploaded-reference-screenshots",
+      "rights_status": "reference-only-do-not-redistribute",
+      "files": [
+        "微信图片_20260604205555_1656_464.jpg",
+        "微信图片_20260604205845_1657_464.jpg",
+        "微信图片_20260604205846_1658_464.jpg",
+        "微信图片_20260604205847_1659_464.jpg",
+        "微信图片_20260604205848_1660_464.jpg",
+        "微信图片_20260604205849_1661_464.jpg",
+        "微信图片_20260604205850_1662_464.jpg",
+        "微信图片_20260604205851_1663_464.jpg",
+        "微信图片_20260604205852_1664_464.jpg",
+        "微信图片_20260604205853_1665_464.jpg",
+        "微信图片_20260604205854_1666_464.jpg",
+        "微信图片_20260604205855_1667_464.jpg",
+        "微信图片_20260604205856_1668_464.jpg",
+        "微信图片_20260604205857_1669_464.jpg",
+        "微信图片_20260604205858_1670_464.jpg",
+        "微信图片_20260604205907_1680_464.jpg",
+        "微信图片_20260604205909_1681_464.jpg",
+        "微信图片_20260604205910_1682_464.jpg",
+        "微信图片_20260604205911_1683_464.jpg",
+        "微信图片_20260604205912_1684_464.jpg"
+      ],
+      "clusters": {
+        "rural-goldenhour-profile": [
+          "微信图片_20260604205555_1656_464.jpg"
+        ],
+        "hard-window-editorial-lounge": [
+          "微信图片_20260604205845_1657_464.jpg",
+          "微信图片_20260604205846_1658_464.jpg",
+          "微信图片_20260604205847_1659_464.jpg",
+          "微信图片_20260604205848_1660_464.jpg",
+          "微信图片_20260604205849_1661_464.jpg",
+          "微信图片_20260604205850_1662_464.jpg"
+        ],
+        "restaurant-direct-flash": [
+          "微信图片_20260604205851_1663_464.jpg",
+          "微信图片_20260604205852_1664_464.jpg"
+        ],
+        "bookstore-headphones-lifestyle": [
+          "微信图片_20260604205853_1665_464.jpg",
+          "微信图片_20260604205854_1666_464.jpg",
+          "微信图片_20260604205855_1667_464.jpg",
+          "微信图片_20260604205856_1668_464.jpg",
+          "微信图片_20260604205857_1669_464.jpg"
+        ],
+        "window-coffee-dappled-strengthening": [
+          "微信图片_20260604205858_1670_464.jpg",
+          "微信图片_20260604205907_1680_464.jpg",
+          "微信图片_20260604205909_1681_464.jpg",
+          "微信图片_20260604205910_1682_464.jpg"
+        ],
+        "graffiti-camera-street": [
+          "微信图片_20260604205911_1683_464.jpg",
+          "微信图片_20260604205912_1684_464.jpg"
+        ]
+      }
+    },
+    "female_twilight_beam_expansion": {
+      "version": "5.9.7",
+      "title": "女性黄昏直闪与遮挡窄束光物理扩展",
+      "merge_mode": "additive-curated-extension",
+      "reference_count": 20,
+      "new_route_count": 4,
+      "strengthened_route_ids": [
+        "male-rural-goldenhour-travel-film"
+      ],
+      "scene_count": 7,
+      "wardrobe_prop_count": 10,
+      "layout_module_count": 9,
+      "lighting_count": 6,
+      "action_count": 12,
+      "principle": "Separate emitter roles, aperture paths, depth planes, exposure hierarchy, and highlight roll-off before styling."
+    },
+    "archived_reference_catalog_v5_9_7": {
+      "catalog_id": "archived-reference-v5.9.7-female-twilight-beam",
+      "source_kind": "uploaded-reference-screenshots",
+      "rights_status": "reference-only-do-not-redistribute",
+      "files": [
+        "微信图片_20260604205534_1635_464.jpg",
+        "微信图片_20260604205543_1643_464.jpg",
+        "微信图片_20260604205544_1644_464.jpg",
+        "微信图片_20260604205545_1645_464.jpg",
+        "微信图片_20260604205545_1646_464.jpg",
+        "微信图片_20260604205546_1647_464.jpg",
+        "微信图片_20260604205547_1648_464.jpg",
+        "微信图片_20260604205548_1649_464.jpg",
+        "微信图片_20260604205549_1650_464.jpg",
+        "微信图片_20260604205550_1651_464.jpg",
+        "微信图片_20260604205551_1652_464.jpg",
+        "微信图片_20260604205552_1653_464.jpg",
+        "微信图片_20260604205553_1654_464.jpg",
+        "微信图片_20260604205554_1655_464.jpg",
+        "微信图片_20260604205529_1629_464.jpg",
+        "微信图片_20260604205529_1630_464.jpg",
+        "微信图片_20260604205530_1631_464.jpg",
+        "微信图片_20260604205531_1632_464.jpg",
+        "微信图片_20260604205532_1633_464.jpg",
+        "微信图片_20260604205533_1634_464.jpg"
+      ],
+      "clusters": {
+        "occluded-warm-beam-lowkey": [
+          "微信图片_20260604205534_1635_464.jpg",
+          "微信图片_20260604205529_1629_464.jpg",
+          "微信图片_20260604205529_1630_464.jpg",
+          "微信图片_20260604205530_1631_464.jpg",
+          "微信图片_20260604205531_1632_464.jpg",
+          "微信图片_20260604205532_1633_464.jpg",
+          "微信图片_20260604205533_1634_464.jpg"
+        ],
+        "cafe-window-sunpool": [
+          "微信图片_20260604205543_1643_464.jpg",
+          "微信图片_20260604205544_1644_464.jpg"
+        ],
+        "seaside-dusk-direct-flash": [
+          "微信图片_20260604205545_1645_464.jpg",
+          "微信图片_20260604205545_1646_464.jpg",
+          "微信图片_20260604205546_1647_464.jpg"
+        ],
+        "rooftop-bluehour-rim-fill": [
+          "微信图片_20260604205547_1648_464.jpg",
+          "微信图片_20260604205548_1649_464.jpg",
+          "微信图片_20260604205549_1650_464.jpg",
+          "微信图片_20260604205550_1651_464.jpg",
+          "微信图片_20260604205551_1652_464.jpg",
+          "微信图片_20260604205552_1653_464.jpg"
+        ],
+        "male-field-chair-reinforcement": [
+          "微信图片_20260604205553_1654_464.jpg",
+          "微信图片_20260604205554_1655_464.jpg"
+        ]
+      }
+    },
+    "female_wind_motion_bedroom_expansion": {
+      "version": "5.9.8",
+      "title": "Female Wind, Motion Blur, Goldenhour Flare & Bedroom Lifestyle Physics",
+      "merge_mode": "additive-curated",
+      "reference_count": 20,
+      "new_route_count": 5,
+      "strengthened_route_ids": [
+        "female-occluded-warm-beam-lowkey"
+      ],
+      "scene_count": 6,
+      "wardrobe_prop_count": 10,
+      "layout_module_count": 13,
+      "typography_pack_count": 2,
+      "lighting_count": 6,
+      "action_count": 13,
+      "principle": "Convert wind, flare, motion blur, and lived-in bedroom light into source-traceable reusable systems rather than decorative filters."
+    },
+    "archived_reference_catalog_v5_9_8": {
+      "catalog_id": "archived-reference-catalog-v5-9-8-female-wind-motion-bedroom",
+      "source_kind": "uploaded-reference-extracted",
+      "rights_status": "archived-visual-reference-only-not-redistributed",
+      "files": [
+        "微信图片_20260604205521_1622_464.jpg",
+        "微信图片_20260604205523_1623_464.jpg",
+        "微信图片_20260604205524_1624_464.jpg",
+        "微信图片_20260604205525_1625_464.jpg",
+        "微信图片_20260604205526_1626_464.jpg",
+        "微信图片_20260604205527_1627_464.jpg",
+        "微信图片_20260604205528_1628_464.jpg",
+        "微信图片_20260604205535_1636_464.jpg",
+        "微信图片_20260604205535_1637_464.jpg",
+        "微信图片_20260604205537_1638_464.jpg",
+        "微信图片_20260604205539_1639_464.jpg",
+        "微信图片_20260604205540_1640_464.jpg",
+        "微信图片_20260604205541_1641_464.jpg",
+        "微信图片_20260604205542_1642_464.jpg",
+        "微信图片_20260604205514_1616_464.jpg",
+        "微信图片_20260604205515_1617_464.jpg",
+        "微信图片_20260604205516_1618_464.jpg",
+        "微信图片_20260604205517_1619_464.jpg",
+        "微信图片_20260604205519_1620_464.jpg",
+        "微信图片_20260604205520_1621_464.jpg"
+      ],
+      "clusters": [
+        {
+          "id": "wind-hair-closeup-cover",
+          "files": [
+            "微信图片_20260604205521_1622_464.jpg"
+          ],
+          "route_ids": [
+            "female-wind-hair-cover-closeup"
+          ]
+        },
+        {
+          "id": "lowkey-amber-hand-occluder",
+          "files": [
+            "微信图片_20260604205523_1623_464.jpg",
+            "微信图片_20260604205524_1624_464.jpg",
+            "微信图片_20260604205525_1625_464.jpg",
+            "微信图片_20260604205526_1626_464.jpg",
+            "微信图片_20260604205527_1627_464.jpg",
+            "微信图片_20260604205528_1628_464.jpg"
+          ],
+          "route_ids": [
+            "female-occluded-warm-beam-lowkey"
+          ]
+        },
+        {
+          "id": "goldenhour-backlight-flare",
+          "files": [
+            "微信图片_20260604205535_1636_464.jpg",
+            "微信图片_20260604205535_1637_464.jpg",
+            "微信图片_20260604205537_1638_464.jpg"
+          ],
+          "route_ids": [
+            "female-goldenhour-backlit-flare"
+          ]
+        },
+        {
+          "id": "dusk-pan-motionblur",
+          "files": [
+            "微信图片_20260604205539_1639_464.jpg",
+            "微信图片_20260604205540_1640_464.jpg",
+            "微信图片_20260604205541_1641_464.jpg"
+          ],
+          "route_ids": [
+            "female-dusk-motionblur-editorial"
+          ]
+        },
+        {
+          "id": "clean-sky-cover",
+          "files": [
+            "微信图片_20260604205542_1642_464.jpg",
+            "微信图片_20260604205519_1620_464.jpg",
+            "微信图片_20260604205520_1621_464.jpg"
+          ],
+          "route_ids": [
+            "female-clean-sky-wind-cover"
+          ]
+        },
+        {
+          "id": "bedroom-window-casual",
+          "files": [
+            "微信图片_20260604205514_1616_464.jpg",
+            "微信图片_20260604205515_1617_464.jpg",
+            "微信图片_20260604205516_1618_464.jpg",
+            "微信图片_20260604205517_1619_464.jpg"
+          ],
+          "route_ids": [
+            "female-bedroom-window-casual-headphones"
+          ]
+        }
+      ]
+    },
+    "female_seasonal_floral_transit_reflection_expansion": {
+      "version": "5.9.9",
+      "title": "Female Seasonal Sunlight, Floral Halo, Transit Corridor & Reflection Physics",
+      "merge_mode": "additive-curated",
+      "reference_count": 20,
+      "integrated_reference_count": 19,
+      "deferred_reference_count": 1,
+      "new_route_count": 6,
+      "strengthened_route_ids": [
+        "female-bedroom-window-casual-headphones"
+      ],
+      "scene_count": 6,
+      "wardrobe_prop_count": 10,
+      "layout_module_count": 11,
+      "typography_pack_count": 2,
+      "lighting_count": 7,
+      "action_count": 13,
+      "principle": "Convert seasonal softness, floral construction, commute geometry, mixed practicals, and reflective windows into reusable source-traceable visual systems."
+    },
+    "archived_reference_catalog_v5_9_9": {
+      "catalog_id": "archived-reference-catalog-v5-9-9-female-seasonal-floral-transit-reflection",
+      "source_kind": "uploaded-reference-extracted",
+      "rights_status": "archived-visual-reference-only-not-redistributed",
+      "files": [
+        "微信图片_20260604205509_1610_464.jpg",
+        "微信图片_20260604205510_1611_464.jpg",
+        "微信图片_20260604205511_1612_464.jpg",
+        "微信图片_20260604205512_1613_464.jpg",
+        "微信图片_20260604205513_1614_464.jpg",
+        "微信图片_20260604205514_1615_464.jpg",
+        "微信图片_20260604205454_1596_464.jpg",
+        "微信图片_20260604205456_1597_464.jpg",
+        "微信图片_20260604205457_1598_464.jpg",
+        "微信图片_20260604205458_1599_464.jpg",
+        "微信图片_20260604205459_1600_464.jpg",
+        "微信图片_20260604205500_1601_464.jpg",
+        "微信图片_20260604205501_1602_464.jpg",
+        "微信图片_20260604205502_1603_464.jpg",
+        "微信图片_20260604205502_1604_464.jpg",
+        "微信图片_20260604205503_1605_464.jpg",
+        "微信图片_20260604205505_1606_464.jpg",
+        "微信图片_20260604205506_1607_464.jpg",
+        "微信图片_20260604205507_1608_464.jpg",
+        "微信图片_20260604205508_1609_464.jpg"
+      ],
+      "clusters": [
+        {
+          "id": "winter-scarf-low-sun",
+          "files": [
+            "微信图片_20260604205509_1610_464.jpg"
+          ],
+          "route_ids": [
+            "female-winter-scarf-sunlit-closeup"
+          ]
+        },
+        {
+          "id": "forest-ribbon-softlight",
+          "files": [
+            "微信图片_20260604205510_1611_464.jpg"
+          ],
+          "route_ids": [
+            "female-forest-ribbon-softlight-fairytale"
+          ]
+        },
+        {
+          "id": "autumn-leaf-hat",
+          "files": [
+            "微信图片_20260604205511_1612_464.jpg"
+          ],
+          "route_ids": [
+            "female-autumn-leaf-hat-narrative"
+          ]
+        },
+        {
+          "id": "bedroom-reflection-reinforcement",
+          "files": [
+            "微信图片_20260604205512_1613_464.jpg",
+            "微信图片_20260604205513_1614_464.jpg",
+            "微信图片_20260604205514_1615_464.jpg"
+          ],
+          "route_ids": [
+            "female-bedroom-window-casual-headphones"
+          ]
+        },
+        {
+          "id": "vehicle-window-wind-practical",
+          "files": [
+            "微信图片_20260604205454_1596_464.jpg",
+            "微信图片_20260604205456_1597_464.jpg"
+          ],
+          "route_ids": [
+            "female-vehicle-window-wind-practical-closeup"
+          ]
+        },
+        {
+          "id": "cobalt-floral-halo",
+          "files": [
+            "微信图片_20260604205457_1598_464.jpg",
+            "微信图片_20260604205458_1599_464.jpg",
+            "微信图片_20260604205459_1600_464.jpg",
+            "微信图片_20260604205500_1601_464.jpg",
+            "微信图片_20260604205501_1602_464.jpg"
+          ],
+          "route_ids": [
+            "female-floral-halo-cobalt-editorial"
+          ]
+        },
+        {
+          "id": "deferred-male-slitlight-handoff",
+          "files": [
+            "微信图片_20260604205502_1603_464.jpg"
+          ],
+          "route_ids": [],
+          "review_status": "deferred-for-male-lowkey-extension"
+        },
+        {
+          "id": "transit-corridor-white-scarf",
+          "files": [
+            "微信图片_20260604205502_1604_464.jpg",
+            "微信图片_20260604205503_1605_464.jpg",
+            "微信图片_20260604205505_1606_464.jpg",
+            "微信图片_20260604205506_1607_464.jpg",
+            "微信图片_20260604205507_1608_464.jpg",
+            "微信图片_20260604205508_1609_464.jpg"
+          ],
+          "route_ids": [
+            "female-transit-corridor-white-scarf-commute"
+          ]
+        }
+      ]
+    },
+    "composition_perspective_editorial_expansion": {
+      "version": "5.10.0",
+      "title": "Composition & Perspective Editorial Transit Cafe Studio Expansion",
+      "merge_mode": "additive-curated",
+      "reference_count": 20,
+      "integrated_reference_count": 20,
+      "new_route_count": 8,
+      "strengthened_route_ids": [
+        "female-forest-ribbon-softlight-fairytale"
+      ],
+      "scene_count": 8,
+      "wardrobe_prop_count": 11,
+      "layout_module_count": 14,
+      "typography_pack_count": 6,
+      "lighting_count": 8,
+      "action_count": 15,
+      "perspective_profile_count": 9,
+      "principle": "Convert camera position, plane separation, projection geometry, horizon control, foreground occlusion, and typography-safe negative space into reusable visual grammar."
+    },
+    "archived_reference_catalog_v5_10_0": {
+      "catalog_id": "archived-reference-catalog-v5-10-0-composition-perspective-editorial",
+      "source_kind": "uploaded-reference-extracted",
+      "rights_status": "archived-visual-reference-only-not-redistributed",
+      "files": [
+        "微信图片_20260604205435_1576_464.jpg",
+        "微信图片_20260604205436_1577_464.jpg",
+        "微信图片_20260604205437_1578_464.jpg",
+        "微信图片_20260604205438_1579_464.jpg",
+        "微信图片_20260604205439_1580_464.jpg",
+        "微信图片_20260604205440_1581_464.jpg",
+        "微信图片_20260604205441_1582_464.jpg",
+        "微信图片_20260604205443_1583_464.jpg",
+        "微信图片_20260604205444_1584_464.jpg",
+        "微信图片_20260604205445_1585_464.jpg",
+        "微信图片_20260604205446_1586_464.jpg",
+        "微信图片_20260604205446_1587_464.jpg",
+        "微信图片_20260604205447_1588_464.jpg",
+        "微信图片_20260604205448_1589_464.jpg",
+        "微信图片_20260604205449_1590_464.jpg",
+        "微信图片_20260604205450_1591_464.jpg",
+        "微信图片_20260604205451_1592_464.jpg",
+        "微信图片_20260604205452_1593_464.jpg",
+        "微信图片_20260604205452_1594_464.jpg",
+        "微信图片_20260604205453_1595_464.jpg"
+      ],
+      "clusters": [
+        {
+          "id": "scarlet-kinetic-poster",
+          "files": [
+            "微信图片_20260604205435_1576_464.jpg"
+          ],
+          "route_ids": [
+            "female-scarlet-kinetic-typography-fashion-poster"
+          ]
+        },
+        {
+          "id": "cafe-window-refined-editorial",
+          "files": [
+            "微信图片_20260604205436_1577_464.jpg",
+            "微信图片_20260604205437_1578_464.jpg",
+            "微信图片_20260604205438_1579_464.jpg",
+            "微信图片_20260604205439_1580_464.jpg"
+          ],
+          "route_ids": [
+            "female-cafe-window-refined-editorial"
+          ]
+        },
+        {
+          "id": "forest-understory-caption-reinforcement",
+          "files": [
+            "微信图片_20260604205440_1581_464.jpg"
+          ],
+          "route_ids": [
+            "female-forest-ribbon-softlight-fairytale"
+          ]
+        },
+        {
+          "id": "urban-railing-knitwear",
+          "files": [
+            "微信图片_20260604205441_1582_464.jpg"
+          ],
+          "route_ids": [
+            "female-urban-railing-knitwear-documentary"
+          ]
+        },
+        {
+          "id": "yellow-vehicle-street",
+          "files": [
+            "微信图片_20260604205443_1583_464.jpg"
+          ],
+          "route_ids": [
+            "female-yellow-transit-street-editorial"
+          ]
+        },
+        {
+          "id": "coastal-denim-overlook",
+          "files": [
+            "微信图片_20260604205444_1584_464.jpg"
+          ],
+          "route_ids": [
+            "female-coastal-denim-overlook-wind"
+          ]
+        },
+        {
+          "id": "botanical-slitbeam-shadow",
+          "files": [
+            "微信图片_20260604205445_1585_464.jpg",
+            "微信图片_20260604205446_1586_464.jpg",
+            "微信图片_20260604205446_1587_464.jpg",
+            "微信图片_20260604205447_1588_464.jpg"
+          ],
+          "route_ids": [
+            "female-botanical-slitbeam-shadow-portrait"
+          ]
+        },
+        {
+          "id": "festival-lantern-riverside",
+          "files": [
+            "微信图片_20260604205448_1589_464.jpg"
+          ],
+          "route_ids": [
+            "female-festival-lantern-riverside-narrative"
+          ]
+        },
+        {
+          "id": "ivory-studio-floral-menswear-lookbook",
+          "files": [
+            "微信图片_20260604205449_1590_464.jpg",
+            "微信图片_20260604205450_1591_464.jpg",
+            "微信图片_20260604205451_1592_464.jpg",
+            "微信图片_20260604205452_1593_464.jpg",
+            "微信图片_20260604205452_1594_464.jpg",
+            "微信图片_20260604205453_1595_464.jpg"
+          ],
+          "route_ids": [
+            "female-ivory-studio-floral-menswear-lookbook"
+          ]
+        }
+      ]
+    }
+  }
+}

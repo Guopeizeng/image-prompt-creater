@@ -1,0 +1,5084 @@
+{
+  "module_schema": "pvos-library-module@1.0.0",
+  "module_id": "director",
+  "release_version": "5.16.1",
+  "owns": [
+    "typography_participation_modes",
+    "single_portrait_gaze_locks",
+    "single_portrait_expression_presets",
+    "single_portrait_action_blueprints",
+    "single_portrait_composition_blueprints",
+    "typography_interaction_presets",
+    "single_portrait_route_bindings"
+  ],
+  "payload": {
+    "typography_participation_modes": [
+      {
+        "id": "text-aware-base",
+        "name_zh": "仅生成干净底图",
+        "risk": "stable",
+        "default": true,
+        "generate_readable_text": false,
+        "instruction_en": "Generate a clean editorial base image without actual readable typography. Reserve intended negative-space regions for later SVG or HTML overlays. Do not generate random letters, fake captions, logos, watermarks, or poster copy."
+      },
+      {
+        "id": "layout-coupled-base",
+        "name_zh": "为后期排版调整构图",
+        "risk": "conditional",
+        "default": false,
+        "generate_readable_text": false,
+        "instruction_en": "Compose the subject, prop direction, clean silhouette, and negative space for later typography masking or layout. Do not render accurate readable text in the image."
+      },
+      {
+        "id": "experimental-in-image-type",
+        "name_zh": "实验性画面内文字",
+        "risk": "experimental",
+        "default": false,
+        "generate_readable_text": "short-decorative-only",
+        "instruction_en": "Allow only one very short decorative word, number, seal-like mark, or texture-like letterform. Treat it as a visual accent, never as reliable text rendering."
+      }
+    ],
+    "single_portrait_gaze_locks": [
+      {
+        "id": "camera-lock",
+        "name_zh": "明确看镜头",
+        "risk": "stable",
+        "instruction_en": "Lock both eyes clearly onto the lens center. Keep eye focus aligned and intentional."
+      },
+      {
+        "id": "soft-camera-lock",
+        "name_zh": "柔和看镜头",
+        "risk": "stable",
+        "instruction_en": "Look directly toward the camera with a soft, relaxed emotional surface rather than a rigid stare."
+      },
+      {
+        "id": "offframe-lock",
+        "name_zh": "明确看向画外",
+        "risk": "stable",
+        "instruction_en": "Look toward one clearly defined off-frame target. Both eyes must share the same target."
+      },
+      {
+        "id": "downward-lock",
+        "name_zh": "低头凝视",
+        "risk": "stable",
+        "instruction_en": "Lower the gaze naturally toward one readable downward target. Do not let the eyes drift ambiguously."
+      },
+      {
+        "id": "upward-offframe-lock",
+        "name_zh": "向上方画外看",
+        "risk": "conditional",
+        "instruction_en": "Lift the gaze toward one upper off-frame point while preserving a relaxed neck and readable eye direction."
+      },
+      {
+        "id": "closed-eye-expression",
+        "name_zh": "闭眼神态",
+        "risk": "stable",
+        "instruction_en": "Use an intentional closed-eye expression. Keep the eyelids relaxed and the mouth expression coherent."
+      },
+      {
+        "id": "backturn-camera-reacquire",
+        "name_zh": "身体先转，轻回头重新找到镜头",
+        "risk": "conditional",
+        "instruction_en": "Rotate the torso first, then return the head only mildly toward the camera. Preserve the shoulder line, visible neck, and natural chin alignment."
+      },
+      {
+        "id": "partner-lock",
+        "name_zh": "双人看向对方",
+        "risk": "stable",
+        "instruction_en": "For duo scenes only: both subjects clearly look toward each other."
+      },
+      {
+        "id": "asymmetric-gaze",
+        "name_zh": "一人看镜头，一人看对方",
+        "risk": "conditional",
+        "instruction_en": "For duo scenes only: one subject locks onto the camera while the other clearly looks toward the partner."
+      }
+    ],
+    "single_portrait_expression_presets": [
+      {
+        "id": "expr-neutral-editorial",
+        "name_zh": "克制编辑感",
+        "risk": "stable",
+        "instruction_en": "Use a calm editorial expression with relaxed lips and controlled facial tension."
+      },
+      {
+        "id": "expr-soft-direct-calm",
+        "name_zh": "柔和直视",
+        "risk": "stable",
+        "instruction_en": "Use a gentle direct expression with relaxed brows, soft lips, and approachable eye contact."
+      },
+      {
+        "id": "expr-downcast-narrative",
+        "name_zh": "低头叙事",
+        "risk": "stable",
+        "instruction_en": "Use a reflective, slightly inward expression with a clear downward gaze."
+      },
+      {
+        "id": "expr-candid-small-smile",
+        "name_zh": "生活化微笑",
+        "risk": "stable",
+        "instruction_en": "Use a small candid smile that feels caught rather than performed."
+      },
+      {
+        "id": "expr-offframe-contemplative",
+        "name_zh": "画外沉思",
+        "risk": "stable",
+        "instruction_en": "Use a thoughtful off-frame expression with quiet attention and no vague eye drift."
+      },
+      {
+        "id": "expr-closed-eye-poetic",
+        "name_zh": "闭眼诗意",
+        "risk": "stable",
+        "instruction_en": "Use a poetic closed-eye expression with relaxed mouth and subtle breathing."
+      },
+      {
+        "id": "expr-intense-camera-lock",
+        "name_zh": "强镜头锁定",
+        "risk": "conditional",
+        "instruction_en": "Use an intense but controlled camera-facing expression. Keep both pupils aligned and avoid exaggerated aggression."
+      },
+      {
+        "id": "expr-playful-idol",
+        "name_zh": "轻快偶像感",
+        "risk": "stable",
+        "instruction_en": "Use a playful youthful expression with readable eyes and a restrained smile."
+      },
+      {
+        "id": "expr-hk-glamour-confident",
+        "name_zh": "港风自信神态",
+        "risk": "stable",
+        "instruction_en": "Use a self-possessed Hong Kong editorial expression with a slight chin lift and controlled confidence."
+      }
+    ],
+    "single_portrait_action_blueprints": [
+      {
+        "id": "solo-still-standing-downcast",
+        "name_zh": "站立低头叙事",
+        "stability": "stable",
+        "direction_en": "Stand quietly with weight slightly settled into one leg, shoulders relaxed, chin lowered, and a restrained inward emotional tone.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-profile-negative-space",
+          "comp-wall-shadow-editorial"
+        ],
+        "compatible_style_ids": [
+          "b03-elegant-grid-fashion-collage",
+          "colorfield-fashion-cover",
+          "b02-cream-serif-clean-cover"
+        ],
+        "default_expression_preset_id": "expr-downcast-narrative",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-profile-archive-portrait",
+        "name_zh": "侧脸档案式肖像",
+        "stability": "stable",
+        "direction_en": "Use a clear side or three-quarter profile with a calm neck line and archival portrait stillness.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-profile-negative-space",
+          "comp-archive-collage-fullbody"
+        ],
+        "compatible_style_ids": [
+          "m-archive-figure",
+          "m-archive-grid",
+          "cinema-cutout"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-seated-chin-rest-direct",
+        "name_zh": "坐姿托腮正视",
+        "stability": "stable",
+        "direction_en": "Sit with one elbow supported and one hand gently resting near the cheek. Keep the fingers separated from the eye and mouth.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock",
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-editorial-close-crop",
+          "comp-text-led-cover-safe-zone"
+        ],
+        "compatible_style_ids": [
+          "b04-showa-idol-weekly-cover",
+          "b03-japanese-daily-life-magazine",
+          "airy-afternoon-mag"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Use one clearly visible support hand near the cheek without covering the eye, nose, or mouth.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-road-backturn-guitar",
+        "name_zh": "公路背身轻回望与吉他",
+        "stability": "conditional",
+        "direction_en": "Stand on a road axis with the body turned away, guitar resting clearly against the back or side, then use only a mild head return.",
+        "compatible_gaze_lock_ids": [
+          "backturn-camera-reacquire",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-road-center-backturn"
+        ],
+        "compatible_style_ids": [
+          "b05-forest-road-indie-tour-poster"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Keep the guitar readable as one coherent prop with visible strap logic.",
+        "risk_downgrade_id": "solo-profile-archive-portrait",
+        "tags": []
+      },
+      {
+        "id": "solo-magazine-over-shoulder",
+        "name_zh": "杂志式肩部轻回望",
+        "stability": "stable",
+        "direction_en": "Turn the shoulder line gently away from camera and return the face mildly toward the lens without twisting the neck.",
+        "compatible_gaze_lock_ids": [
+          "backturn-camera-reacquire",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-editorial-close-crop",
+          "comp-text-led-cover-safe-zone"
+        ],
+        "compatible_style_ids": [
+          "jp-torn-street-photo",
+          "hk-vintage-magazine",
+          "b02-cream-serif-clean-cover"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-hand-frame-face",
+        "name_zh": "单手面部框景",
+        "stability": "conditional",
+        "direction_en": "Use one hand near the outer face edge to create a graphic frame while leaving eyes, nose bridge, and mouth unobstructed.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-face-frame-center",
+          "comp-dense-cover-closeup"
+        ],
+        "compatible_style_ids": [
+          "b03-concept-word-editorial",
+          "idol-dossier-zine"
+        ],
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "hand_logic_en": "Keep the palm outside the essential facial recognition region. Fingers must remain separated and readable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": "solo-seated-chin-rest-direct",
+        "tags": []
+      },
+      {
+        "id": "solo-lying-topdown-headphones",
+        "name_zh": "俯拍躺姿与耳机",
+        "stability": "conditional",
+        "direction_en": "Use a top-down relaxed pose with headphones and a simple limb arrangement. Keep the face dominant and readable.",
+        "compatible_gaze_lock_ids": [
+          "closed-eye-expression",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-topdown-lifestyle"
+        ],
+        "compatible_style_ids": [
+          "blue-poetic-editorial-cn",
+          "airy-afternoon-mag"
+        ],
+        "default_expression_preset_id": "expr-closed-eye-poetic",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Headphones remain readable and separated from hair.",
+        "risk_downgrade_id": "solo-station-headphone-soft-direct",
+        "tags": []
+      },
+      {
+        "id": "solo-street-stall-chin-rest",
+        "name_zh": "摊位桌前双手托腮",
+        "stability": "stable",
+        "direction_en": "Sit behind a market stall counter with both hands symmetrically supporting the chin and environmental bokeh behind.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-market-stall-window-bokeh",
+          "comp-booth-window-frame"
+        ],
+        "compatible_style_ids": [
+          "hk-green-lucid-cinema",
+          "b03-hk-neon-alley-fashion"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Both hands remain visible, symmetrical, and separated from the mouth.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-wall-lean-leg-bend",
+        "name_zh": "靠墙单腿弯曲",
+        "stability": "stable",
+        "direction_en": "Lean lightly against a wall with one knee bent and shoulders relaxed. Keep the pose casual rather than rigid.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-wall-shadow-editorial",
+          "comp-vertical-wall-shadow-fashion"
+        ],
+        "compatible_style_ids": [
+          "b03-hk-neon-alley-fashion",
+          "b04-redblack-prop-fashion-cover"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-alley-walk-backturn",
+        "name_zh": "巷道行走中自然回头",
+        "stability": "conditional",
+        "direction_en": "Walk through an alley and return the face only mildly toward camera while the torso continues forward.",
+        "compatible_gaze_lock_ids": [
+          "backturn-camera-reacquire"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-motion-blur-backturn",
+          "comp-night-market-signage-fullbody"
+        ],
+        "compatible_style_ids": [
+          "b03-hk-neon-alley-fashion",
+          "b02-urban-motion-blur-editorial"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": "solo-night-market-stride-camera-lock",
+        "tags": []
+      },
+      {
+        "id": "solo-blue-poetic-seated-offframe",
+        "name_zh": "蓝调坐姿画外凝视",
+        "stability": "stable",
+        "direction_en": "Sit in a cool-toned environment with one quiet hand placement and a single off-frame gaze target.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-station-blue-collage",
+          "comp-profile-negative-space"
+        ],
+        "compatible_style_ids": [
+          "blue-poetic-editorial-cn",
+          "b02-japanese-campus-photozine"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-neon-wall-hand-near-mouth",
+        "name_zh": "霓虹靠墙手靠近嘴部",
+        "stability": "conditional",
+        "direction_en": "Lean against a neon-lit wall with one hand near but not covering the mouth. Keep face, jawline, and neck fully readable.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-wall-shadow-editorial",
+          "comp-night-market-signage-fullbody"
+        ],
+        "compatible_style_ids": [
+          "b03-hk-neon-alley-fashion",
+          "b02-neon-rainy-shopwindow"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "The hand may approach the lower face but must not obscure lips, nose, or jawline.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": "solo-wall-lean-leg-bend",
+        "tags": []
+      },
+      {
+        "id": "solo-market-stall-downcast-working",
+        "name_zh": "夜市摊位低头操作",
+        "stability": "stable",
+        "direction_en": "Work naturally at a night-market stall with a readable downward task and soft environmental blur.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-market-stall-window-bokeh"
+        ],
+        "compatible_style_ids": [
+          "hk-green-lucid-cinema",
+          "b03-hk-neon-alley-fashion"
+        ],
+        "default_expression_preset_id": "expr-downcast-narrative",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use only one clear task prop or food preparation surface.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-editorial-wall-lean-downcast",
+        "name_zh": "靠墙侧身低头编辑感",
+        "stability": "stable",
+        "direction_en": "Stand in a side-oriented wall lean with a relaxed shoulder line and restrained downward expression.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-vertical-wall-shadow-fashion",
+          "comp-wall-shadow-editorial"
+        ],
+        "compatible_style_ids": [
+          "b03-elegant-grid-fashion-collage",
+          "colorfield-fashion-cover"
+        ],
+        "default_expression_preset_id": "expr-downcast-narrative",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-hand-in-hair-editorial",
+        "name_zh": "单手扶发编辑姿态",
+        "stability": "conditional",
+        "direction_en": "Raise one hand into the hair or above the head while preserving a long neck and clean shoulder line.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock",
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-vertical-wall-shadow-fashion",
+          "comp-dense-cover-closeup"
+        ],
+        "compatible_style_ids": [
+          "b03-elegant-grid-fashion-collage",
+          "b04-redblack-prop-fashion-cover"
+        ],
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "hand_logic_en": "Hand touches hair or crown, never grips the neck or compresses the shoulder.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": "solo-editorial-wall-lean-downcast",
+        "tags": []
+      },
+      {
+        "id": "solo-curled-floor-side-gaze",
+        "name_zh": "地面蜷坐侧向凝视",
+        "stability": "conditional",
+        "direction_en": "Use a low curled seated posture with a readable side gaze and clearly separated limbs.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-text-led-cover-safe-zone"
+        ],
+        "compatible_style_ids": [
+          "b03-elegant-grid-fashion-collage",
+          "idol-dossier-zine"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": "solo-blue-poetic-seated-offframe",
+        "tags": []
+      },
+      {
+        "id": "solo-knee-up-fashion-standing",
+        "name_zh": "轻抬单腿时装站姿",
+        "stability": "stable",
+        "direction_en": "Stand with one knee lightly raised to create rhythm while maintaining a readable silhouette and relaxed torso.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-vertical-wall-shadow-fashion"
+        ],
+        "compatible_style_ids": [
+          "b04-redblack-prop-fashion-cover",
+          "colorfield-fashion-cover"
+        ],
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-close-cover-direct-gaze",
+        "name_zh": "正面大头封面镜头锁定",
+        "stability": "stable",
+        "direction_en": "Use a clean face-dominant close crop with both eyes clearly aligned toward the camera.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-dense-cover-closeup",
+          "comp-editorial-close-crop"
+        ],
+        "compatible_style_ids": [
+          "b04-showa-idol-weekly-cover",
+          "hk-vintage-magazine",
+          "colorfield-fashion-cover"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-hat-over-shoulder-profile",
+        "name_zh": "帽檐与肩部回望",
+        "stability": "conditional",
+        "direction_en": "Use a mild over-shoulder profile with one hat brim framing the upper silhouette without covering the eyes.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "backturn-camera-reacquire"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-editorial-close-crop"
+        ],
+        "compatible_style_ids": [
+          "hk-vintage-magazine",
+          "b04-redblack-prop-fashion-cover"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Hat brim remains above the eyes and does not obscure facial identity.",
+        "risk_downgrade_id": "solo-magazine-over-shoulder",
+        "tags": []
+      },
+      {
+        "id": "solo-dual-hand-face-frame",
+        "name_zh": "双手围脸图形框景",
+        "stability": "conditional",
+        "direction_en": "Use both hands to create a graphic frame around the face while preserving the full facial recognition region.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-face-frame-center"
+        ],
+        "compatible_style_ids": [
+          "b03-concept-word-editorial",
+          "idol-dossier-zine"
+        ],
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "hand_logic_en": "Both palms remain outside the eyes, nose bridge, and mouth. Fingers must remain separated.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": "solo-hand-frame-face",
+        "tags": []
+      },
+      {
+        "id": "solo-cheek-rest-idol-cover",
+        "name_zh": "单手托腮偶像封面",
+        "stability": "stable",
+        "direction_en": "Use one gentle cheek-rest hand and a youthful cover expression with open eye contact.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-dense-cover-closeup",
+          "comp-text-led-cover-safe-zone"
+        ],
+        "compatible_style_ids": [
+          "b04-heisei-kawaii-floral-magazine",
+          "idol-dossier-zine"
+        ],
+        "default_expression_preset_id": "expr-playful-idol",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-gothic-stage-fullbody-lean",
+        "name_zh": "暗黑舞台全身侧倚",
+        "stability": "conditional",
+        "direction_en": "Use one full-body side lean with a long garment silhouette and controlled stage attitude.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-stage-fullbody-collage"
+        ],
+        "compatible_style_ids": [
+          "b02-blueblack-dirtywork-altgoth",
+          "b03-retro-underground-gig-poster"
+        ],
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": "solo-wall-lean-leg-bend",
+        "tags": []
+      },
+      {
+        "id": "solo-helmet-close-direct",
+        "name_zh": "头盔护目镜近景",
+        "stability": "conditional",
+        "direction_en": "Use a face-dominant helmet or visor close-up with clear eyes and readable facial geometry.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-object-led-closeup"
+        ],
+        "compatible_style_ids": [
+          "b02-cyber-visor-manifesto",
+          "u-visor-zine"
+        ],
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Helmet or visor must remain readable, transparent enough for facial identity, and anatomically fitted.",
+        "risk_downgrade_id": "solo-close-cover-direct-gaze",
+        "tags": []
+      },
+      {
+        "id": "solo-skate-low-angle-seated",
+        "name_zh": "滑板低机位坐姿",
+        "stability": "conditional",
+        "direction_en": "Sit low with skateboard readable in the foreground and one shoe closer to camera while keeping the face unobstructed.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-low-angle-skate-foreshortening"
+        ],
+        "compatible_style_ids": [
+          "jp-skate-boom"
+        ],
+        "default_expression_preset_id": "expr-playful-idol",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Board, shoe, and body planes remain separated and readable.",
+        "risk_downgrade_id": "solo-knee-up-fashion-standing",
+        "tags": []
+      },
+      {
+        "id": "solo-skate-crouch-dynamic",
+        "name_zh": "滑板蹲姿动态",
+        "stability": "conditional",
+        "direction_en": "Use a single clear crouched skate action with one board and readable limb separation.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-low-angle-skate-foreshortening"
+        ],
+        "compatible_style_ids": [
+          "jp-skate-boom"
+        ],
+        "default_expression_preset_id": "expr-playful-idol",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use exactly one skateboard. Keep wheels, board edge, and hands coherent.",
+        "risk_downgrade_id": "solo-skate-low-angle-seated",
+        "tags": []
+      },
+      {
+        "id": "solo-skate-foreshortened-foot",
+        "name_zh": "滑板鞋底极端透视",
+        "stability": "experimental",
+        "direction_en": "Use an experimental skate low-angle crop with one exaggerated foreground shoe while preserving a readable face and board.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-low-angle-skate-foreshortening"
+        ],
+        "compatible_style_ids": [
+          "jp-skate-boom"
+        ],
+        "default_expression_preset_id": "expr-playful-idol",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use one foreground shoe and one skateboard with strict plane separation.",
+        "risk_downgrade_id": "solo-skate-low-angle-seated",
+        "tags": []
+      },
+      {
+        "id": "solo-mic-performance-uplift",
+        "name_zh": "麦克风舞台表演",
+        "stability": "conditional",
+        "direction_en": "Perform with one microphone near but not covering the mouth, one expressive free hand, and a readable stage silhouette.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "upward-offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-stage-fullbody-collage",
+          "comp-object-led-closeup"
+        ],
+        "compatible_style_ids": [
+          "b05-darkglass-music-daily-cover",
+          "b03-retro-underground-gig-poster"
+        ],
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "hand_logic_en": "Microphone stays beside the mouth, not across the face.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use exactly one microphone with readable grip and cable logic when applicable.",
+        "risk_downgrade_id": "solo-gothic-stage-fullbody-lean",
+        "tags": []
+      },
+      {
+        "id": "solo-field-fabric-wind-downcast",
+        "name_zh": "旷野薄纱与麦穗低头",
+        "stability": "conditional",
+        "direction_en": "Stand in an open field with fabric and wheat moving around the silhouette while the gaze remains downward or eyes softly closed.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock",
+          "closed-eye-expression"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-field-fabric-motion"
+        ],
+        "compatible_style_ids": [
+          "nature-digital-veil",
+          "love-openfield"
+        ],
+        "default_expression_preset_id": "expr-closed-eye-poetic",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Fabric remains layered around the body and never covers the face.",
+        "risk_downgrade_id": "solo-still-standing-downcast",
+        "tags": []
+      },
+      {
+        "id": "solo-lifestyle-squat-eating-direct",
+        "name_zh": "日常蹲坐进食抓拍",
+        "stability": "stable",
+        "direction_en": "Use a low seated or squat posture while eating naturally. Keep the food prop, utensil, hands, and face clearly readable.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock",
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-lifestyle-candid-cover"
+        ],
+        "compatible_style_ids": [
+          "b03-japanese-daily-life-magazine",
+          "airy-afternoon-mag"
+        ],
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "hand_logic_en": "One hand supports a bowl or plate; one hand holds a utensil. Keep both away from the face.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use one readable food plate or bowl and one utensil.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-transit-strap-hold-soft-direct",
+        "name_zh": "通勤吊环柔和直视",
+        "stability": "stable",
+        "direction_en": "Hold a transit strap naturally with one or both hands above the shoulder line. Keep the face clear between foreground handles.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-transit-handle-framing"
+        ],
+        "compatible_style_ids": [
+          "b02-japanese-campus-photozine",
+          "airy-afternoon-mag"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Hands hold transit straps with readable grip. Keep straps away from eyes and mouth.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use one or two transit straps as environmental framing.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-hk-glamour-head-tilt-cover",
+        "name_zh": "港风轻抬下巴封面",
+        "stability": "stable",
+        "direction_en": "Use a close Hong Kong vintage editorial portrait with a slight chin lift, mild head tilt, and preserved long neck.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-hk-vintage-masthead-close"
+        ],
+        "compatible_style_ids": [
+          "hk-vintage-magazine",
+          "b03-hk-neon-alley-fashion"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-night-market-stride-camera-lock",
+        "name_zh": "夜市街头驻足或行走",
+        "stability": "stable",
+        "direction_en": "Use a full-body night-market stance or slow stride with one leg leading, relaxed arms, and a coherent coat silhouette.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-night-market-signage-fullbody"
+        ],
+        "compatible_style_ids": [
+          "b03-hk-neon-alley-fashion",
+          "b02-neon-rainy-shopwindow",
+          "hk-green-lucid-cinema"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-doorway-two-arm-brace-prop",
+        "name_zh": "门廊双臂撑开与菜单道具",
+        "stability": "conditional",
+        "direction_en": "Use a doorway plane with arms separated across the frame. One hand may hold a paper menu or newspaper.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-doorway-prop-spread"
+        ],
+        "compatible_style_ids": [
+          "b03-hk-neon-alley-fashion",
+          "hk-green-lucid-cinema"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Both hands remain visible and explainable. Only one hand holds the paper prop.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use one menu or newspaper with readable physical logic, but no readable copied text.",
+        "risk_downgrade_id": "solo-night-market-stride-camera-lock",
+        "tags": []
+      },
+      {
+        "id": "solo-balcony-jacket-lift-downcast",
+        "name_zh": "高处披肩提举低头",
+        "stability": "conditional",
+        "direction_en": "Lift a jacket or coat behind the shoulders with both elbows separated while looking down or toward one off-frame target.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-balcony-overlook-jacket-motion"
+        ],
+        "compatible_style_ids": [
+          "b03-hk-neon-alley-fashion",
+          "b02-urban-motion-blur-editorial"
+        ],
+        "default_expression_preset_id": "expr-downcast-narrative",
+        "hand_logic_en": "Hands grip fabric edges, not collar or neck.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use one jacket or coat as a readable motion layer.",
+        "risk_downgrade_id": "solo-night-market-stride-camera-lock",
+        "tags": []
+      },
+      {
+        "id": "solo-side-profile-run-trailing-fabric",
+        "name_zh": "侧向跑动衣摆拖尾",
+        "stability": "stable",
+        "direction_en": "Run in side profile with one knee forward, a readable arm rhythm, and fabric trailing behind as a separate layer.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-runner-cutout-editorial"
+        ],
+        "compatible_style_ids": [
+          "b02-urban-motion-blur-editorial",
+          "nature-digital-veil",
+          "love-openfield"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use fabric trail only when it remains clearly separated from the legs.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-station-headphone-soft-direct",
+        "name_zh": "蓝调车站耳机肖像",
+        "stability": "stable",
+        "direction_en": "Use a blue-toned station or overpass portrait with one hand near the headphone cup and a soft direct gaze.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-station-blue-collage"
+        ],
+        "compatible_style_ids": [
+          "b02-japanese-campus-photozine",
+          "blue-poetic-editorial-cn"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "One hand may touch the headphone cup, never the face.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use headphones as one coherent prop.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-turtleneck-shoulder-turn-direct",
+        "name_zh": "高领肩部轻回转",
+        "stability": "stable",
+        "direction_en": "Turn the body slightly away and return one shoulder toward camera. Keep the high-neck garment below the jawline.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-minimal-green-label-cover"
+        ],
+        "compatible_style_ids": [
+          "colorfield-fashion-cover",
+          "b02-cream-serif-clean-cover",
+          "b03-elegant-grid-fashion-collage"
+        ],
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "hand_logic_en": "Keep hands readable and anatomically explainable.",
+        "neck_safety_en": "Keep the neck fully visible and naturally connected to the shoulders.",
+        "prop_logic_en": "Use no unexplained props.",
+        "risk_downgrade_id": null,
+        "tags": []
+      },
+      {
+        "id": "solo-graduation-wave-folder-hold",
+        "name_zh": "毕业抱册挥手",
+        "stability": "stable",
+        "direction_en": "Hold a diploma folder close to the torso and lift the free hand in a natural wave.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-sunlit-negative-space"
+        ],
+        "compatible_style_ids": [
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Keep the waving fingers separated and readable.",
+        "neck_safety_en": "Keep the neck and shoulders open.",
+        "prop_logic_en": "Use one diploma folder only.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "graduation"
+        ]
+      },
+      {
+        "id": "solo-graduation-cap-raised",
+        "name_zh": "毕业举帽庆祝",
+        "stability": "conditional",
+        "direction_en": "Raise the academic cap above the head with a clean elbow line.",
+        "compatible_gaze_lock_ids": [
+          "upward-offframe-lock",
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-forest-vertical-frame"
+        ],
+        "compatible_style_ids": [
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "hand_logic_en": "Keep the raised hand and cap clearly separated from the head.",
+        "neck_safety_en": "Do not compress the shoulder into the neck.",
+        "prop_logic_en": "Use one cap; keep tassel simple.",
+        "risk_downgrade_id": "solo-graduation-wave-folder-hold",
+        "tags": [
+          "graduation"
+        ]
+      },
+      {
+        "id": "solo-graduation-bouquet-soft-direct",
+        "name_zh": "毕业花束柔和正视",
+        "stability": "stable",
+        "direction_en": "Hold a soft bouquet below the chest and look gently toward camera.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock",
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-sunlit-negative-space"
+        ],
+        "compatible_style_ids": [
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Keep both hands visible around the bouquet.",
+        "neck_safety_en": "Do not let flowers cover the neck or jaw.",
+        "prop_logic_en": "Keep bouquet proportional.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "graduation"
+        ]
+      },
+      {
+        "id": "solo-graduation-bouquet-profile",
+        "name_zh": "毕业花束侧脸停驻",
+        "stability": "stable",
+        "direction_en": "Use a side or three-quarter profile with the bouquet below shoulder level.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "upward-offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-sunlit-negative-space"
+        ],
+        "compatible_style_ids": [
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep the bouquet hand relaxed.",
+        "neck_safety_en": "Keep the profile neck line fully visible.",
+        "prop_logic_en": "Use one soft bouquet.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "graduation"
+        ]
+      },
+      {
+        "id": "solo-graduation-stairwell-backturn",
+        "name_zh": "毕业楼梯轻回望",
+        "stability": "stable",
+        "direction_en": "Rest one hand on the railing, turn the torso first, and use only a mild neck return toward camera.",
+        "compatible_gaze_lock_ids": [
+          "backturn-camera-reacquire",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-stairwell-depth"
+        ],
+        "compatible_style_ids": [
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "The railing hand must be anatomically explainable.",
+        "neck_safety_en": "Body rotation precedes neck rotation; keep neck complete.",
+        "prop_logic_en": "Use railing only.",
+        "risk_downgrade_id": "solo-magazine-over-shoulder",
+        "tags": [
+          "graduation"
+        ]
+      },
+      {
+        "id": "solo-graduation-stair-descent-downcast",
+        "name_zh": "毕业楼梯缓慢下行",
+        "stability": "stable",
+        "direction_en": "Walk slowly down stairs with one hand on the rail and one prop in the other hand.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-stairwell-depth"
+        ],
+        "compatible_style_ids": [
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "default_expression_preset_id": "expr-downcast-narrative",
+        "hand_logic_en": "Keep the rail hand and prop hand distinct.",
+        "neck_safety_en": "Keep the head aligned with the walking torso.",
+        "prop_logic_en": "Use bouquet or folder, not both.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "graduation"
+        ]
+      },
+      {
+        "id": "solo-graduation-window-notebook",
+        "name_zh": "毕业窗边持册凝视",
+        "stability": "stable",
+        "direction_en": "Sit or lean at a classroom window holding one notebook and looking outward.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-classroom-window"
+        ],
+        "compatible_style_ids": [
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep notebook hand readable and away from face.",
+        "neck_safety_en": "Keep shoulder and neck line natural.",
+        "prop_logic_en": "Use notebook only.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "graduation"
+        ]
+      },
+      {
+        "id": "solo-graduation-lecturehall-chin-rest",
+        "name_zh": "讲堂毕业轻托腮",
+        "stability": "conditional",
+        "direction_en": "Sit among lecture-hall seats with chin near folded arms or one hand.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-lecturehall-depth"
+        ],
+        "compatible_style_ids": [
+          "graduation-campus-memory-film"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Keep hand-jaw boundary clean.",
+        "neck_safety_en": "Do not collapse the neck into the arms.",
+        "prop_logic_en": "Use seats only.",
+        "risk_downgrade_id": "solo-graduation-window-folder-hold",
+        "tags": [
+          "graduation",
+          "supplement"
+        ]
+      },
+      {
+        "id": "solo-graduation-meadow-seated-folder",
+        "name_zh": "毕业草地坐姿持册",
+        "stability": "stable",
+        "direction_en": "Sit naturally on a meadow or field edge with one folder near the lap.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock",
+          "offframe-lock",
+          "closed-eye-expression"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-meadow-wide"
+        ],
+        "compatible_style_ids": [
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "default_expression_preset_id": "expr-downcast-narrative",
+        "hand_logic_en": "Keep knees, ankles, and folder hand clearly separated.",
+        "neck_safety_en": "Keep torso upright enough to preserve neck visibility.",
+        "prop_logic_en": "Use one folder or book.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "graduation"
+        ]
+      },
+      {
+        "id": "solo-graduation-fence-upward-gaze",
+        "name_zh": "毕业围栏向上凝望",
+        "stability": "stable",
+        "direction_en": "Stand beside a fence or tree line and direct gaze upward while holding a bouquet close to the torso.",
+        "compatible_gaze_lock_ids": [
+          "upward-offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-forest-vertical-frame"
+        ],
+        "compatible_style_ids": [
+          "graduation-sunlit-campus-documentary",
+          "graduation-campus-memory-film",
+          "graduation-architectural-quiet",
+          "graduation-forest-poetic"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep bouquet arms readable.",
+        "neck_safety_en": "Avoid overextending the neck; use a mild chin lift only.",
+        "prop_logic_en": "Use one bouquet.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "graduation"
+        ]
+      },
+      {
+        "id": "solo-mature-chair-neck-rest",
+        "name_zh": "成熟皮椅轻托颈",
+        "stability": "stable",
+        "direction_en": "Lean beside one leather chair arm and rest one hand lightly near the neck side.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-mature-chair-side-negative"
+        ],
+        "compatible_style_ids": [
+          "female-mature-quiet-luxury-studio"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Keep fingers relaxed and separate from jaw.",
+        "neck_safety_en": "Do not compress the neck or cover the jaw-neck transition.",
+        "prop_logic_en": "Use only the chair arm as the grounding prop.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "mature-woman"
+        ]
+      },
+      {
+        "id": "solo-mature-textured-hand-hip",
+        "name_zh": "成熟肌理墙手扶腰",
+        "stability": "stable",
+        "direction_en": "Stand against a textured wall with one hand resting naturally at the waist.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-mature-textured-wall-editorial"
+        ],
+        "compatible_style_ids": [
+          "female-mature-textured-daily-editorial"
+        ],
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "hand_logic_en": "Keep the waist hand natural and readable.",
+        "neck_safety_en": "Maintain a relaxed shoulder-neck line.",
+        "prop_logic_en": "No extra props.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "mature-woman"
+        ]
+      },
+      {
+        "id": "solo-mature-textured-cheek-rest",
+        "name_zh": "成熟肌理墙托腮",
+        "stability": "conditional",
+        "direction_en": "Use a seated cheek-rest pose with one clean hand-face boundary.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-mature-textured-wall-editorial"
+        ],
+        "compatible_style_ids": [
+          "female-mature-textured-daily-editorial"
+        ],
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "hand_logic_en": "Do not merge fingers into cheek or hide the jaw.",
+        "neck_safety_en": "Keep neck visible.",
+        "prop_logic_en": "No extra props.",
+        "risk_downgrade_id": "solo-mature-textured-hand-hip",
+        "tags": [
+          "mature-woman"
+        ]
+      },
+      {
+        "id": "solo-executive-city-walk",
+        "name_zh": "职业女性城市通勤",
+        "stability": "stable",
+        "direction_en": "Walk naturally while holding one coffee cup and one briefcase.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-executive-street-walk"
+        ],
+        "compatible_style_ids": [
+          "female-urban-executive-film"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Use one prop per hand and keep grip readable.",
+        "neck_safety_en": "Avoid stiff neck or mannequin stride.",
+        "prop_logic_en": "Use generic coffee cup and briefcase only.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "mature-woman"
+        ]
+      },
+      {
+        "id": "solo-suit-studio-pocket",
+        "name_zh": "松弛西装插袋站姿",
+        "stability": "stable",
+        "direction_en": "Stand in a black suit with relaxed pocket stance and clear shoulder line.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-suit-neutral-gray-studio"
+        ],
+        "compatible_style_ids": [
+          "female-androgynous-suit-editorial"
+        ],
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "hand_logic_en": "Keep pockets and hands plausible.",
+        "neck_safety_en": "Keep collar, tie, and neck readable.",
+        "prop_logic_en": "No extra props.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "mature-woman"
+        ]
+      },
+      {
+        "id": "solo-suit-stair-cheek-rest",
+        "name_zh": "楼梯西装托腮坐姿",
+        "stability": "conditional",
+        "direction_en": "Sit on stairs with one hand supporting the cheek lightly.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-suit-neutral-gray-studio"
+        ],
+        "compatible_style_ids": [
+          "female-androgynous-suit-editorial"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Keep elbow, wrist, and fingers distinct.",
+        "neck_safety_en": "Do not compress neck.",
+        "prop_logic_en": "Use stair rail only as background.",
+        "risk_downgrade_id": "solo-suit-studio-pocket",
+        "tags": [
+          "mature-woman"
+        ]
+      },
+      {
+        "id": "solo-suit-red-disc-tie-adjust",
+        "name_zh": "红日圆盘整理领带",
+        "stability": "conditional",
+        "direction_en": "Stand against one red disc and adjust the tie while looking downward.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-red-disc-shadow-stage"
+        ],
+        "compatible_style_ids": [
+          "female-androgynous-suit-editorial"
+        ],
+        "default_expression_preset_id": "expr-downcast-narrative",
+        "hand_logic_en": "Keep tie-adjust fingers clear.",
+        "neck_safety_en": "Keep jaw and collar readable.",
+        "prop_logic_en": "Use one red disc only.",
+        "risk_downgrade_id": "solo-suit-studio-pocket",
+        "tags": [
+          "mature-woman"
+        ]
+      },
+      {
+        "id": "solo-graduation-window-folder-hold",
+        "name_zh": "教室窗边抱册",
+        "stability": "stable",
+        "direction_en": "Stand beside the classroom window while holding one folder and optional earphones.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-classroom-window"
+        ],
+        "compatible_style_ids": [
+          "graduation-campus-memory-film"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Keep folder arms readable and cable away from face.",
+        "neck_safety_en": "Preserve neck and shoulders.",
+        "prop_logic_en": "Use folder and restrained earphones.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "graduation",
+          "supplement"
+        ]
+      },
+      {
+        "id": "solo-graduation-window-notebook-offframe",
+        "name_zh": "教室窗边持册画外凝望",
+        "stability": "stable",
+        "direction_en": "Sit at the classroom window with one notebook and a coherent off-frame gaze.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graduation-classroom-window"
+        ],
+        "compatible_style_ids": [
+          "graduation-campus-memory-film"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep notebook and free hand simple.",
+        "neck_safety_en": "Preserve neck line.",
+        "prop_logic_en": "Use notebook and restrained earphones.",
+        "risk_downgrade_id": null,
+        "tags": [
+          "graduation",
+          "supplement"
+        ]
+      },
+      {
+        "id": "solo-male-window-coffee-sip",
+        "name_zh": "男性窗边饮咖啡",
+        "stability": "stable",
+        "direction_en": "Sit beside a window and sip one ceramic cup with a readable handle.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-window-morning-table"
+        ],
+        "compatible_style_ids": [
+          "male-window-morning-lifestyle"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep cup handle, fingers, and wrist readable.",
+        "neck_safety_en": "Keep jaw and neck complete.",
+        "prop_logic_en": "Use one ceramic cup only.",
+        "compatible_lighting_profile_ids": [
+          "phys-window-direct-sun",
+          "phys-window-diffused-daylight"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "daily-lighting"
+        ]
+      },
+      {
+        "id": "solo-male-piano-offframe",
+        "name_zh": "男性旧钢琴画外凝望",
+        "stability": "stable",
+        "direction_en": "Pause near dark wood interior with one coherent off-frame gaze.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-piano-map-close"
+        ],
+        "compatible_style_ids": [
+          "male-window-morning-lifestyle"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Keep the near hand simple.",
+        "neck_safety_en": "Preserve side neck line.",
+        "prop_logic_en": "No extra prop required.",
+        "compatible_lighting_profile_ids": [
+          "phys-window-diffused-daylight"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "daily-lighting"
+        ]
+      },
+      {
+        "id": "solo-male-field-backpack-walk",
+        "name_zh": "男性旷野背包步行",
+        "stability": "stable",
+        "direction_en": "Walk through the field with one backpack strap and natural pace.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-rural-trainline-wide"
+        ],
+        "compatible_style_ids": [
+          "male-rural-goldenhour-travel-film"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Use one shoulder strap only.",
+        "neck_safety_en": "Keep shoulders relaxed and neck complete.",
+        "prop_logic_en": "Optional backpack strap.",
+        "compatible_lighting_profile_ids": [
+          "phys-goldenhour-back-side"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "daily-lighting"
+        ]
+      },
+      {
+        "id": "solo-male-field-ukulele",
+        "name_zh": "男性旷野持琴",
+        "stability": "stable",
+        "direction_en": "Hold one small wooden instrument in the field.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-rural-trainline-wide"
+        ],
+        "compatible_style_ids": [
+          "male-rural-goldenhour-travel-film"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Both hands must explain the instrument hold.",
+        "neck_safety_en": "Preserve neck and shoulder line.",
+        "prop_logic_en": "Use one small instrument.",
+        "compatible_lighting_profile_ids": [
+          "phys-goldenhour-back-side"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "daily-lighting"
+        ]
+      },
+      {
+        "id": "solo-male-night-backturn",
+        "name_zh": "男性夜路轻回望",
+        "stability": "conditional",
+        "direction_en": "Body turns first, neck reacquires camera lightly, background remains dynamic.",
+        "compatible_gaze_lock_ids": [
+          "backturn-camera-reacquire"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-neon-road-backturn"
+        ],
+        "compatible_style_ids": [
+          "male-night-neon-transit-film"
+        ],
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "hand_logic_en": "Keep backpack grip simple if present.",
+        "neck_safety_en": "No extreme neck twist.",
+        "prop_logic_en": "Optional backpack strap.",
+        "compatible_lighting_profile_ids": [
+          "phys-neon-urban-reflected"
+        ],
+        "risk_downgrade_id": "solo-male-field-backpack-walk",
+        "tags": [
+          "daily-lighting"
+        ]
+      },
+      {
+        "id": "solo-female-doorway-threshold",
+        "name_zh": "女性门框青橙倚靠",
+        "stability": "stable",
+        "direction_en": "Stand or lean in a doorway while respecting the cool-warm boundary.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-doorway-threshold-fullbody"
+        ],
+        "compatible_style_ids": [
+          "female-cyan-amber-threshold-noir"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Hands relaxed or in pockets.",
+        "neck_safety_en": "Keep collar and neck readable.",
+        "prop_logic_en": "No cigarette dependency.",
+        "compatible_lighting_profile_ids": [
+          "phys-cyan-amber-threshold-mixed"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "daily-lighting"
+        ]
+      },
+      {
+        "id": "solo-female-stairwell-lowangle",
+        "name_zh": "女性楼梯低机位",
+        "stability": "conditional",
+        "direction_en": "Use a low-angle stairwell portrait with railing below the critical face region.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-stairwell-rail-lowangle"
+        ],
+        "compatible_style_ids": [
+          "female-stairwell-satin-evening"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Keep active hand minimal.",
+        "neck_safety_en": "Preserve shoulder-neck anatomy under low angle.",
+        "prop_logic_en": "Use railing as foreground only.",
+        "compatible_lighting_profile_ids": [
+          "phys-warm-practical-stairwell"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "daily-lighting"
+        ]
+      },
+      {
+        "id": "solo-female-jewelry-pearl",
+        "name_zh": "女性暖夜珍珠持链",
+        "stability": "stable",
+        "direction_en": "Hold one pearl strand near the face with a clean gesture.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-night-jewelry-close"
+        ],
+        "compatible_style_ids": [
+          "female-amber-jewelry-night-editorial"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Keep finger contacts readable.",
+        "neck_safety_en": "Preserve jaw-hand separation.",
+        "prop_logic_en": "One pearl strand only.",
+        "compatible_lighting_profile_ids": [
+          "phys-amber-jewelry-soft"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "daily-lighting"
+        ]
+      },
+      {
+        "id": "solo-female-stool-rose-neckrest",
+        "name_zh": "女性坐凳玫瑰轻托颈",
+        "stability": "conditional",
+        "direction_en": "Sit on one stool with roses held low and one hand near the neck.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-stool-sunpatch-rose"
+        ],
+        "compatible_style_ids": [
+          "female-androgynous-suit-editorial"
+        ],
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "hand_logic_en": "Keep rose grip and neck-rest hand separate.",
+        "neck_safety_en": "Do not compress neck.",
+        "prop_logic_en": "Use one small rose bouquet.",
+        "compatible_lighting_profile_ids": [
+          "phys-studio-sunpatch-directional"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "daily-lighting"
+        ]
+      },
+      {
+        "id": "solo-male-hard-window-editorial",
+        "name_zh": "硬窗光编辑姿态",
+        "stability": "conditional",
+        "direction_en": "Use a relaxed couch or wall pose with hand-near-face variation while preserving readable eyes and connected shadow geometry.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock",
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-hard-window-editorial-close",
+          "comp-hard-window-lounge-magazine"
+        ],
+        "compatible_style_ids": [
+          "male-hard-window-editorial-lounge"
+        ],
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "hand_logic_en": "Hands may shield light, support cheek, or approach lower face; fingers remain separated.",
+        "neck_safety_en": "Keep neck visible; do not compress shoulder into jaw.",
+        "prop_logic_en": "One magazine optional.",
+        "compatible_lighting_profile_ids": [
+          "phys-hard-window-occluder-stripe"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "male-daily-editorial"
+        ]
+      },
+      {
+        "id": "solo-male-restaurant-direct-flash",
+        "name_zh": "餐桌直闪纪实姿态",
+        "stability": "conditional",
+        "direction_en": "Use a snapshot table interaction with compact camera or simple food props.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-direct-flash-overhead-table"
+        ],
+        "compatible_style_ids": [
+          "male-direct-flash-dining-candid"
+        ],
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "hand_logic_en": "Grip camera or food props with separated fingers.",
+        "neck_safety_en": "Turn upper torso before neck when reacquiring overhead camera.",
+        "prop_logic_en": "Use one coherent prop theme per image.",
+        "compatible_lighting_profile_ids": [
+          "phys-direct-camera-flash-room-ambient"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "male-daily-editorial"
+        ]
+      },
+      {
+        "id": "solo-male-bookstore-headphones",
+        "name_zh": "书店耳机生活姿态",
+        "stability": "stable",
+        "direction_en": "Use a relaxed bookstore pose with headphones, open book, or outdoor crouch.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-bookstore-headphone-casual"
+        ],
+        "compatible_style_ids": [
+          "male-bookstore-headphones-lifestyle"
+        ],
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "hand_logic_en": "Hands may touch headphones or hold one book.",
+        "neck_safety_en": "Keep shoulders loose and neck complete.",
+        "prop_logic_en": "Headphones and book remain physically separate.",
+        "compatible_lighting_profile_ids": [
+          "phys-library-daylight-practical-mix"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "male-daily-editorial"
+        ]
+      },
+      {
+        "id": "solo-male-window-coffee-dappled",
+        "name_zh": "窗边咖啡细碎影姿态",
+        "stability": "stable",
+        "direction_en": "Sit near a window with coffee cup or bedside arm rest while allowing sourced dapple shadow.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-window-coffee-dappled-close"
+        ],
+        "compatible_style_ids": [
+          "male-window-morning-lifestyle"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "One hand may hold cup; the other may rest on knee or bedding.",
+        "neck_safety_en": "Keep chin and neck relaxed.",
+        "prop_logic_en": "One cup only.",
+        "compatible_lighting_profile_ids": [
+          "phys-window-dappled-slat-shadow"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "male-daily-editorial"
+        ]
+      },
+      {
+        "id": "solo-male-graffiti-camera-street",
+        "name_zh": "涂鸦墙相机街头姿态",
+        "stability": "conditional",
+        "direction_en": "Use a compact-camera wink or doorway lean with one small prop.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-graffiti-camera-wall"
+        ],
+        "compatible_style_ids": [
+          "male-90s-graffiti-camera-street"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Keep compact camera grip or small prop simple and readable.",
+        "neck_safety_en": "Avoid extreme neck tilt.",
+        "prop_logic_en": "Use camera OR lollipop OR soda can as the primary prop.",
+        "compatible_lighting_profile_ids": [
+          "phys-open-shade-graffiti-warm"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "male-daily-editorial"
+        ]
+      },
+      {
+        "id": "solo-male-rural-goldenhour-profile",
+        "name_zh": "旷野黄昏侧脸姿态",
+        "stability": "stable",
+        "direction_en": "Use a quiet profile with low sun and restrained gaze.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-rural-goldenhour-profile-close"
+        ],
+        "compatible_style_ids": [
+          "male-rural-goldenhour-travel-film"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands remain low or outside crop.",
+        "neck_safety_en": "Maintain profile neck line.",
+        "prop_logic_en": "No extra prop required.",
+        "compatible_lighting_profile_ids": [
+          "phys-goldenhour-back-side"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "male-daily-editorial"
+        ]
+      },
+      {
+        "id": "solo-female-occluded-beam-lowkey",
+        "name_zh": "女性窄束遮挡光低照度姿态",
+        "stability": "conditional",
+        "direction_en": "Use one close beam-slice portrait or one seated face-pool portrait while preserving readable identity landmarks.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock",
+          "downward-lock",
+          "closed-eye-expression"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-warm-beam-face-slice-close",
+          "comp-warm-spot-black-drape-body"
+        ],
+        "compatible_style_ids": [
+          "female-occluded-warm-beam-lowkey"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Hands may rest near chin or remain low; never cover both eyes.",
+        "neck_safety_en": "Keep jaw, throat, and shoulder relation visible in shadow.",
+        "prop_logic_en": "White drape optional; no competing prop.",
+        "compatible_lighting_profile_ids": [
+          "phys-warm-gap-occluder-soft-diffusion",
+          "phys-warm-spot-cool-ambient-lowkey"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-twilight-beam"
+        ]
+      },
+      {
+        "id": "solo-female-cafe-window-sunpool",
+        "name_zh": "女性咖啡馆窗光生活姿态",
+        "stability": "stable",
+        "direction_en": "Use newspaper eye peek or two-hand cup hold inside a localized warm cafe sun pool.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-cafe-newspaper-eye-peek",
+          "comp-cafe-cup-sunpool-seated"
+        ],
+        "compatible_style_ids": [
+          "female-cafe-window-sunpool-editorial"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Newspaper or cup grip must stay anatomically simple and readable.",
+        "neck_safety_en": "Keep shoulders relaxed and elbows supported by table or body.",
+        "prop_logic_en": "Use newspaper OR ceramic cup as the primary prop.",
+        "compatible_lighting_profile_ids": [
+          "phys-cafe-window-sunpool-reflection"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-twilight-beam"
+        ]
+      },
+      {
+        "id": "solo-female-seaside-dusk-flash",
+        "name_zh": "女性海边黄昏直闪风动姿态",
+        "stability": "stable",
+        "direction_en": "Use windblown close-up, frontal standing smile, or sand-level shell pose under subject-limited flash.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "backturn-camera-reacquire",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-seaside-flash-wind-close"
+        ],
+        "compatible_style_ids": [
+          "female-seaside-dusk-direct-flash"
+        ],
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "hand_logic_en": "Keep hair strands subordinate; shell fingers remain separated.",
+        "neck_safety_en": "Avoid extreme twist; turn shoulder and torso before neck.",
+        "prop_logic_en": "One shell optional.",
+        "compatible_lighting_profile_ids": [
+          "phys-dusk-seaside-direct-flash"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-twilight-beam"
+        ]
+      },
+      {
+        "id": "solo-female-rooftop-bluehour-rim",
+        "name_zh": "女性屋顶蓝调暖侧逆光姿态",
+        "stability": "stable",
+        "direction_en": "Use profile horizon gaze or hands-in-pocket standing pose with restrained front recovery.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "soft-camera-lock",
+          "upward-offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-rooftop-bluehour-rim-medium"
+        ],
+        "compatible_style_ids": [
+          "female-rooftop-bluehour-rim-fill"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands remain in pockets or low outside crop.",
+        "neck_safety_en": "Keep neck line clean against the sky.",
+        "prop_logic_en": "No extra prop required.",
+        "compatible_lighting_profile_ids": [
+          "phys-bluehour-rear-rim-front-fill"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-twilight-beam"
+        ]
+      },
+      {
+        "id": "solo-male-field-chair-low-sun",
+        "name_zh": "男性旷野木椅低太阳坐姿",
+        "stability": "stable",
+        "direction_en": "Use a quiet field-chair seated portrait with downcast gaze and long shadow.",
+        "compatible_gaze_lock_ids": [
+          "downward-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-field-chair-low-sun-wide"
+        ],
+        "compatible_style_ids": [
+          "male-rural-goldenhour-travel-film"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands rest separately on lap or chair edge.",
+        "neck_safety_en": "Keep shoulders and lapel readable.",
+        "prop_logic_en": "One chair only.",
+        "compatible_lighting_profile_ids": [
+          "phys-goldenhour-back-side"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "male-rural-reinforcement"
+        ]
+      },
+      {
+        "id": "solo-female-wind-cover-closeup",
+        "name_zh": "女性风动发丝贴脸封面姿态",
+        "stability": "conditional",
+        "direction_en": "Use an extreme close-up hair-veil portrait with readable landmarks and lower-third type-safe space.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-wind-hair-veil-cover-close"
+        ],
+        "compatible_style_ids": [
+          "female-wind-hair-cover-closeup"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Hair may cross face; no hand required.",
+        "neck_safety_en": "Keep face plane and jaw readable under strand shadows.",
+        "prop_logic_en": "No extra prop.",
+        "compatible_lighting_profile_ids": [
+          "phys-wind-hair-closeup-sidelight"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-wind-motion-bedroom"
+        ]
+      },
+      {
+        "id": "solo-female-lowkey-hand-occluder",
+        "name_zh": "女性低照度暖光手部互动姿态",
+        "stability": "conditional",
+        "direction_en": "Use a raised-hand beam intercept or fingertip-near-chin warm spot portrait.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock",
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-lowkey-amber-hand-occluder-medium"
+        ],
+        "compatible_style_ids": [
+          "female-occluded-warm-beam-lowkey"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Keep fingers separated and shadow path connected to the warm patch.",
+        "neck_safety_en": "Keep throat, jaw, and shoulder relation visible.",
+        "prop_logic_en": "White drape optional.",
+        "compatible_lighting_profile_ids": [
+          "phys-amber-hand-occluder-lowkey"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-wind-motion-bedroom"
+        ]
+      },
+      {
+        "id": "solo-female-goldenhour-backlight-flare",
+        "name_zh": "女性黄金时刻逆光眩光姿态",
+        "stability": "stable",
+        "direction_en": "Use a side profile, chin lift, or eyes-closed pause with one low-sun flare axis.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "upward-offframe-lock",
+          "closed-eye-expression"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-goldenhour-flare-profile-close"
+        ],
+        "compatible_style_ids": [
+          "female-goldenhour-backlit-flare"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands stay low or outside crop.",
+        "neck_safety_en": "Preserve neck line against warm rim.",
+        "prop_logic_en": "No extra prop required.",
+        "compatible_lighting_profile_ids": [
+          "phys-goldenhour-backlight-lensflare"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-wind-motion-bedroom"
+        ]
+      },
+      {
+        "id": "solo-female-dusk-pan-motionblur",
+        "name_zh": "女性黄昏摇摄拖影姿态",
+        "stability": "conditional",
+        "direction_en": "Use lateral running or shoulder-turn drift while keeping one identity anchor readable.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-dusk-panblur-horizontal"
+        ],
+        "compatible_style_ids": [
+          "female-dusk-motionblur-editorial"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands and limbs remain anatomically continuous under blur.",
+        "neck_safety_en": "Avoid neck disconnection during panning.",
+        "prop_logic_en": "No prop required.",
+        "compatible_lighting_profile_ids": [
+          "phys-dusk-pan-motionblur-ambient"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-wind-motion-bedroom"
+        ]
+      },
+      {
+        "id": "solo-female-bedroom-casual-headphones",
+        "name_zh": "女性卧室窗边耳机日常姿态",
+        "stability": "stable",
+        "direction_en": "Use teddy hold, window chin rest, headphone touch, or desk reach inside one bedroom window-light system.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "camera-lock",
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-bedroom-warm-window-lifestyle"
+        ],
+        "compatible_style_ids": [
+          "female-bedroom-window-casual-headphones"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Hands remain simple around teddy, headphones, or desk edge.",
+        "neck_safety_en": "Keep shoulders relaxed in hoodie folds.",
+        "prop_logic_en": "Use teddy OR headphones as one primary prop.",
+        "compatible_lighting_profile_ids": [
+          "phys-bedroom-window-warm-bounce"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-wind-motion-bedroom"
+        ]
+      },
+      {
+        "id": "solo-female-clean-sky-wind-cover",
+        "name_zh": "女性清洁天空风动封面姿态",
+        "stability": "stable",
+        "direction_en": "Use a blue-sky fur-collar side profile or pastel-sky hoodie upward gaze with clear glasses.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "upward-offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-clean-sky-wind-cover-lowerthird"
+        ],
+        "compatible_style_ids": [
+          "female-clean-sky-wind-cover"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands remain outside crop or low.",
+        "neck_safety_en": "Keep collar separate from jawline.",
+        "prop_logic_en": "Clear glasses optional.",
+        "compatible_lighting_profile_ids": [
+          "phys-clean-sky-wind-sideprofile"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-wind-motion-bedroom"
+        ]
+      },
+      {
+        "id": "solo-female-winter-scarf-close",
+        "name_zh": "女性冬日围巾近景姿态",
+        "stability": "stable",
+        "direction_en": "Use scarf-framed close portrait with side or soft direct gaze.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-winter-scarf-tight-close"
+        ],
+        "compatible_style_ids": [
+          "female-winter-scarf-sunlit-closeup"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands remain outside crop or low.",
+        "neck_safety_en": "Keep scarf separate from jaw and shoulders.",
+        "prop_logic_en": "Scarf is a framing volume, not a face occluder.",
+        "compatible_lighting_profile_ids": [
+          "phys-winter-scarf-low-sun-softfill"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-seasonal-floral-transit"
+        ]
+      },
+      {
+        "id": "solo-female-forest-ribbon-backturn",
+        "name_zh": "女性林间丝带回身姿态",
+        "stability": "stable",
+        "direction_en": "Use back-turn with a calm side profile and one long ribbon.",
+        "compatible_gaze_lock_ids": [
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-forest-ribbon-backturn"
+        ],
+        "compatible_style_ids": [
+          "female-forest-ribbon-softlight-fairytale"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands remain low or lightly hold dress fabric.",
+        "neck_safety_en": "Keep back-turn anatomy natural.",
+        "prop_logic_en": "One ribbon only, attached to hair and gravity-led.",
+        "compatible_lighting_profile_ids": [
+          "phys-forest-canopy-dapple-backlight"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-seasonal-floral-transit"
+        ]
+      },
+      {
+        "id": "solo-female-autumn-leaf-hat",
+        "name_zh": "女性秋叶帽饰姿态",
+        "stability": "stable",
+        "direction_en": "Use hat profile and one leaf held near the face.",
+        "compatible_gaze_lock_ids": [
+          "upward-offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-autumn-leaf-hat-profile"
+        ],
+        "compatible_style_ids": [
+          "female-autumn-leaf-hat-narrative"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Separate fingers around one leaf stem.",
+        "neck_safety_en": "Keep chin lift within natural neck range.",
+        "prop_logic_en": "One hero leaf, additional leaves remain depth layers.",
+        "compatible_lighting_profile_ids": [
+          "phys-autumn-leaf-rim-depth"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-seasonal-floral-transit"
+        ]
+      },
+      {
+        "id": "solo-female-vehicle-window-wind",
+        "name_zh": "女性车窗风动近景姿态",
+        "stability": "conditional",
+        "direction_en": "Use direct or soft gaze through wind-led hair in dark cabin.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-vehicle-window-wind-close"
+        ],
+        "compatible_style_ids": [
+          "female-vehicle-window-wind-practical-closeup"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Hands optional; if visible, keep fingers separated.",
+        "neck_safety_en": "Keep jaw and shoulder line readable.",
+        "prop_logic_en": "Glass flare and bokeh remain offset from skin.",
+        "compatible_lighting_profile_ids": [
+          "phys-vehicle-window-mixed-practical-wind"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-seasonal-floral-transit"
+        ]
+      },
+      {
+        "id": "solo-female-floral-halo-cobalt",
+        "name_zh": "女性钴蓝花冠编辑姿态",
+        "stability": "conditional",
+        "direction_en": "Use frontal halo, single flower-eye occlusion, or reclined halo portrait.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-cobalt-floral-halo-editorial"
+        ],
+        "compatible_style_ids": [
+          "female-floral-halo-cobalt-editorial"
+        ],
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "hand_logic_en": "Hold stem with separated fingers or keep hands low.",
+        "neck_safety_en": "Protect neck and scarf separation.",
+        "prop_logic_en": "Flower stems remain physically supported; one eye stays readable.",
+        "compatible_lighting_profile_ids": [
+          "phys-cobalt-floral-hardkey-shadow"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-seasonal-floral-transit"
+        ]
+      },
+      {
+        "id": "solo-female-transit-corridor-scarf",
+        "name_zh": "女性通勤走廊白围巾姿态",
+        "stability": "stable",
+        "direction_en": "Use back-turn, arms-cross full body, or half-body direct commute stance.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-transit-corridor-white-scarf"
+        ],
+        "compatible_style_ids": [
+          "female-transit-corridor-white-scarf-commute"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Arms may cross naturally; hands remain anatomically clear.",
+        "neck_safety_en": "Keep shoulders and scarf layers separate.",
+        "prop_logic_en": "Corridor doors and window planes remain structural.",
+        "compatible_lighting_profile_ids": [
+          "phys-transit-corridor-daylight-perspective"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-seasonal-floral-transit"
+        ]
+      },
+      {
+        "id": "solo-female-bedroom-window-reflection",
+        "name_zh": "女性卧室窗面反射姿态",
+        "stability": "conditional",
+        "direction_en": "Use close gaze through glass with one soft reflection ghost.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-bedroom-window-reflection-close"
+        ],
+        "compatible_style_ids": [
+          "female-bedroom-window-casual-headphones"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Hands remain low or outside crop.",
+        "neck_safety_en": "Prioritize physical face over reflection.",
+        "prop_logic_en": "One glass plane only; reflection is softer and offset.",
+        "compatible_lighting_profile_ids": [
+          "phys-bedroom-window-reflection-doubleplane"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "female-seasonal-floral-transit"
+        ]
+      },
+      {
+        "id": "solo-female-cafe-window-refined",
+        "name_zh": "女性咖啡馆窗边动作蓝图",
+        "stability": "stable",
+        "direction_en": "Use sip, hand-to-hair, or cross-leg reading variants.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "downward-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-cafe-window-refined-editorial"
+        ],
+        "compatible_style_ids": [
+          "female-cafe-window-refined-editorial"
+        ],
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "hand_logic_en": "Hands attach to cup, hair, book, or lap.",
+        "neck_safety_en": "Keep neck and chair support plausible.",
+        "prop_logic_en": "Coffee, book, table, and glass reflection belong to distinct planes.",
+        "compatible_lighting_profile_ids": [
+          "phys-cafe-window-warm-reflection-layer"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "composition-perspective-editorial"
+        ]
+      },
+      {
+        "id": "solo-female-urban-railing-knitwear",
+        "name_zh": "女性栏杆针织动作蓝图",
+        "stability": "stable",
+        "direction_en": "Lean naturally on one railing plane.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-urban-railing-knitwear"
+        ],
+        "compatible_style_ids": [
+          "female-urban-railing-knitwear-documentary"
+        ],
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "hand_logic_en": "Forearms rest clearly on railing.",
+        "neck_safety_en": "Shoulders relaxed; sleeve volume separated.",
+        "prop_logic_en": "Railing remains structural.",
+        "compatible_lighting_profile_ids": [
+          "phys-urban-railing-clear-winter-sun"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "composition-perspective-editorial"
+        ]
+      },
+      {
+        "id": "solo-female-yellow-vehicle-street",
+        "name_zh": "女性黄色车辆街头动作蓝图",
+        "stability": "conditional",
+        "direction_en": "Stand one step in front of vehicle facade.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-yellow-vehicle-street"
+        ],
+        "compatible_style_ids": [
+          "female-yellow-transit-street-editorial"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Hands relaxed or in coat pockets.",
+        "neck_safety_en": "Preserve cap, glasses, scarf, and jaw separation.",
+        "prop_logic_en": "Vehicle facade remains a planar background.",
+        "compatible_lighting_profile_ids": [
+          "phys-yellow-vehicle-hard-daylight-colorblock"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "composition-perspective-editorial"
+        ]
+      },
+      {
+        "id": "solo-female-coastal-denim-overlook",
+        "name_zh": "女性海岸牛仔回望动作蓝图",
+        "stability": "stable",
+        "direction_en": "Use restrained coastal back-turn.",
+        "compatible_gaze_lock_ids": [
+          "backturn-camera-reacquire",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-coastal-denim-overlook"
+        ],
+        "compatible_style_ids": [
+          "female-coastal-denim-overlook-wind"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands low or in pockets.",
+        "neck_safety_en": "Keep neck rotation plausible.",
+        "prop_logic_en": "Vegetation, coastline, and horizon remain separate depth layers.",
+        "compatible_lighting_profile_ids": [
+          "phys-coastal-overlook-soft-wind-horizon"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "composition-perspective-editorial"
+        ]
+      },
+      {
+        "id": "solo-female-botanical-slitbeam",
+        "name_zh": "女性植物束光动作蓝图",
+        "stability": "conditional",
+        "direction_en": "Use direct, profile, or vase-framed variants.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-botanical-slitbeam-shadow"
+        ],
+        "compatible_style_ids": [
+          "female-botanical-slitbeam-shadow-portrait"
+        ],
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "hand_logic_en": "Hands may hold leaves or vessel only when readable.",
+        "neck_safety_en": "Preserve jaw and neck contour under shadow.",
+        "prop_logic_en": "Foreground plant and projected shadow must share traceable cause.",
+        "compatible_lighting_profile_ids": [
+          "phys-botanical-slitbeam-shadow-plane"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "composition-perspective-editorial"
+        ]
+      },
+      {
+        "id": "solo-female-lantern-riverside",
+        "name_zh": "女性河岸灯笼动作蓝图",
+        "stability": "conditional",
+        "direction_en": "Sit and lift one lantern within reachable arm distance.",
+        "compatible_gaze_lock_ids": [
+          "upward-offframe-lock",
+          "soft-camera-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-lantern-riverside-depthchain"
+        ],
+        "compatible_style_ids": [
+          "female-festival-lantern-riverside-narrative"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hand grips lantern handle clearly.",
+        "neck_safety_en": "Seated weight and shoulder line remain stable.",
+        "prop_logic_en": "Lantern, bridge, rows, and water reflections form one depth chain.",
+        "compatible_lighting_profile_ids": [
+          "phys-lantern-riverside-bluehour-practical-depth"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "composition-perspective-editorial"
+        ]
+      },
+      {
+        "id": "solo-female-ivory-studio-lookbook",
+        "name_zh": "女性象牙白棚拍动作蓝图",
+        "stability": "stable",
+        "direction_en": "Use standing, seated, or overhead stem variant.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-ivory-studio-negative-space"
+        ],
+        "compatible_style_ids": [
+          "female-ivory-studio-floral-menswear-lookbook"
+        ],
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "hand_logic_en": "Hands attach to pockets, floor, or one stem.",
+        "neck_safety_en": "Keep floor contact and shoulder line plausible.",
+        "prop_logic_en": "Flowers remain attached to pockets, hands, or floor plane.",
+        "compatible_lighting_profile_ids": [
+          "phys-ivory-studio-clean-softshadow"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "composition-perspective-editorial"
+        ]
+      },
+      {
+        "id": "solo-female-scarlet-poster-foreshortened",
+        "name_zh": "女性猩红海报动作蓝图",
+        "stability": "conditional",
+        "direction_en": "Use controlled low-angle recline with continuous limbs.",
+        "compatible_gaze_lock_ids": [
+          "camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-scarlet-poster-foreshortened"
+        ],
+        "compatible_style_ids": [
+          "female-scarlet-kinetic-typography-fashion-poster"
+        ],
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "hand_logic_en": "Hands and near footwear remain connected to body chain.",
+        "neck_safety_en": "Reject broken knee and hip continuity.",
+        "prop_logic_en": "Typography stays in post-layout overlay plane.",
+        "compatible_lighting_profile_ids": [
+          "phys-scarlet-poster-hardgraphic"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "composition-perspective-editorial"
+        ]
+      },
+      {
+        "id": "solo-female-forest-understory-caption",
+        "name_zh": "女性林下标题近景动作蓝图",
+        "stability": "conditional",
+        "direction_en": "Use close gaze with near foliage blur and lower caption reserve.",
+        "compatible_gaze_lock_ids": [
+          "soft-camera-lock",
+          "offframe-lock"
+        ],
+        "compatible_composition_blueprint_ids": [
+          "comp-forest-understory-caption-close"
+        ],
+        "compatible_style_ids": [
+          "female-forest-ribbon-softlight-fairytale"
+        ],
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "hand_logic_en": "Hands optional and out of focus.",
+        "neck_safety_en": "Preserve face pocket and mouth contour.",
+        "prop_logic_en": "Foreground needles and caption remain separate planes.",
+        "compatible_lighting_profile_ids": [
+          "phys-forest-canopy-dapple-backlight"
+        ],
+        "risk_downgrade_id": null,
+        "tags": [
+          "composition-perspective-editorial"
+        ]
+      }
+    ],
+    "single_portrait_composition_blueprints": [
+      {
+        "id": "comp-foreground-depth-pass",
+        "name_zh": "前景经过与景深层次",
+        "risk": "stable",
+        "camera_en": "Use a readable subject with a soft foreground pass or object blur. Keep the face fully clear.",
+        "recommended_text_zones": [
+          "upper-corner",
+          "outer-side-margin"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "foreground-subject-overlap-box"
+        ]
+      },
+      {
+        "id": "comp-archive-collage-fullbody",
+        "name_zh": "全身档案拼贴",
+        "risk": "conditional",
+        "camera_en": "Use one full-body hero portrait with small archival support frames.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "side-caption-column",
+          "bottom-credits"
+        ],
+        "forbidden_text_zones": [
+          "hero-face-box",
+          "hero-neck-box",
+          "active-hand-box"
+        ],
+        "subject_mask_zone": "fullbody-silhouette"
+      },
+      {
+        "id": "comp-profile-negative-space",
+        "name_zh": "侧脸与大面积留白",
+        "risk": "stable",
+        "camera_en": "Place the profile portrait on one side and reserve a large clean negative-space field.",
+        "recommended_text_zones": [
+          "large-negative-space-field",
+          "bottom-small-caption"
+        ],
+        "forbidden_text_zones": [
+          "face-profile-box",
+          "neck-box"
+        ]
+      },
+      {
+        "id": "comp-editorial-close-crop",
+        "name_zh": "大刊近景裁切",
+        "risk": "stable",
+        "camera_en": "Use a close editorial crop with clear eyes and controlled hair edge.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "outer-margin-caption"
+        ],
+        "forbidden_text_zones": [
+          "eyes-box",
+          "nose-mouth-box",
+          "neck-box"
+        ]
+      },
+      {
+        "id": "comp-road-center-backturn",
+        "name_zh": "公路中心轻回望",
+        "risk": "conditional",
+        "camera_en": "Use a centered road perspective with the torso turned first and only a mild head return.",
+        "recommended_text_zones": [
+          "upper-sky-field",
+          "bottom-tour-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "guitar-prop-box"
+        ]
+      },
+      {
+        "id": "comp-topdown-lifestyle",
+        "name_zh": "俯拍生活方式构图",
+        "risk": "conditional",
+        "camera_en": "Use a clean top-down lifestyle view with readable limb separation.",
+        "recommended_text_zones": [
+          "outer-corners",
+          "bottom-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "active-hand-box"
+        ]
+      },
+      {
+        "id": "comp-booth-window-frame",
+        "name_zh": "摊位或窗框式环境框景",
+        "risk": "stable",
+        "camera_en": "Frame the subject through a stall window or doorway while preserving a clear face and prop relationship.",
+        "recommended_text_zones": [
+          "top-signage-gap",
+          "outer-margin"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "active-hand-box",
+          "food-prop-box"
+        ]
+      },
+      {
+        "id": "comp-wall-shadow-editorial",
+        "name_zh": "靠墙与硬影编辑构图",
+        "risk": "stable",
+        "camera_en": "Use wall shadow, controlled silhouette, and a readable shoulder-neck line.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "side-column"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "hand-near-face-box"
+        ]
+      },
+      {
+        "id": "comp-motion-blur-backturn",
+        "name_zh": "行走回望与背景动感模糊",
+        "risk": "conditional",
+        "camera_en": "Keep the subject readable while the environment carries directional blur. Use only a mild shoulder turn.",
+        "recommended_text_zones": [
+          "quiet-corner",
+          "bottom-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "motion-trail-box"
+        ]
+      },
+      {
+        "id": "comp-text-led-cover-safe-zone",
+        "name_zh": "大标题安全留白封面",
+        "risk": "stable",
+        "camera_en": "Compose a clean title-safe cover with one clear face and protected outer margins.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "left-sidebar",
+          "bottom-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "active-hand-box"
+        ]
+      },
+      {
+        "id": "comp-market-stall-window-bokeh",
+        "name_zh": "摊位窗口与夜景散景",
+        "risk": "stable",
+        "camera_en": "Use a market stall window frame, layered foreground objects, and distant bokeh.",
+        "recommended_text_zones": [
+          "upper-corner",
+          "outer-edge-caption"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "food-prop-box",
+          "active-hand-box"
+        ],
+        "existing_signage_policy": "reduce-overlay-density"
+      },
+      {
+        "id": "comp-dense-cover-closeup",
+        "name_zh": "大头封面与边缘密集文字",
+        "risk": "stable",
+        "camera_en": "Use a clean close portrait with dense but face-safe outer margin typography space.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "left-margin-column",
+          "right-margin-column",
+          "bottom-band"
+        ],
+        "forbidden_text_zones": [
+          "eyes-box",
+          "nose-mouth-box",
+          "neck-box"
+        ]
+      },
+      {
+        "id": "comp-vertical-wall-shadow-fashion",
+        "name_zh": "竖版墙影时装轮廓",
+        "risk": "stable",
+        "camera_en": "Use a vertical fashion frame with wall shadow and a clean garment silhouette.",
+        "recommended_text_zones": [
+          "top-title",
+          "side-column",
+          "bottom-caption"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "active-hand-box"
+        ]
+      },
+      {
+        "id": "comp-body-title-behind-mask",
+        "name_zh": "人物遮罩与背后大标题",
+        "risk": "conditional",
+        "camera_en": "Preserve a clean subject cutout suitable for placing a large title behind the silhouette in post-production.",
+        "recommended_text_zones": [
+          "subject-behind-title-field"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "active-hand-box"
+        ],
+        "subject_mask_zone": "subject-silhouette"
+      },
+      {
+        "id": "comp-face-frame-center",
+        "name_zh": "面部框景中心构图",
+        "risk": "conditional",
+        "camera_en": "Center the face with a controlled hand or graphic frame. Keep eyes, nose, and mouth unobstructed.",
+        "recommended_text_zones": [
+          "outer-frame",
+          "bottom-band"
+        ],
+        "forbidden_text_zones": [
+          "eyes-box",
+          "nose-mouth-box",
+          "hand-intersection-box"
+        ]
+      },
+      {
+        "id": "comp-low-angle-skate-foreshortening",
+        "name_zh": "滑板低机位透视",
+        "risk": "experimental",
+        "camera_en": "Use a strong but controlled low-angle skate composition with one readable subject and separated shoe, board, and face planes.",
+        "recommended_text_zones": [
+          "top-background-title",
+          "side-japanese-columns"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "shoe-board-overlap-box"
+        ],
+        "subject_mask_zone": "skate-silhouette"
+      },
+      {
+        "id": "comp-stage-fullbody-collage",
+        "name_zh": "舞台全身与副图拼贴",
+        "risk": "conditional",
+        "camera_en": "Use a full-body stage hero image with restrained support frames.",
+        "recommended_text_zones": [
+          "top-title",
+          "support-panel-zones",
+          "bottom-credits"
+        ],
+        "forbidden_text_zones": [
+          "hero-face-box",
+          "hero-neck-box",
+          "microphone-hand-box"
+        ],
+        "subject_mask_zone": "fullbody-silhouette"
+      },
+      {
+        "id": "comp-object-led-closeup",
+        "name_zh": "道具主导近景",
+        "risk": "conditional",
+        "camera_en": "Use a close portrait led by one readable prop while preserving face clarity.",
+        "recommended_text_zones": [
+          "top-small-title",
+          "outer-caption"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "prop-box",
+          "active-hand-box"
+        ]
+      },
+      {
+        "id": "comp-field-fabric-motion",
+        "name_zh": "旷野薄纱与麦穗风感",
+        "risk": "conditional",
+        "camera_en": "Use layered fabric motion and wheat foreground while keeping the face and silhouette readable.",
+        "recommended_text_zones": [
+          "sky-field",
+          "bottom-caption"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "fabric-face-overlap-box"
+        ]
+      },
+      {
+        "id": "comp-lifestyle-candid-cover",
+        "name_zh": "日常生活杂志封面",
+        "risk": "stable",
+        "camera_en": "Use a candid lifestyle cover frame with one clear activity and controlled domestic context.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "left-margin-column",
+          "right-margin-column",
+          "bottom-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "food-prop-box",
+          "active-hand-box"
+        ]
+      },
+      {
+        "id": "comp-transit-handle-framing",
+        "name_zh": "吊环框景通勤近景",
+        "risk": "stable",
+        "camera_en": "Use transit straps as soft foreground framing. Keep the face and both hands clearly separated.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "small-left-margin",
+          "small-right-margin"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "strap-hand-box"
+        ]
+      },
+      {
+        "id": "comp-hk-vintage-masthead-close",
+        "name_zh": "港风旧刊近景",
+        "risk": "stable",
+        "camera_en": "Use a close Hong Kong vintage magazine portrait with a clean hair edge and reserved top masthead.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "lower-left-captions",
+          "lower-right-captions"
+        ],
+        "forbidden_text_zones": [
+          "eyes-box",
+          "nose-mouth-box",
+          "neck-box"
+        ],
+        "subject_mask_zone": "hair-edge-and-shoulder-silhouette"
+      },
+      {
+        "id": "comp-night-market-signage-fullbody",
+        "name_zh": "夜市招牌全身",
+        "risk": "stable",
+        "camera_en": "Use a full-body night-market frame with environmental signage as part of the scene.",
+        "recommended_text_zones": [
+          "minimal-corner-only"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "fullbody-silhouette",
+          "existing-signage-zones"
+        ],
+        "existing_signage_policy": "reduce-overlay-density"
+      },
+      {
+        "id": "comp-doorway-prop-spread",
+        "name_zh": "门廊展开构图",
+        "risk": "conditional",
+        "camera_en": "Use a doorway plane with arms spread and one readable paper prop.",
+        "recommended_text_zones": [
+          "top-small-title",
+          "outer-side-margin"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "left-active-hand-box",
+          "right-active-hand-box",
+          "paper-prop-box"
+        ]
+      },
+      {
+        "id": "comp-balcony-overlook-jacket-motion",
+        "name_zh": "高处栏杆披肩动势",
+        "risk": "conditional",
+        "camera_en": "Use elevated urban depth and a raised jacket motion with separated elbows.",
+        "recommended_text_zones": [
+          "top-left-title",
+          "bottom-right-caption"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "raised-hand-box",
+          "jacket-motion-box"
+        ]
+      },
+      {
+        "id": "comp-runner-cutout-editorial",
+        "name_zh": "跑动剪影编辑构图",
+        "risk": "conditional",
+        "camera_en": "Use a clean running silhouette and trailing fabric suitable for later title wrapping.",
+        "recommended_text_zones": [
+          "top-left-headline",
+          "lower-caption-block"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "active-arm-box",
+          "forward-leg-box"
+        ],
+        "subject_mask_zone": "runner-cutout-silhouette"
+      },
+      {
+        "id": "comp-station-blue-collage",
+        "name_zh": "蓝调车站多图框",
+        "risk": "conditional",
+        "camera_en": "Use one hero station portrait plus one or two support frames with cool blue atmosphere.",
+        "recommended_text_zones": [
+          "upper-margin",
+          "left-text-column",
+          "bottom-credits"
+        ],
+        "forbidden_text_zones": [
+          "hero-face-box",
+          "hero-neck-box",
+          "headphone-hand-box"
+        ],
+        "subject_mask_zone": "hero-portrait-panel"
+      },
+      {
+        "id": "comp-minimal-green-label-cover",
+        "name_zh": "极简荧光标签封面",
+        "risk": "stable",
+        "camera_en": "Use a clean close fashion cover with simple outer label-strip zones.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "label-strips",
+          "bottom-title"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "shoulder-turn-box"
+        ]
+      },
+      {
+        "id": "comp-graduation-sunlit-negative-space",
+        "name_zh": "晴日毕业肖像留白",
+        "risk": "stable",
+        "camera_en": "Use a medium or three-quarter campus portrait with a clean green bokeh field and outer margin breathing room.",
+        "recommended_text_zones": [
+          "top-masthead",
+          "left-caption-column",
+          "bottom-name-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "bouquet-box",
+          "active-hand-box"
+        ],
+        "subject_mask_zone": "graduate-portrait-silhouette"
+      },
+      {
+        "id": "comp-graduation-stairwell-depth",
+        "name_zh": "楼梯间叙事景深",
+        "risk": "stable",
+        "camera_en": "Use stair rail lines, landings, or foreground blur to create depth around a mild turnback or descent.",
+        "recommended_text_zones": [
+          "quiet-wall-zone",
+          "upper-corner-caption",
+          "bottom-date-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "railing-hand-box",
+          "walking-leg-box"
+        ],
+        "subject_mask_zone": "stairwell-subject-silhouette"
+      },
+      {
+        "id": "comp-graduation-tunnel-symmetry",
+        "name_zh": "白色长廊中央透视",
+        "risk": "stable",
+        "camera_en": "Use a symmetrical white tunnel or covered corridor with a recognizable seated or standing graduate at the center.",
+        "recommended_text_zones": [
+          "upper-perspective-zone",
+          "outer-side-margins",
+          "bottom-yearbook-caption"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "subject-core-box"
+        ],
+        "subject_mask_zone": "centered-graduate-silhouette"
+      },
+      {
+        "id": "comp-graduation-classroom-window",
+        "name_zh": "教室窗边清透构图",
+        "risk": "stable",
+        "camera_en": "Use a classroom window, desk edge, and folder to create a clean half-body campus portrait.",
+        "recommended_text_zones": [
+          "window-wall-zone",
+          "lower-caption-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "folder-box",
+          "earphone-line-box"
+        ],
+        "subject_mask_zone": "classroom-window-subject"
+      },
+      {
+        "id": "comp-graduation-lecturehall-foreground",
+        "name_zh": "讲堂座椅前景框景",
+        "risk": "stable",
+        "camera_en": "Use lecture-hall seats as soft foreground blocks with the graduate face in a clean midground window.",
+        "recommended_text_zones": [
+          "upper-window-light-zone",
+          "side-caption-column"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "chin-rest-hand-box",
+          "foreground-seat-overlap-zone"
+        ],
+        "subject_mask_zone": "lecturehall-face-window"
+      },
+      {
+        "id": "comp-graduation-meadow-wide",
+        "name_zh": "草地毕业宽幅停留",
+        "risk": "stable",
+        "camera_en": "Use a campus lawn, flowers, or sports-field edge as a calm environment around a seated graduate.",
+        "recommended_text_zones": [
+          "upper-sky-zone",
+          "side-building-margin",
+          "bottom-caption-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "folder-hand-box"
+        ],
+        "subject_mask_zone": "meadow-seated-silhouette"
+      },
+      {
+        "id": "comp-graduation-forest-vertical-frame",
+        "name_zh": "林荫纵向成长构图",
+        "risk": "stable",
+        "camera_en": "Use tree trunks and filtered light to frame a standing graduate with one clean prop gesture.",
+        "recommended_text_zones": [
+          "upper-foliage-zone",
+          "side-path-margin",
+          "bottom-name-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "raised-cap-hand-box",
+          "bouquet-box"
+        ],
+        "subject_mask_zone": "forest-standing-silhouette"
+      },
+      {
+        "id": "comp-mature-chair-side-negative",
+        "name_zh": "皮椅侧边留白肖像",
+        "risk": "stable",
+        "camera_en": "Use a half-body chair-side crop with one clean caption margin.",
+        "recommended_text_zones": [
+          "side-caption-zone",
+          "upper-corner-title"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "active-hand-box"
+        ],
+        "subject_mask_zone": "chair-side-halfbody"
+      },
+      {
+        "id": "comp-mature-textured-wall-editorial",
+        "name_zh": "灰绿肌理墙松弛肖像",
+        "risk": "stable",
+        "camera_en": "Use a vertical three-quarter textured-wall portrait with relaxed posture.",
+        "recommended_text_zones": [
+          "upper-wall-zone",
+          "side-wall-zone",
+          "bottom-caption-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "cheek-rest-hand-box"
+        ],
+        "subject_mask_zone": "textured-wall-silhouette"
+      },
+      {
+        "id": "comp-executive-street-walk",
+        "name_zh": "都市通勤全身构图",
+        "risk": "stable",
+        "camera_en": "Use full-body walking framing with city depth and one clean building-edge caption field.",
+        "recommended_text_zones": [
+          "building-wall-zone",
+          "sidewalk-margin",
+          "bottom-name-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "coffee-hand-box",
+          "briefcase-box",
+          "walking-leg-box"
+        ],
+        "subject_mask_zone": "executive-walking-silhouette"
+      },
+      {
+        "id": "comp-suit-neutral-gray-studio",
+        "name_zh": "灰棚西装极简构图",
+        "risk": "stable",
+        "camera_en": "Use a three-quarter studio portrait emphasizing shoulders, collar, tie, and pockets.",
+        "recommended_text_zones": [
+          "upper-gray-zone",
+          "side-gray-zone"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "tie-adjust-hand-box"
+        ],
+        "subject_mask_zone": "suit-threequarter-silhouette"
+      },
+      {
+        "id": "comp-red-disc-shadow-stage",
+        "name_zh": "红日圆盘剪影舞台",
+        "risk": "conditional",
+        "camera_en": "Center the subject against one red disc while keeping abstract silhouettes peripheral.",
+        "recommended_text_zones": [
+          "upper-disc-edge",
+          "bottom-caption-band"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "neck-box",
+          "active-hand-box",
+          "central-disc-face-zone"
+        ],
+        "subject_mask_zone": "red-disc-centered-silhouette"
+      },
+      {
+        "id": "comp-graduation-lecturehall-depth",
+        "name_zh": "讲堂座椅纵深构图",
+        "risk": "stable",
+        "camera_en": "Use layered lecture-hall seats to frame one subject in a readable window beam.",
+        "recommended_text_zones": [
+          "upper-seat-shadow-zone",
+          "side-dark-margin"
+        ],
+        "forbidden_text_zones": [
+          "face-box",
+          "chin-rest-hand-box",
+          "bright-window-hotspot"
+        ],
+        "subject_mask_zone": "lecturehall-centered-subject"
+      },
+      {
+        "id": "comp-window-morning-table",
+        "name_zh": "窗边桌面晨光",
+        "risk": "stable",
+        "camera_en": "Eye-level seated portrait with window plane inferable from highlights and shadows.",
+        "recommended_text_zones": [
+          "right margin",
+          "upper-left soft margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "cup hand",
+          "window catchlight zone"
+        ],
+        "subject_mask_zone": "half-body",
+        "compatible_lighting_profile_ids": [
+          "phys-window-direct-sun",
+          "phys-window-diffused-daylight"
+        ]
+      },
+      {
+        "id": "comp-piano-map-close",
+        "name_zh": "旧钢琴地图近景",
+        "risk": "stable",
+        "camera_en": "Close or half-body portrait with dark wood depth and one side gaze.",
+        "recommended_text_zones": [
+          "upper corner"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "hand near mouth"
+        ],
+        "subject_mask_zone": "half-body",
+        "compatible_lighting_profile_ids": [
+          "phys-window-diffused-daylight"
+        ]
+      },
+      {
+        "id": "comp-rural-trainline-wide",
+        "name_zh": "旷野铁路宽构图",
+        "risk": "stable",
+        "camera_en": "Wide landscape portrait with distant trainline and one readable silhouette.",
+        "recommended_text_zones": [
+          "sky band",
+          "far-side field"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "instrument hands"
+        ],
+        "subject_mask_zone": "full-body",
+        "compatible_lighting_profile_ids": [
+          "phys-goldenhour-back-side"
+        ]
+      },
+      {
+        "id": "comp-neon-road-backturn",
+        "name_zh": "夜路肩部回望",
+        "risk": "conditional",
+        "camera_en": "Night street backturn with localized bokeh and coherent wet-road reflection.",
+        "recommended_text_zones": [
+          "dark margin",
+          "roadside negative space"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "neck",
+          "backpack strap"
+        ],
+        "subject_mask_zone": "three-quarter",
+        "compatible_lighting_profile_ids": [
+          "phys-neon-urban-reflected"
+        ]
+      },
+      {
+        "id": "comp-doorway-threshold-fullbody",
+        "name_zh": "门框冷暖全身",
+        "risk": "stable",
+        "camera_en": "Full-body doorway composition with visible mixed-light boundary.",
+        "recommended_text_zones": [
+          "door wall margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "hands",
+          "threshold feet"
+        ],
+        "subject_mask_zone": "full-body",
+        "compatible_lighting_profile_ids": [
+          "phys-cyan-amber-threshold-mixed"
+        ]
+      },
+      {
+        "id": "comp-stairwell-rail-lowangle",
+        "name_zh": "铁艺楼梯低机位",
+        "risk": "conditional",
+        "camera_en": "Low-angle portrait with railing foreground kept outside critical face landmarks.",
+        "recommended_text_zones": [
+          "wall margin"
+        ],
+        "forbidden_text_zones": [
+          "eyes",
+          "nose bridge",
+          "mouth",
+          "neck"
+        ],
+        "subject_mask_zone": "three-quarter",
+        "compatible_lighting_profile_ids": [
+          "phys-warm-practical-stairwell"
+        ]
+      },
+      {
+        "id": "comp-night-jewelry-close",
+        "name_zh": "暖夜珠宝近景",
+        "risk": "stable",
+        "camera_en": "Close portrait with one jewelry anchor and clean hand-face separation.",
+        "recommended_text_zones": [
+          "dark side margin"
+        ],
+        "forbidden_text_zones": [
+          "eyes",
+          "mouth",
+          "finger-jaw boundary"
+        ],
+        "subject_mask_zone": "close-up",
+        "compatible_lighting_profile_ids": [
+          "phys-amber-jewelry-soft"
+        ]
+      },
+      {
+        "id": "comp-stool-sunpatch-rose",
+        "name_zh": "坐凳玫瑰阳光斑",
+        "risk": "conditional",
+        "camera_en": "Neutral studio stool portrait with one hard directional sun patch.",
+        "recommended_text_zones": [
+          "white backdrop margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "rose-holding hand",
+          "neck"
+        ],
+        "subject_mask_zone": "three-quarter",
+        "compatible_lighting_profile_ids": [
+          "phys-studio-sunpatch-directional"
+        ]
+      },
+      {
+        "id": "comp-hard-window-editorial-close",
+        "name_zh": "硬窗光遮挡投影近景",
+        "risk": "conditional",
+        "camera_en": "Close portrait with one wall plane, connected window or hand shadows, and readable eyes.",
+        "recommended_text_zones": [
+          "top-left margin",
+          "bottom margin"
+        ],
+        "forbidden_text_zones": [
+          "eyes",
+          "nose bridge",
+          "mouth",
+          "active hand silhouette"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "hand-shadow-path"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-hard-window-occluder-stripe"
+        ]
+      },
+      {
+        "id": "comp-hard-window-lounge-magazine",
+        "name_zh": "硬窗光沙发杂志构图",
+        "risk": "stable",
+        "camera_en": "Half-body or seated lounge composition with one open magazine and bounded sun patch.",
+        "recommended_text_zones": [
+          "top margin",
+          "outer side margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "hands",
+          "magazine focal area"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "torso",
+          "magazine"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-hard-window-occluder-stripe"
+        ]
+      },
+      {
+        "id": "comp-direct-flash-overhead-table",
+        "name_zh": "餐桌高机位直闪构图",
+        "risk": "conditional",
+        "camera_en": "High-angle snapshot with table spread visible and the subject face reacquiring camera.",
+        "recommended_text_zones": [
+          "outer table edge",
+          "top margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "glasses",
+          "camera grip",
+          "food held in hands"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "hands",
+          "compact camera"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-direct-camera-flash-room-ambient"
+        ]
+      },
+      {
+        "id": "comp-bookstore-headphone-casual",
+        "name_zh": "书店耳机日常构图",
+        "risk": "stable",
+        "camera_en": "Shelf-layered bookstore composition with relaxed subject and visible headphones.",
+        "recommended_text_zones": [
+          "shelf negative space",
+          "outer margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "clear lenses",
+          "headphones",
+          "book"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "torso",
+          "headphones"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-library-daylight-practical-mix"
+        ]
+      },
+      {
+        "id": "comp-window-coffee-dappled-close",
+        "name_zh": "窗边咖啡细碎影近景",
+        "risk": "stable",
+        "camera_en": "Close or half-body morning interior with one cup and sourced stripe or foliage shadow.",
+        "recommended_text_zones": [
+          "wall margin",
+          "bottom margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "eyes",
+          "cup handle",
+          "active hand"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "cup",
+          "shadow-path"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-window-dappled-slat-shadow"
+        ]
+      },
+      {
+        "id": "comp-graffiti-camera-wall",
+        "name_zh": "涂鸦墙相机街头构图",
+        "risk": "conditional",
+        "camera_en": "Three-quarter wall or doorway crop with compact camera, leather silhouette, and generic graffiti color fields.",
+        "recommended_text_zones": [
+          "dark outer margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "camera grip",
+          "lollipop",
+          "exact graffiti text"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "camera",
+          "torso"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-open-shade-graffiti-warm"
+        ]
+      },
+      {
+        "id": "comp-rural-goldenhour-profile-close",
+        "name_zh": "黄昏旷野侧脸近景",
+        "risk": "stable",
+        "camera_en": "Close side profile against open field with one low sun and minimal background.",
+        "recommended_text_zones": [
+          "sky negative space",
+          "outer margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "hair rim",
+          "eye line"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "hair silhouette"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-goldenhour-back-side"
+        ]
+      },
+      {
+        "id": "comp-warm-beam-face-slice-close",
+        "name_zh": "暖色窄束贴脸切片",
+        "risk": "conditional",
+        "camera_en": "Close portrait through a soft occluding foreground with one narrow warm slice across selected facial planes.",
+        "recommended_text_zones": [
+          "dark outer margin",
+          "bottom margin"
+        ],
+        "forbidden_text_zones": [
+          "visible eye",
+          "nose bridge",
+          "lips",
+          "beam aperture path"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "beam-slice"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-warm-gap-occluder-soft-diffusion"
+        ]
+      },
+      {
+        "id": "comp-warm-spot-black-drape-body",
+        "name_zh": "暖光斑黑衣白布坐姿",
+        "risk": "stable",
+        "camera_en": "Seated or kneeling portrait on white drape with one small warm facial pool and cool room darkness.",
+        "recommended_text_zones": [
+          "outer drape margin",
+          "top margin"
+        ],
+        "forbidden_text_zones": [
+          "face pool",
+          "hands",
+          "white drape folds"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "torso",
+          "drape"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-warm-spot-cool-ambient-lowkey"
+        ]
+      },
+      {
+        "id": "comp-cafe-newspaper-eye-peek",
+        "name_zh": "咖啡馆报纸露眼构图",
+        "risk": "stable",
+        "camera_en": "Cafe portrait with newspaper edge below the eyes, storefront reflection plane, and localized warm light.",
+        "recommended_text_zones": [
+          "window reflection margin",
+          "newspaper lower zone"
+        ],
+        "forbidden_text_zones": [
+          "eyes",
+          "newspaper grip",
+          "visible publication branding"
+        ],
+        "subject_mask_zone": [
+          "eyes",
+          "newspaper",
+          "glass-plane"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-cafe-window-sunpool-reflection"
+        ]
+      },
+      {
+        "id": "comp-cafe-cup-sunpool-seated",
+        "name_zh": "咖啡馆捧杯光池构图",
+        "risk": "stable",
+        "camera_en": "Counter-side seated composition with ceramic cup, rust coat, and one oblique warm sun pool.",
+        "recommended_text_zones": [
+          "dark cafe margin",
+          "upper wall"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "cup rim",
+          "fingers",
+          "pastry highlights"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "hands",
+          "cup",
+          "coat"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-cafe-window-sunpool-reflection"
+        ]
+      },
+      {
+        "id": "comp-seaside-flash-wind-close",
+        "name_zh": "海边黄昏直闪风动近景",
+        "risk": "stable",
+        "camera_en": "Close or half-body dusk beach portrait with windblown hair, dark sea, and subject-limited flash.",
+        "recommended_text_zones": [
+          "sky negative space",
+          "dark shoreline margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "hair strands",
+          "white dress highlights",
+          "shell grip"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "hair",
+          "shoulder"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-dusk-seaside-direct-flash"
+        ]
+      },
+      {
+        "id": "comp-rooftop-bluehour-rim-medium",
+        "name_zh": "屋顶蓝调暖边缘光中景",
+        "risk": "stable",
+        "camera_en": "Medium rooftop portrait with warm source-facing hair rim, pale coat, and blue-hour cloud field.",
+        "recommended_text_zones": [
+          "sky negative space",
+          "outer coat margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "hair rim",
+          "coat edges",
+          "horizon"
+        ],
+        "subject_mask_zone": [
+          "face",
+          "hair-silhouette",
+          "coat"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-bluehour-rear-rim-front-fill"
+        ]
+      },
+      {
+        "id": "comp-field-chair-low-sun-wide",
+        "name_zh": "旷野木椅低太阳远景",
+        "risk": "stable",
+        "camera_en": "Wide field-chair portrait with long shadow, dry stubble, and restrained low-sun profile.",
+        "recommended_text_zones": [
+          "sky negative space",
+          "field margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "chair legs",
+          "hands",
+          "sun source"
+        ],
+        "subject_mask_zone": [
+          "subject",
+          "chair",
+          "ground-shadow"
+        ],
+        "compatible_lighting_profile_ids": [
+          "phys-goldenhour-back-side"
+        ]
+      },
+      {
+        "id": "comp-wind-hair-veil-cover-close",
+        "name_zh": "风动发丝贴脸封面近景",
+        "risk": "conditional",
+        "camera_en": "extreme close-up with lower-third title safe zone",
+        "recommended_text_zones": [
+          "lower third",
+          "outer margin"
+        ],
+        "forbidden_text_zones": [
+          "eyes",
+          "nose bridge",
+          "mouth contour"
+        ],
+        "subject_mask_zone": "central face with hair veil",
+        "compatible_lighting_profile_ids": [
+          "phys-wind-hair-closeup-sidelight"
+        ]
+      },
+      {
+        "id": "comp-lowkey-amber-hand-occluder-medium",
+        "name_zh": "低照度暖色手部遮挡中近景",
+        "risk": "conditional",
+        "camera_en": "medium-close black-turtleneck portrait with one warm patch and readable hand",
+        "recommended_text_zones": [
+          "outer margin",
+          "upper empty drape"
+        ],
+        "forbidden_text_zones": [
+          "warm face pool",
+          "raised hand silhouette"
+        ],
+        "subject_mask_zone": "center-right subject on white drape",
+        "compatible_lighting_profile_ids": [
+          "phys-amber-hand-occluder-lowkey"
+        ]
+      },
+      {
+        "id": "comp-goldenhour-flare-profile-close",
+        "name_zh": "黄金时刻眩光侧脸近景",
+        "risk": "stable",
+        "camera_en": "medium or close profile with low sun near frame edge",
+        "recommended_text_zones": [
+          "opposite margin",
+          "lower corner"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "flare source axis"
+        ],
+        "subject_mask_zone": "profile offset from sun axis",
+        "compatible_lighting_profile_ids": [
+          "phys-goldenhour-backlight-lensflare"
+        ]
+      },
+      {
+        "id": "comp-dusk-panblur-horizontal",
+        "name_zh": "黄昏横向摇摄拖影构图",
+        "risk": "conditional",
+        "camera_en": "horizontal or diagonal panning portrait with crisp post-layout type",
+        "recommended_text_zones": [
+          "outer edge",
+          "stable negative-space band"
+        ],
+        "forbidden_text_zones": [
+          "readable identity anchor",
+          "moving limb path"
+        ],
+        "subject_mask_zone": "motion body across center band",
+        "compatible_lighting_profile_ids": [
+          "phys-dusk-pan-motionblur-ambient"
+        ]
+      },
+      {
+        "id": "comp-bedroom-warm-window-lifestyle",
+        "name_zh": "卧室暖窗光生活方式构图",
+        "risk": "stable",
+        "camera_en": "seated or window-lean bedroom portrait with visible life props",
+        "recommended_text_zones": [
+          "wall margin",
+          "window margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "hands on prop"
+        ],
+        "subject_mask_zone": "seated subject with local prop cluster",
+        "compatible_lighting_profile_ids": [
+          "phys-bedroom-window-warm-bounce"
+        ]
+      },
+      {
+        "id": "comp-clean-sky-wind-cover-lowerthird",
+        "name_zh": "清洁天空风动侧脸封面构图",
+        "risk": "stable",
+        "camera_en": "profile or three-quarter cover portrait against clean sky",
+        "recommended_text_zones": [
+          "lower third",
+          "opposite sky margin"
+        ],
+        "forbidden_text_zones": [
+          "profile edge",
+          "eyes behind glasses"
+        ],
+        "subject_mask_zone": "profile against sky negative space",
+        "compatible_lighting_profile_ids": [
+          "phys-clean-sky-wind-sideprofile"
+        ]
+      },
+      {
+        "id": "comp-winter-scarf-tight-close",
+        "name_zh": "冬日围巾紧近景构图",
+        "risk": "stable",
+        "camera_en": "tight close portrait with scarf framing",
+        "recommended_text_zones": [
+          "outer margin",
+          "small top corner"
+        ],
+        "forbidden_text_zones": [
+          "eyes",
+          "nose bridge",
+          "scarf-jaw boundary"
+        ],
+        "subject_mask_zone": "face nested into scarf volume",
+        "compatible_lighting_profile_ids": [
+          "phys-winter-scarf-low-sun-softfill"
+        ]
+      },
+      {
+        "id": "comp-forest-ribbon-backturn",
+        "name_zh": "林间丝带回身构图",
+        "risk": "stable",
+        "camera_en": "back-turn forest portrait",
+        "recommended_text_zones": [
+          "leaf negative space",
+          "outer edge"
+        ],
+        "forbidden_text_zones": [
+          "profile landmarks",
+          "ribbon attachment"
+        ],
+        "subject_mask_zone": "back profile with canopy depth",
+        "compatible_lighting_profile_ids": [
+          "phys-forest-canopy-dapple-backlight"
+        ]
+      },
+      {
+        "id": "comp-autumn-leaf-hat-profile",
+        "name_zh": "秋叶帽饰侧脸构图",
+        "risk": "stable",
+        "camera_en": "autumn profile with held leaf",
+        "recommended_text_zones": [
+          "dark outer margin"
+        ],
+        "forbidden_text_zones": [
+          "held leaf",
+          "profile edge",
+          "hat brim"
+        ],
+        "subject_mask_zone": "profile and held leaf silhouette",
+        "compatible_lighting_profile_ids": [
+          "phys-autumn-leaf-rim-depth"
+        ]
+      },
+      {
+        "id": "comp-vehicle-window-wind-close",
+        "name_zh": "车窗风动近景构图",
+        "risk": "conditional",
+        "camera_en": "close vehicle-window face portrait",
+        "recommended_text_zones": [
+          "dark cabin margin"
+        ],
+        "forbidden_text_zones": [
+          "readable eye",
+          "mouth contour",
+          "hair flow"
+        ],
+        "subject_mask_zone": "face with wind hair and glass bokeh",
+        "compatible_lighting_profile_ids": [
+          "phys-vehicle-window-mixed-practical-wind"
+        ]
+      },
+      {
+        "id": "comp-cobalt-floral-halo-editorial",
+        "name_zh": "钴蓝花冠编辑构图",
+        "risk": "conditional",
+        "camera_en": "frontal, flower-eye, or reclined floral editorial",
+        "recommended_text_zones": [
+          "outer cobalt margin",
+          "white border zone"
+        ],
+        "forbidden_text_zones": [
+          "readable eye",
+          "mouth contour",
+          "halo silhouette"
+        ],
+        "subject_mask_zone": "halo-framed head and upper body",
+        "compatible_lighting_profile_ids": [
+          "phys-cobalt-floral-hardkey-shadow"
+        ]
+      },
+      {
+        "id": "comp-transit-corridor-white-scarf",
+        "name_zh": "通勤走廊白围巾构图",
+        "risk": "stable",
+        "camera_en": "corridor half or full body portrait",
+        "recommended_text_zones": [
+          "corridor upper margin",
+          "side wall margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "scarf folds",
+          "door lines"
+        ],
+        "subject_mask_zone": "subject aligned to corridor vanishing lines",
+        "compatible_lighting_profile_ids": [
+          "phys-transit-corridor-daylight-perspective"
+        ]
+      },
+      {
+        "id": "comp-bedroom-window-reflection-close",
+        "name_zh": "卧室窗面反射近景构图",
+        "risk": "conditional",
+        "camera_en": "close glass-plane reflection portrait",
+        "recommended_text_zones": [
+          "outer window margin"
+        ],
+        "forbidden_text_zones": [
+          "physical eye",
+          "reflection offset",
+          "mouth contour"
+        ],
+        "subject_mask_zone": "physical face with one soft reflection ghost",
+        "compatible_lighting_profile_ids": [
+          "phys-bedroom-window-reflection-doubleplane"
+        ]
+      },
+      {
+        "id": "comp-cafe-window-refined-editorial",
+        "name_zh": "咖啡馆窗边多平面构图",
+        "risk": "stable",
+        "camera_en": "seated eye-level cafe window portrait",
+        "recommended_text_zones": [
+          "outer margin",
+          "window negative space"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "cup rim",
+          "hand",
+          "reflection seam"
+        ],
+        "subject_mask_zone": "subject seated near window; table and glass planes separated",
+        "compatible_lighting_profile_ids": [
+          "phys-cafe-window-warm-reflection-layer"
+        ],
+        "perspective_profile_ids": [
+          "persp-cafe-window-layered-reflection"
+        ]
+      },
+      {
+        "id": "comp-urban-railing-knitwear",
+        "name_zh": "城市栏杆斜线构图",
+        "risk": "stable",
+        "camera_en": "eye-level railing lean",
+        "recommended_text_zones": [
+          "white border",
+          "lower margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "hands",
+          "railing contact"
+        ],
+        "subject_mask_zone": "subject leans on coherent railing diagonal",
+        "compatible_lighting_profile_ids": [
+          "phys-urban-railing-clear-winter-sun"
+        ],
+        "perspective_profile_ids": [
+          "persp-urban-railing-diagonal"
+        ]
+      },
+      {
+        "id": "comp-yellow-vehicle-street",
+        "name_zh": "黄色车辆立面色块构图",
+        "risk": "conditional",
+        "camera_en": "eye-level street portrait",
+        "recommended_text_zones": [
+          "sky margin",
+          "vehicle facade margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "glasses",
+          "vehicle signage"
+        ],
+        "subject_mask_zone": "subject one step in front of vehicle plane",
+        "compatible_lighting_profile_ids": [
+          "phys-yellow-vehicle-hard-daylight-colorblock"
+        ],
+        "perspective_profile_ids": [
+          "persp-yellow-vehicle-planar-colorblock"
+        ]
+      },
+      {
+        "id": "comp-coastal-denim-overlook",
+        "name_zh": "海岸地平线回望构图",
+        "risk": "stable",
+        "camera_en": "coastal back-turn portrait",
+        "recommended_text_zones": [
+          "negative sky area"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "horizon crossing eyes",
+          "hair silhouette"
+        ],
+        "subject_mask_zone": "subject in middle plane with level horizon",
+        "compatible_lighting_profile_ids": [
+          "phys-coastal-overlook-soft-wind-horizon"
+        ],
+        "perspective_profile_ids": [
+          "persp-coastal-horizon-atmospheric"
+        ]
+      },
+      {
+        "id": "comp-botanical-slitbeam-shadow",
+        "name_zh": "植物前景束光投影构图",
+        "risk": "conditional",
+        "camera_en": "close direct or profile portrait",
+        "recommended_text_zones": [
+          "empty wall",
+          "dark margin"
+        ],
+        "forbidden_text_zones": [
+          "face landmarks",
+          "beam edge",
+          "plant attachment"
+        ],
+        "subject_mask_zone": "foreground plant plane and wall projection separated",
+        "compatible_lighting_profile_ids": [
+          "phys-botanical-slitbeam-shadow-plane"
+        ],
+        "perspective_profile_ids": [
+          "persp-botanical-slitbeam-shadowplane"
+        ]
+      },
+      {
+        "id": "comp-lantern-riverside-depthchain",
+        "name_zh": "灯笼河岸纵深链条构图",
+        "risk": "conditional",
+        "camera_en": "seated riverside narrative portrait",
+        "recommended_text_zones": [
+          "sky margin",
+          "water margin"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "lantern silhouette",
+          "hand handle relation"
+        ],
+        "subject_mask_zone": "lantern-hand-body-step-bridge-water depth chain",
+        "compatible_lighting_profile_ids": [
+          "phys-lantern-riverside-bluehour-practical-depth"
+        ],
+        "perspective_profile_ids": [
+          "persp-lantern-riverside-depthchain"
+        ]
+      },
+      {
+        "id": "comp-ivory-studio-negative-space",
+        "name_zh": "象牙白棚拍负空间构图",
+        "risk": "stable",
+        "camera_en": "full-body standing or seated lookbook",
+        "recommended_text_zones": [
+          "top masthead",
+          "corner logo zone"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "flower stems",
+          "feet"
+        ],
+        "subject_mask_zone": "subject grounded on studio floor with clean negative space",
+        "compatible_lighting_profile_ids": [
+          "phys-ivory-studio-clean-softshadow"
+        ],
+        "perspective_profile_ids": [
+          "persp-ivory-studio-negative-space"
+        ]
+      },
+      {
+        "id": "comp-scarlet-poster-foreshortened",
+        "name_zh": "猩红海报夸张缩短构图",
+        "risk": "conditional",
+        "camera_en": "low-angle reclined fashion poster",
+        "recommended_text_zones": [
+          "outer margin dense type",
+          "barcode zone",
+          "corner frames"
+        ],
+        "forbidden_text_zones": [
+          "face",
+          "limb joints",
+          "near footwear silhouette"
+        ],
+        "subject_mask_zone": "controlled near-foot enlargement toward torso",
+        "compatible_lighting_profile_ids": [
+          "phys-scarlet-poster-hardgraphic"
+        ],
+        "perspective_profile_ids": [
+          "persp-scarlet-poster-foreshortened"
+        ]
+      },
+      {
+        "id": "comp-forest-understory-caption-close",
+        "name_zh": "林下遮挡中心标题近景",
+        "risk": "conditional",
+        "camera_en": "forest close portrait",
+        "recommended_text_zones": [
+          "center-bottom caption",
+          "lower band"
+        ],
+        "forbidden_text_zones": [
+          "eyes",
+          "mouth",
+          "branch attachment"
+        ],
+        "subject_mask_zone": "protected face focus pocket with near foliage and deep trunk planes",
+        "compatible_lighting_profile_ids": [
+          "phys-forest-canopy-dapple-backlight"
+        ],
+        "perspective_profile_ids": [
+          "persp-forest-understory-caption-close"
+        ]
+      }
+    ],
+    "typography_interaction_presets": [
+      {
+        "id": "type-margin-anchored",
+        "name_zh": "边缘锚定排版",
+        "mode": "text-aware-base",
+        "risk": "stable",
+        "rule_en": "Keep typography on outer margins, top bands, bottom bands, or sidebars. Do not cross the face."
+      },
+      {
+        "id": "type-masthead-safe-overlap",
+        "name_zh": "刊名安全轻叠",
+        "mode": "layout-coupled-base",
+        "risk": "conditional",
+        "rule_en": "A large masthead may overlap background or hair tips only. Never cover eyes, brows, nose bridge, or mouth."
+      },
+      {
+        "id": "type-subject-mask-title-behind",
+        "name_zh": "人物遮罩背后大标题",
+        "mode": "layout-coupled-base",
+        "risk": "conditional",
+        "rule_en": "Reserve a large title field behind the clean subject silhouette for later SVG or HTML masking."
+      },
+      {
+        "id": "type-silhouette-edge-wrap",
+        "name_zh": "人物轮廓边缘环绕",
+        "mode": "layout-coupled-base",
+        "risk": "conditional",
+        "rule_en": "Wrap typography around the silhouette edge without crossing face, neck, or active hands."
+      },
+      {
+        "id": "type-face-frame-graphic",
+        "name_zh": "面部框景图形层",
+        "mode": "layout-coupled-base",
+        "risk": "conditional",
+        "rule_en": "Use graphic frames or minimal type around the face only; keep the facial recognition region unobstructed."
+      },
+      {
+        "id": "type-prop-aligned-type",
+        "name_zh": "沿道具方向排版",
+        "mode": "layout-coupled-base",
+        "risk": "conditional",
+        "rule_en": "Align later typography with a readable prop direction such as board, microphone, menu, or fabric trail."
+      },
+      {
+        "id": "type-collage-sticker-overlay",
+        "name_zh": "贴纸与副图后期叠加",
+        "mode": "text-aware-base",
+        "risk": "stable",
+        "rule_en": "Reserve space for sticker, ASCII, card, or support-image overlays. Add them in post-production."
+      },
+      {
+        "id": "type-body-crossing-safe",
+        "name_zh": "身体横穿文字安全版",
+        "mode": "layout-coupled-base",
+        "risk": "conditional",
+        "rule_en": "Allow typography to cross clothing only. Never cross face, neck, or active hands."
+      },
+      {
+        "id": "type-dense-margin-editorial",
+        "name_zh": "日系密集边缘排版",
+        "mode": "text-aware-base",
+        "risk": "stable",
+        "rule_en": "Allow dense side columns and bottom bands while keeping the face and active hands clean."
+      },
+      {
+        "id": "type-masthead-hair-safe-overlap",
+        "name_zh": "刊名轻压发丝",
+        "mode": "layout-coupled-base",
+        "risk": "conditional",
+        "rule_en": "Allow the masthead to touch hair edge or background silhouette only. Preserve the eyes, nose bridge, and mouth."
+      },
+      {
+        "id": "type-signage-aware-negative-space",
+        "name_zh": "街景招牌减量",
+        "mode": "text-aware-base",
+        "risk": "stable",
+        "rule_en": "When the environment already contains signage, reduce additional overlays and preserve breathing room."
+      },
+      {
+        "id": "type-prop-balanced-caption-zone",
+        "name_zh": "道具平衡字幕区",
+        "mode": "text-aware-base",
+        "risk": "stable",
+        "rule_en": "Keep captions away from active hands and props such as food, straps, menus, headphones, and microphones."
+      },
+      {
+        "id": "type-runner-cutout-body-wrap",
+        "name_zh": "跑动剪影文字环绕",
+        "mode": "layout-coupled-base",
+        "risk": "conditional",
+        "rule_en": "Wrap later typography around the running silhouette without crossing neck, face, active arms, or forward leg."
+      },
+      {
+        "id": "type-collage-panel-layout",
+        "name_zh": "多图框杂志拼贴",
+        "mode": "layout-coupled-base",
+        "risk": "conditional",
+        "rule_en": "Reserve one hero panel and one or two support panels for later SVG or HTML composition."
+      },
+      {
+        "id": "type-label-strip-editorial",
+        "name_zh": "荧光标签条",
+        "mode": "text-aware-base",
+        "risk": "stable",
+        "rule_en": "Reserve clean rectangular bands for post-production label strips. Do not generate readable label text in-image."
+      },
+      {
+        "id": "type-top-masthead-bottom-band",
+        "name_zh": "顶部刊名与底部信息带",
+        "mode": "text-aware-base",
+        "risk": "stable",
+        "rule_en": "Reserve a top masthead and a restrained bottom information band for later overlays."
+      }
+    ],
+    "single_portrait_route_bindings": [
+      {
+        "route_id": "b03-japanese-daily-life-magazine",
+        "default_action_blueprint_id": "solo-lifestyle-squat-eating-direct",
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-lifestyle-candid-cover",
+        "default_typography_interaction_preset_id": "type-dense-margin-editorial",
+        "allowed_action_blueprint_ids": [
+          "solo-seated-chin-rest-direct",
+          "solo-lifestyle-squat-eating-direct"
+        ]
+      },
+      {
+        "route_id": "airy-afternoon-mag",
+        "default_action_blueprint_id": "solo-transit-strap-hold-soft-direct",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-transit-handle-framing",
+        "default_typography_interaction_preset_id": "type-top-masthead-bottom-band",
+        "allowed_action_blueprint_ids": [
+          "solo-seated-chin-rest-direct",
+          "solo-lying-topdown-headphones",
+          "solo-lifestyle-squat-eating-direct",
+          "solo-transit-strap-hold-soft-direct"
+        ]
+      },
+      {
+        "route_id": "b02-japanese-campus-photozine",
+        "default_action_blueprint_id": "solo-station-headphone-soft-direct",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-station-blue-collage",
+        "default_typography_interaction_preset_id": "type-collage-panel-layout",
+        "allowed_action_blueprint_ids": [
+          "solo-blue-poetic-seated-offframe",
+          "solo-transit-strap-hold-soft-direct",
+          "solo-station-headphone-soft-direct"
+        ]
+      },
+      {
+        "route_id": "blue-poetic-editorial-cn",
+        "default_action_blueprint_id": "solo-blue-poetic-seated-offframe",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-station-blue-collage",
+        "default_typography_interaction_preset_id": "type-collage-panel-layout",
+        "allowed_action_blueprint_ids": [
+          "solo-lying-topdown-headphones",
+          "solo-blue-poetic-seated-offframe",
+          "solo-station-headphone-soft-direct"
+        ]
+      },
+      {
+        "route_id": "hk-vintage-magazine",
+        "default_action_blueprint_id": "solo-hk-glamour-head-tilt-cover",
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-hk-vintage-masthead-close",
+        "default_typography_interaction_preset_id": "type-masthead-hair-safe-overlap",
+        "allowed_action_blueprint_ids": [
+          "solo-magazine-over-shoulder",
+          "solo-close-cover-direct-gaze",
+          "solo-hat-over-shoulder-profile",
+          "solo-hk-glamour-head-tilt-cover"
+        ]
+      },
+      {
+        "route_id": "b03-hk-neon-alley-fashion",
+        "default_action_blueprint_id": "solo-night-market-stride-camera-lock",
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-night-market-signage-fullbody",
+        "default_typography_interaction_preset_id": "type-signage-aware-negative-space",
+        "allowed_action_blueprint_ids": [
+          "solo-street-stall-chin-rest",
+          "solo-wall-lean-leg-bend",
+          "solo-alley-walk-backturn",
+          "solo-neon-wall-hand-near-mouth",
+          "solo-market-stall-downcast-working",
+          "solo-hk-glamour-head-tilt-cover",
+          "solo-night-market-stride-camera-lock",
+          "solo-doorway-two-arm-brace-prop",
+          "solo-balcony-jacket-lift-downcast"
+        ]
+      },
+      {
+        "route_id": "hk-green-lucid-cinema",
+        "default_action_blueprint_id": "solo-street-stall-chin-rest",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-market-stall-window-bokeh",
+        "default_typography_interaction_preset_id": "type-signage-aware-negative-space",
+        "allowed_action_blueprint_ids": [
+          "solo-street-stall-chin-rest",
+          "solo-market-stall-downcast-working",
+          "solo-night-market-stride-camera-lock",
+          "solo-doorway-two-arm-brace-prop"
+        ]
+      },
+      {
+        "route_id": "b02-neon-rainy-shopwindow",
+        "default_action_blueprint_id": "solo-neon-wall-hand-near-mouth",
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-wall-shadow-editorial",
+        "default_typography_interaction_preset_id": "type-signage-aware-negative-space",
+        "allowed_action_blueprint_ids": [
+          "solo-neon-wall-hand-near-mouth",
+          "solo-night-market-stride-camera-lock"
+        ]
+      },
+      {
+        "route_id": "b02-urban-motion-blur-editorial",
+        "default_action_blueprint_id": "solo-side-profile-run-trailing-fabric",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-runner-cutout-editorial",
+        "default_typography_interaction_preset_id": "type-runner-cutout-body-wrap",
+        "allowed_action_blueprint_ids": [
+          "solo-alley-walk-backturn",
+          "solo-balcony-jacket-lift-downcast",
+          "solo-side-profile-run-trailing-fabric"
+        ]
+      },
+      {
+        "route_id": "b05-forest-road-indie-tour-poster",
+        "default_action_blueprint_id": "solo-road-backturn-guitar",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "backturn-camera-reacquire",
+        "default_composition_blueprint_id": "comp-road-center-backturn",
+        "default_typography_interaction_preset_id": "type-top-masthead-bottom-band",
+        "allowed_action_blueprint_ids": [
+          "solo-road-backturn-guitar"
+        ]
+      },
+      {
+        "route_id": "nature-digital-veil",
+        "default_action_blueprint_id": "solo-field-fabric-wind-downcast",
+        "default_expression_preset_id": "expr-closed-eye-poetic",
+        "default_gaze_lock_id": "closed-eye-expression",
+        "default_composition_blueprint_id": "comp-field-fabric-motion",
+        "default_typography_interaction_preset_id": "type-silhouette-edge-wrap",
+        "allowed_action_blueprint_ids": [
+          "solo-field-fabric-wind-downcast",
+          "solo-side-profile-run-trailing-fabric"
+        ]
+      },
+      {
+        "route_id": "jp-skate-boom",
+        "default_action_blueprint_id": "solo-skate-low-angle-seated",
+        "default_expression_preset_id": "expr-playful-idol",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-low-angle-skate-foreshortening",
+        "default_typography_interaction_preset_id": "type-prop-aligned-type",
+        "allowed_action_blueprint_ids": [
+          "solo-skate-low-angle-seated",
+          "solo-skate-crouch-dynamic",
+          "solo-skate-foreshortened-foot"
+        ]
+      },
+      {
+        "route_id": "b02-cyber-visor-manifesto",
+        "default_action_blueprint_id": "solo-helmet-close-direct",
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-object-led-closeup",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-helmet-close-direct"
+        ]
+      },
+      {
+        "route_id": "b05-darkglass-music-daily-cover",
+        "default_action_blueprint_id": "solo-mic-performance-uplift",
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-stage-fullbody-collage",
+        "default_typography_interaction_preset_id": "type-prop-balanced-caption-zone",
+        "allowed_action_blueprint_ids": [
+          "solo-mic-performance-uplift"
+        ]
+      },
+      {
+        "route_id": "b03-retro-underground-gig-poster",
+        "default_action_blueprint_id": "solo-gothic-stage-fullbody-lean",
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-stage-fullbody-collage",
+        "default_typography_interaction_preset_id": "type-collage-sticker-overlay",
+        "allowed_action_blueprint_ids": [
+          "solo-gothic-stage-fullbody-lean",
+          "solo-mic-performance-uplift"
+        ]
+      },
+      {
+        "route_id": "b03-elegant-grid-fashion-collage",
+        "default_action_blueprint_id": "solo-editorial-wall-lean-downcast",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "downward-lock",
+        "default_composition_blueprint_id": "comp-vertical-wall-shadow-fashion",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-still-standing-downcast",
+          "solo-editorial-wall-lean-downcast",
+          "solo-hand-in-hair-editorial",
+          "solo-curled-floor-side-gaze",
+          "solo-turtleneck-shoulder-turn-direct"
+        ]
+      },
+      {
+        "route_id": "colorfield-fashion-cover",
+        "default_action_blueprint_id": "solo-turtleneck-shoulder-turn-direct",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-minimal-green-label-cover",
+        "default_typography_interaction_preset_id": "type-label-strip-editorial",
+        "allowed_action_blueprint_ids": [
+          "solo-still-standing-downcast",
+          "solo-editorial-wall-lean-downcast",
+          "solo-knee-up-fashion-standing",
+          "solo-close-cover-direct-gaze",
+          "solo-turtleneck-shoulder-turn-direct"
+        ]
+      },
+      {
+        "route_id": "b02-cream-serif-clean-cover",
+        "default_action_blueprint_id": "solo-turtleneck-shoulder-turn-direct",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-minimal-green-label-cover",
+        "default_typography_interaction_preset_id": "type-label-strip-editorial",
+        "allowed_action_blueprint_ids": [
+          "solo-still-standing-downcast",
+          "solo-magazine-over-shoulder",
+          "solo-turtleneck-shoulder-turn-direct"
+        ]
+      },
+      {
+        "route_id": "b04-showa-idol-weekly-cover",
+        "default_action_blueprint_id": "solo-close-cover-direct-gaze",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-dense-cover-closeup",
+        "default_typography_interaction_preset_id": "type-dense-margin-editorial",
+        "allowed_action_blueprint_ids": [
+          "solo-seated-chin-rest-direct",
+          "solo-close-cover-direct-gaze"
+        ]
+      },
+      {
+        "route_id": "b04-heisei-kawaii-floral-magazine",
+        "default_action_blueprint_id": "solo-cheek-rest-idol-cover",
+        "default_expression_preset_id": "expr-playful-idol",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-dense-cover-closeup",
+        "default_typography_interaction_preset_id": "type-dense-margin-editorial",
+        "allowed_action_blueprint_ids": [
+          "solo-cheek-rest-idol-cover"
+        ]
+      },
+      {
+        "route_id": "jp-torn-street-photo",
+        "default_action_blueprint_id": "solo-magazine-over-shoulder",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "backturn-camera-reacquire",
+        "default_composition_blueprint_id": "comp-editorial-close-crop",
+        "default_typography_interaction_preset_id": "type-collage-sticker-overlay",
+        "allowed_action_blueprint_ids": [
+          "solo-magazine-over-shoulder"
+        ]
+      },
+      {
+        "route_id": "b03-concept-word-editorial",
+        "default_action_blueprint_id": "solo-hand-frame-face",
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-face-frame-center",
+        "default_typography_interaction_preset_id": "type-face-frame-graphic",
+        "allowed_action_blueprint_ids": [
+          "solo-hand-frame-face",
+          "solo-dual-hand-face-frame"
+        ]
+      },
+      {
+        "route_id": "b02-blueblack-dirtywork-altgoth",
+        "default_action_blueprint_id": "solo-gothic-stage-fullbody-lean",
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-stage-fullbody-collage",
+        "default_typography_interaction_preset_id": "type-collage-sticker-overlay",
+        "allowed_action_blueprint_ids": [
+          "solo-gothic-stage-fullbody-lean"
+        ]
+      },
+      {
+        "route_id": "graduation-sunlit-campus-documentary",
+        "default_action_blueprint_id": "solo-graduation-bouquet-soft-direct",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-graduation-sunlit-negative-space",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-graduation-wave-folder-hold",
+          "solo-graduation-cap-raised",
+          "solo-graduation-bouquet-soft-direct",
+          "solo-graduation-bouquet-profile"
+        ]
+      },
+      {
+        "route_id": "graduation-campus-memory-film",
+        "default_action_blueprint_id": "solo-graduation-window-notebook",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-graduation-classroom-window",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-graduation-window-notebook",
+          "solo-graduation-lecturehall-chin-rest",
+          "solo-graduation-window-folder-hold",
+          "solo-graduation-window-notebook-offframe"
+        ]
+      },
+      {
+        "route_id": "graduation-architectural-quiet",
+        "default_action_blueprint_id": "solo-graduation-stairwell-backturn",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "backturn-camera-reacquire",
+        "default_composition_blueprint_id": "comp-graduation-stairwell-depth",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-graduation-stairwell-backturn",
+          "solo-graduation-stair-descent-downcast"
+        ]
+      },
+      {
+        "route_id": "graduation-forest-poetic",
+        "default_action_blueprint_id": "solo-graduation-meadow-seated-folder",
+        "default_expression_preset_id": "expr-downcast-narrative",
+        "default_gaze_lock_id": "downward-lock",
+        "default_composition_blueprint_id": "comp-graduation-meadow-wide",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-graduation-cap-raised",
+          "solo-graduation-meadow-seated-folder",
+          "solo-graduation-fence-upward-gaze"
+        ]
+      },
+      {
+        "route_id": "female-mature-quiet-luxury-studio",
+        "default_action_blueprint_id": "solo-mature-chair-neck-rest",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-mature-chair-side-negative",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-mature-chair-neck-rest"
+        ]
+      },
+      {
+        "route_id": "female-mature-textured-daily-editorial",
+        "default_action_blueprint_id": "solo-mature-textured-hand-hip",
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-mature-textured-wall-editorial",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-mature-textured-hand-hip",
+          "solo-mature-textured-cheek-rest"
+        ]
+      },
+      {
+        "route_id": "female-urban-executive-film",
+        "default_action_blueprint_id": "solo-executive-city-walk",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-executive-street-walk",
+        "default_typography_interaction_preset_id": "type-signage-aware-negative-space",
+        "allowed_action_blueprint_ids": [
+          "solo-executive-city-walk"
+        ]
+      },
+      {
+        "route_id": "female-androgynous-suit-editorial",
+        "default_action_blueprint_id": "solo-suit-studio-pocket",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-suit-neutral-gray-studio",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-suit-studio-pocket",
+          "solo-suit-stair-cheek-rest",
+          "solo-suit-red-disc-tie-adjust"
+        ]
+      },
+      {
+        "route_id": "male-window-morning-lifestyle",
+        "default_action_blueprint_id": "solo-male-window-coffee-sip",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-window-morning-table",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-male-window-coffee-sip",
+          "solo-male-piano-offframe",
+          "solo-male-window-coffee-dappled"
+        ]
+      },
+      {
+        "route_id": "male-rural-goldenhour-travel-film",
+        "default_action_blueprint_id": "solo-male-field-backpack-walk",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-rural-trainline-wide",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-male-field-backpack-walk",
+          "solo-male-field-ukulele",
+          "solo-male-rural-goldenhour-profile",
+          "solo-male-field-chair-low-sun"
+        ]
+      },
+      {
+        "route_id": "male-night-neon-transit-film",
+        "default_action_blueprint_id": "solo-male-night-backturn",
+        "default_expression_preset_id": "expr-intense-camera-lock",
+        "default_gaze_lock_id": "backturn-camera-reacquire",
+        "default_composition_blueprint_id": "comp-neon-road-backturn",
+        "default_typography_interaction_preset_id": "type-signage-aware-negative-space",
+        "allowed_action_blueprint_ids": [
+          "solo-male-night-backturn"
+        ]
+      },
+      {
+        "route_id": "female-cyan-amber-threshold-noir",
+        "default_action_blueprint_id": "solo-female-doorway-threshold",
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-doorway-threshold-fullbody",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-doorway-threshold"
+        ]
+      },
+      {
+        "route_id": "female-stairwell-satin-evening",
+        "default_action_blueprint_id": "solo-female-stairwell-lowangle",
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-stairwell-rail-lowangle",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-stairwell-lowangle"
+        ]
+      },
+      {
+        "route_id": "female-amber-jewelry-night-editorial",
+        "default_action_blueprint_id": "solo-female-jewelry-pearl",
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-night-jewelry-close",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-jewelry-pearl"
+        ]
+      },
+      {
+        "route_id": "male-hard-window-editorial-lounge",
+        "default_action_blueprint_id": "solo-male-hard-window-editorial",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-hard-window-lounge-magazine",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-male-hard-window-editorial"
+        ]
+      },
+      {
+        "route_id": "male-direct-flash-dining-candid",
+        "default_action_blueprint_id": "solo-male-restaurant-direct-flash",
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-direct-flash-overhead-table",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-male-restaurant-direct-flash"
+        ]
+      },
+      {
+        "route_id": "male-bookstore-headphones-lifestyle",
+        "default_action_blueprint_id": "solo-male-bookstore-headphones",
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-bookstore-headphone-casual",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-male-bookstore-headphones"
+        ]
+      },
+      {
+        "route_id": "male-90s-graffiti-camera-street",
+        "default_action_blueprint_id": "solo-male-graffiti-camera-street",
+        "default_expression_preset_id": "expr-hk-glamour-confident",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-graffiti-camera-wall",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-male-graffiti-camera-street"
+        ]
+      },
+      {
+        "route_id": "female-occluded-warm-beam-lowkey",
+        "default_action_blueprint_id": "solo-female-occluded-beam-lowkey",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-warm-beam-face-slice-close",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-occluded-beam-lowkey",
+          "solo-female-lowkey-hand-occluder"
+        ]
+      },
+      {
+        "route_id": "female-cafe-window-sunpool-editorial",
+        "default_action_blueprint_id": "solo-female-cafe-window-sunpool",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-cafe-newspaper-eye-peek",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-cafe-window-sunpool"
+        ]
+      },
+      {
+        "route_id": "female-seaside-dusk-direct-flash",
+        "default_action_blueprint_id": "solo-female-seaside-dusk-flash",
+        "default_expression_preset_id": "expr-candid-small-smile",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-seaside-flash-wind-close",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-seaside-dusk-flash"
+        ]
+      },
+      {
+        "route_id": "female-rooftop-bluehour-rim-fill",
+        "default_action_blueprint_id": "solo-female-rooftop-bluehour-rim",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-rooftop-bluehour-rim-medium",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-rooftop-bluehour-rim"
+        ]
+      },
+      {
+        "route_id": "female-wind-hair-cover-closeup",
+        "default_action_blueprint_id": "solo-female-wind-cover-closeup",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-wind-hair-veil-cover-close",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-wind-cover-closeup"
+        ]
+      },
+      {
+        "route_id": "female-goldenhour-backlit-flare",
+        "default_action_blueprint_id": "solo-female-goldenhour-backlight-flare",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "upward-offframe-lock",
+        "default_composition_blueprint_id": "comp-goldenhour-flare-profile-close",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-goldenhour-backlight-flare"
+        ]
+      },
+      {
+        "route_id": "female-dusk-motionblur-editorial",
+        "default_action_blueprint_id": "solo-female-dusk-pan-motionblur",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-dusk-panblur-horizontal",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-dusk-pan-motionblur"
+        ]
+      },
+      {
+        "route_id": "female-bedroom-window-casual-headphones",
+        "default_action_blueprint_id": "solo-female-bedroom-casual-headphones",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-bedroom-warm-window-lifestyle",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-bedroom-casual-headphones",
+          "solo-female-bedroom-window-reflection"
+        ]
+      },
+      {
+        "route_id": "female-clean-sky-wind-cover",
+        "default_action_blueprint_id": "solo-female-clean-sky-wind-cover",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-clean-sky-wind-cover-lowerthird",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-clean-sky-wind-cover"
+        ]
+      },
+      {
+        "route_id": "female-winter-scarf-sunlit-closeup",
+        "default_action_blueprint_id": "solo-female-winter-scarf-close",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-winter-scarf-tight-close",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-winter-scarf-close"
+        ]
+      },
+      {
+        "route_id": "female-forest-ribbon-softlight-fairytale",
+        "default_action_blueprint_id": "solo-female-forest-ribbon-backturn",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "offframe-lock",
+        "default_composition_blueprint_id": "comp-forest-ribbon-backturn",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-forest-ribbon-backturn",
+          "solo-female-forest-understory-caption"
+        ]
+      },
+      {
+        "route_id": "female-autumn-leaf-hat-narrative",
+        "default_action_blueprint_id": "solo-female-autumn-leaf-hat",
+        "default_expression_preset_id": "expr-offframe-contemplative",
+        "default_gaze_lock_id": "upward-offframe-lock",
+        "default_composition_blueprint_id": "comp-autumn-leaf-hat-profile",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-autumn-leaf-hat"
+        ]
+      },
+      {
+        "route_id": "female-vehicle-window-wind-practical-closeup",
+        "default_action_blueprint_id": "solo-female-vehicle-window-wind",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-vehicle-window-wind-close",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-vehicle-window-wind"
+        ]
+      },
+      {
+        "route_id": "female-floral-halo-cobalt-editorial",
+        "default_action_blueprint_id": "solo-female-floral-halo-cobalt",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-cobalt-floral-halo-editorial",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-floral-halo-cobalt"
+        ]
+      },
+      {
+        "route_id": "female-transit-corridor-white-scarf-commute",
+        "default_action_blueprint_id": "solo-female-transit-corridor-scarf",
+        "default_expression_preset_id": "expr-soft-direct-calm",
+        "default_gaze_lock_id": "soft-camera-lock",
+        "default_composition_blueprint_id": "comp-transit-corridor-white-scarf",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-transit-corridor-scarf"
+        ]
+      },
+      {
+        "route_id": "female-cafe-window-refined-editorial",
+        "default_action_blueprint_id": "solo-female-cafe-window-refined",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-cafe-window-refined-editorial",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-cafe-window-refined"
+        ]
+      },
+      {
+        "route_id": "female-urban-railing-knitwear-documentary",
+        "default_action_blueprint_id": "solo-female-urban-railing-knitwear",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-urban-railing-knitwear",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-urban-railing-knitwear"
+        ]
+      },
+      {
+        "route_id": "female-yellow-transit-street-editorial",
+        "default_action_blueprint_id": "solo-female-yellow-vehicle-street",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-yellow-vehicle-street",
+        "default_typography_interaction_preset_id": "type-signage-aware-negative-space",
+        "allowed_action_blueprint_ids": [
+          "solo-female-yellow-vehicle-street"
+        ]
+      },
+      {
+        "route_id": "female-coastal-denim-overlook-wind",
+        "default_action_blueprint_id": "solo-female-coastal-denim-overlook",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "backturn-camera-reacquire",
+        "default_composition_blueprint_id": "comp-coastal-denim-overlook",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-coastal-denim-overlook"
+        ]
+      },
+      {
+        "route_id": "female-botanical-slitbeam-shadow-portrait",
+        "default_action_blueprint_id": "solo-female-botanical-slitbeam",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-botanical-slitbeam-shadow",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-botanical-slitbeam"
+        ]
+      },
+      {
+        "route_id": "female-festival-lantern-riverside-narrative",
+        "default_action_blueprint_id": "solo-female-lantern-riverside",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "upward-offframe-lock",
+        "default_composition_blueprint_id": "comp-lantern-riverside-depthchain",
+        "default_typography_interaction_preset_id": "type-margin-anchored",
+        "allowed_action_blueprint_ids": [
+          "solo-female-lantern-riverside"
+        ]
+      },
+      {
+        "route_id": "female-ivory-studio-floral-menswear-lookbook",
+        "default_action_blueprint_id": "solo-female-ivory-studio-lookbook",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-ivory-studio-negative-space",
+        "default_typography_interaction_preset_id": "type-top-masthead-bottom-band",
+        "allowed_action_blueprint_ids": [
+          "solo-female-ivory-studio-lookbook"
+        ]
+      },
+      {
+        "route_id": "female-scarlet-kinetic-typography-fashion-poster",
+        "default_action_blueprint_id": "solo-female-scarlet-poster-foreshortened",
+        "default_expression_preset_id": "expr-neutral-editorial",
+        "default_gaze_lock_id": "camera-lock",
+        "default_composition_blueprint_id": "comp-scarlet-poster-foreshortened",
+        "default_typography_interaction_preset_id": "type-dense-margin-editorial",
+        "allowed_action_blueprint_ids": [
+          "solo-female-scarlet-poster-foreshortened"
+        ]
+      }
+    ]
+  }
+}
